@@ -1,0 +1,1 @@
+This directory will contain any images necessary to improve the look and usability of the HTML pages.

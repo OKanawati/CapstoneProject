@@ -1,0 +1,1 @@
+This directory will contain the css file(s) necessary to style HTML pages.

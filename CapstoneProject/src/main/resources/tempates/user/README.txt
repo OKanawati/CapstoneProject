@@ -1,0 +1,1 @@
+This directory contains all HTML pages that are only accessible to authenticated users.

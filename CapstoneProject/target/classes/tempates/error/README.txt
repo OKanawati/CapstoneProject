@@ -1,0 +1,1 @@
+This directory will contain the HTML pages for presenting error messages to the user.

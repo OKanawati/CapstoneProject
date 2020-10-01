@@ -1,0 +1,1 @@
+This directory will be where all class objects (i.e., Users, Shops) will be stored.

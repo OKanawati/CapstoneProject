@@ -1,0 +1,1 @@
+This directory will contain the necessary files to implement the Java Mail Sender.
