@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import ca.sheridancollege.beans.Customer;
 import ca.sheridancollege.beans.Owner;
 import ca.sheridancollege.repositories.RoleRepository;
 import ca.sheridancollege.repositories.UserRepository;
@@ -29,7 +30,7 @@ public class HomeController {
 	
 	// controller directs user to registration page for Shop Owner
 	@GetMapping("/goRegisterOwner")
-	public String goRegister(Model model) {
+	public String goRegisterOwner(Model model) {
 		
 		// creates a new Owner and adds it to the model
 		model.addAttribute("owner", new Owner());
@@ -56,5 +57,34 @@ public class HomeController {
 		
 		// returns home for testing purposes
 		return "index.html";
+	}
+	
+	@GetMapping("/goRegisterCustomer")
+	public String goRegisterCustomer(Model model) {
+		
+		// creates a new Customer and adds it to the model
+		model.addAttribute("customer", new Customer());
+		
+		return "registerCustomer.html";
+	}
+	
+	@PostMapping("/registerCustomer")
+	public String registerCustmer(@ModelAttribute Customer customer, Model model) {
+		
+		// create a new Customer using specific class constructor
+				Customer registeredCustomer = new Customer(customer.getFirstName(),
+						customer.getLastName(),
+						customer.getEmail(),
+						customer.getEncryptedPassword());
+				
+				
+				// retrieve the name for owner role and set it to new Owner
+				registeredCustomer.getRoles().add(roleRepo.findById(1));
+				
+				// saves Owner to UserRepository
+				userRepo.save(registeredCustomer);
+				
+				// returns home for testing purposes
+				return "index.html";
 	}
 }

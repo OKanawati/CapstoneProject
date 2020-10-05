@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Registration Placeholder</title>
+</head>
+<body>
+	<h1>This is a placeholder for customer registration</h1>
+	<h2>This will only be used for testing the backend</h2>
+	
+	<form action="#" th:action="@{/registerCustomer}" th:object="${customer}" method="post">
+		<fieldset>
+			<div>
+				<label>First Name:</label>
+				<input type="text" th:field="*{firstName}">
+			</div>
+			<div>
+				<label>Last Name:</label>
+				<input type="text" th:field="*{lastName}">
+			</div>
+			<div>
+				<label>Email:</label>
+				<input type="text" th:field="*{email}">
+			</div>
+			<div>
+				<label>Password:</label>
+				<input type="password" th:field="*{encryptedPassword}">
+			</div>
+			<div>
+				<input type="submit" value="Submit">
+			</div>
+		</fieldset>
+	</form>
+</body>
+</html>

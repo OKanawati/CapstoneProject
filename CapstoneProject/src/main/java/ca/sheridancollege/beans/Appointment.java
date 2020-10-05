@@ -1,5 +1,6 @@
 package ca.sheridancollege.beans;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,7 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
+@Entity
 // represents an appointment for device service at a local repair shop
 public class Appointment {
 	
