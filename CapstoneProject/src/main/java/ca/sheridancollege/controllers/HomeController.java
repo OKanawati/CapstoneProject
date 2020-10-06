@@ -28,6 +28,11 @@ public class HomeController {
 		return "index.html";
 	}
 	
+	@GetMapping("/deviceRegistration")
+	public String goDeviceRegistration() {
+		return "deviceSupportRegistration.html";
+	}
+	
 	// controller directs user to registration page for Shop Owner
 	@GetMapping("/goRegisterOwner")
 	public String goRegisterOwner(Model model) {

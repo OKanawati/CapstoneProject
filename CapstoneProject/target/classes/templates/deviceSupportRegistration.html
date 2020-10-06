@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Device Support Registration</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- JQuery -->
+    <script 
+    src="../static/js/jquery.js"
+    th:src="@{/js/jquery.js}"
+    ></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Roboto&display=swap" rel="stylesheet">
+    
+    <!-- External Style Sheet -->
+    <link rel="stylesheet" 
+    href="../static/css/deviceSupportRegistration.css"
+    th:href="@{/css/deviceSupportRegistration.css}" 
+    >
+    
+</head>
+<body>
+    <div class="content">
+        <div class="heading">
+            <h1>Select the Phone</h1>
+        </div>
+        <form action="test.html" method="GET">
+            <div class="page page0" data-page="0">
+                <div class="container pt-5">
+                    <div class="input-group mb-3">   
+                        <div class="input-group-prepend">
+                            <label for="developer-select" class="input-group-text">Developer:</label>
+                        </div>
+                        <select id="developer-select" class="form-control" name="developer" size="4" required>
+                            <option value="" disabled selected>Select your option</option>  
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 offset-4">
+                            <input type="button" class="btn proceed-btn" value="Proceed" />
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="page page1" data-page="1">
+                <div class="container pt-5">
+                    <div class="input-group mb-3">   
+                        <div class="input-group-prepend">
+                            <label for="model-select" class="input-group-text">Model:</label>
+                        </div>
+                        <select id="model-select" class="form-control" name="model"  size="4" required>
+                            <option value="" disabled selected>Select your option</option>
+                        </select>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 offset-4">
+                            <div class="model-info">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-8 offset-2">
+                            <input type="button" class="btn proceed-btn" value="Proceed"/>
+                            <input type="button" class="btn back-btn" value="Back" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <input type="hidden" name="release" id="release-hidden" />
+            <input type="hidden" name="OS" id="os-hidden" />
+
+            <div class="page page2" data-page="2">
+                
+                <div class="container pt-5">
+                    <div class="card">
+                        <div class="">
+                            <div class="card-header">Services</div>
+                            <div class="form-check">
+                                <label>Screen Repair:</label>
+                                <input type="checkbox" class="chkbox" name="service" value="screen"/>
+                            </div>
+                            <div class="form-check">
+                                <label>Battery Repair:</label>
+                                <input type="checkbox" class="chkbox" name="service" value="battery"/>
+                            </div> 
+                            <div class="form-check">
+                                <label>Software Repair:</label>
+                                <input type="checkbox" class="chkbox" name="service" value="software"/>
+                            </div>
+                            <div class="form-check">
+                                <label>Motherboard Repair:</label>
+                                <input type="checkbox" class="chkbox" name="service" value="motherboard"/>
+                            </div>
+                            <div class="form-check">
+                                <label>Camera Repair:</label>
+                                <input type="checkbox" class="chkbox" name="service" value="camera"/>
+                            </div> 
+                        </div>
+                    </div>
+                    <input type="button" class="btn proceed-btn" value="Proceed"/>
+                    <input type="button" class="btn back-btn" value="Back"/>
+                </div>
+            </div>
+            <div class="page page3" data-page="3">
+                <div class="container pt-5">
+                    <div class="card-header">Summary</div>
+                    <div id="summary" class="card">
+
+                    </div>
+
+                    <input type="submit" class="btn proceed-btn" value="Submit" />
+                    <input type="button" class="btn back-btn" value="Back" />
+                </div>
+            </div>
+
+
+            
+        </form>
+
+    </div>
+    <!-- Model, Developer, Release Date, OS Version, null -->
+    <!-- (Insert the list of phones here) -->
+    <div id="phone-content">
+
+    </div>
+
+    <script 
+    src="../static/js/deviceSupportRegistration.js"
+    th:src="@{/js/deviceSupportRegistration.js}"
+    ></script>
+
+</body>
+</html>
