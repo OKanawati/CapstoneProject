@@ -97,12 +97,7 @@ public class HomeController {
 	}
 	
 	@GetMapping("/login")
-<<<<<<< HEAD
 	public String login() {
 		return "login.html";
-=======
-	public String login(){
-		return "loginUser.html";
->>>>>>> 29a7d43d213b08cb8daaf3011773c18e430e11b0
 	}
 }

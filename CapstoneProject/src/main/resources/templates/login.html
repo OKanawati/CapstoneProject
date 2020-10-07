@@ -6,11 +6,7 @@
 	<div id="LayoutHeaders">
 		<h1>LOG-IN</h1>
 	</div>
-<<<<<<< HEAD:CapstoneProject/src/main/resources/templates/login.html
 		<form class="pure-form pure-form-aligned" th:action="@{/login}" method="post">
-=======
-		<form class="pure-form pure-form-aligned" th:action="@{/loginSubmit}" method="post">
->>>>>>> 29a7d43d213b08cb8daaf3011773c18e430e11b0:CapstoneProject/src/main/resources/templates/loginUser.html
 			<fieldset>
 				<div class="pure-control-group" th:if="${param.error}">
 					<div class="alert">
@@ -28,25 +24,15 @@
 				</div>
 				<div class="pure-control-group">
 					<label for="password">Password:</label>
-<<<<<<< HEAD:CapstoneProject/src/main/resources/templates/login.html
-					<input type="password" id="password" name="password" placeholder="Password">
-=======
 					<input type="password" id="password" name="password" placeholder="password">
->>>>>>> 29a7d43d213b08cb8daaf3011773c18e430e11b0:CapstoneProject/src/main/resources/templates/loginUser.html
 				</div>
-				
-				
-				//This requires backend redirection, easy to implement but requires Omars attention to see how the authentication will work
 				<div class="pure-controls">
 					<input type="submit" name="login-submit" id="login-submit" value="Log in" class="pure-button pure-button-primary">
 				</div>
 			</fieldset>
 		</form>
-<<<<<<< HEAD:CapstoneProject/src/main/resources/templates/login.html
-=======
 		
 		
 		<footer th:insert="index.html :: footer"></footer>
->>>>>>> 29a7d43d213b08cb8daaf3011773c18e430e11b0:CapstoneProject/src/main/resources/templates/loginUser.html
 </body>
 </html>
