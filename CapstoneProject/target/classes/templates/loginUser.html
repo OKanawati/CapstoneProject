@@ -7,7 +7,7 @@
 	<div id="LayoutHeaders">
 		<h1>LOG-IN</h1>
 	</div>
-		<form class="pure-form pure-form-aligned" th:action="@{/loginOwner}" th:object= ${owner}" method="post">
+		<form class="pure-form pure-form-aligned" th:action="@{/loginSubmit}" method="post">
 			<fieldset>
 				<div class="pure-control-group" th:if="${param.error}">
 					<div class="alert">
@@ -25,13 +25,18 @@
 				</div>
 				<div class="pure-control-group">
 					<label for="password">Password:</label>
-					<input type="password" id="password" name="password" placeholder="*{encryptedPassword}">
+					<input type="password" id="password" name="password" placeholder="password">
 				</div>
+				
+				
+				//This requires backend redirection, easy to implement but requires Omars attention to see how the authentication will work
 				<div class="pure-controls">
 					<input type="submit" name="login-submit" id="login-submit" value="Log in" class="pure-button pure-button-primary">
 				</div>
 			</fieldset>
 		</form>
-	<footer th:insert="index.html :: footer"></footer>
+		
+		
+		<footer th:insert="index.html :: footer"></footer>
 </body>
 </html>

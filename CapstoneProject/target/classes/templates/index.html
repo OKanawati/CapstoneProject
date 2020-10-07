@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>Index Placeholder</title>
+<head th:fragment="header (pageTitle)">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8" />
+	<title th:text="${pageTitle}">Home</title>
+	<link th:href="@{/css/styles.css}" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
 </head>
 <body>
-	<h1>This is a placeholder for the front page</h1>
-	<h2>This will only be used for testing the backend</h2>
-	
-	<div>
-		<a href="/goRegisterCustomer" th:href="@{/goRegisterCustomer}">Register Customer</a> ||
-		<a href="/goRegisterOwner" th:href="@{/goRegisterOwner}">Register Shop Owner</a> ||
+	<div id="LayoutHeaders">
+		<h4>PLEASE</h4>	
+		<h1>SELECT AN OPTION BELOW</h1>
 	</div>
+	
+	<footer th:fragment="footer">
+		<div>
+			<a href="/goRegisterCustomer" th:href="@{/goRegisterCustomer}">Register Customer</a> ||
+			<a href="/goRegisterOwner" th:href="@{/goRegisterOwner}">Register Shop Owner</a> ||
+			<a href="/login" th:href="@{login}">Login/View Account</a>
+		</div>
+	</footer>
 </body>
 </html>
