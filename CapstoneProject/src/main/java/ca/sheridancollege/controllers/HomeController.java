@@ -92,4 +92,9 @@ public class HomeController {
 				// returns home for testing purposes
 				return "index.html";
 	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login.html";
+	}
 }

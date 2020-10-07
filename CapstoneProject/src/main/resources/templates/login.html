@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeLeaf.org">
-<head th:include="index.html :: header (pageTitle='Login')">
+<head>
 </head>
-
 <body>
 	<div id="LayoutHeaders">
 		<h1>LOG-IN</h1>
 	</div>
-		<form class="pure-form pure-form-aligned" th:action="@{/loginOwner}" th:object= ${owner}" method="post">
+		<form class="pure-form pure-form-aligned" th:action="@{/login}" method="post">
 			<fieldset>
 				<div class="pure-control-group" th:if="${param.error}">
 					<div class="alert">
@@ -20,18 +19,17 @@
 					</div>
 				</div>
 				<div class="pure-control-group">
-					<label for="email">Email:</label>
-					<input type="text" id="email" name="email" autofocus="autofocus" placeholder="Email">
+					<label for="username">Username:</label>
+					<input type="text" id="username" name="username" autofocus="autofocus" placeholder="Username">
 				</div>
 				<div class="pure-control-group">
 					<label for="password">Password:</label>
-					<input type="password" id="password" name="password" placeholder="*{encryptedPassword}">
+					<input type="password" id="password" name="password" placeholder="Password">
 				</div>
 				<div class="pure-controls">
 					<input type="submit" name="login-submit" id="login-submit" value="Log in" class="pure-button pure-button-primary">
 				</div>
 			</fieldset>
 		</form>
-	<footer th:insert="index.html :: footer"></footer>
 </body>
 </html>
