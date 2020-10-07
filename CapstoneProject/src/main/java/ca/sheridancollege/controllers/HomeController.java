@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import javax.mail.MessagingException;
 
 import ca.sheridancollege.beans.Customer;
 import ca.sheridancollege.beans.Owner;
@@ -94,7 +97,12 @@ public class HomeController {
 	}
 	
 	@GetMapping("/login")
+<<<<<<< HEAD
 	public String login() {
 		return "login.html";
+=======
+	public String login(){
+		return "loginUser.html";
+>>>>>>> 29a7d43d213b08cb8daaf3011773c18e430e11b0
 	}
 }

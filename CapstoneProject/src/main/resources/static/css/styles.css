@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600,600i');
+
+
+
+body{
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+#LayoutHeaders{
+	margin-top: 5%;
+	text-align: center;
+}
+
+#AccountInformation{
+	text-align: center;
+}
+
+form{
+	position: absolute;
+    top: 50%;
+    left: 45%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+footer{
+	position: fixed;	
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: cornsilk;
+    color: white;
+    text-align: center;
+    height: 5%;
+    color: black;
+}
+
+input[type=submit]{
+	background-color: #4CAF50;
+}
+input[type=submit]:hover{
+	opacity:0.8;
+}
+
+.alert{
+	color:red;
+}

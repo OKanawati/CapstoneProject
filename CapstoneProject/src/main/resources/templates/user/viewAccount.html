@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeLeaf.org">
+<head th:include="index.html :: header (pageTitle='Account Information')">
+</head>
+<body>
+	<div id="LayoutHeaders">
+		<h1>ACCOUNT INFORMATION</h1>
+	</div>
+	<div id="AccountInformation">
+		<h2>Welcome, [[${customer.name}]]</h2>
+			Name: <span th:text="${customer.firstName}"></span><span th:text="${customer.lastName}"></span><br>
+			Email: <span th:text="${customer.email}"></span><br>
+	</div>
+	<br>
+		
+		
+	// Make Appointments
+	<form class="pure-form pure-form-aligned" action="#" th:action="@{/makeAppointment}" method="post">
+		<div class="pure-controls">
+			<input type="button" value="makeAppointment" class="pure-button pure-button-primary">
+		</div>
+	</form>
+	
+	// View Appointments
+	<form class="pure-form pure-form-aligned" action="#" th:action="@{/viewAppointments}" method="post">
+		<div class="pure-controls">
+			<input type="button" value="viewAppointments" class="pure-button pure-button-primary">
+		</div>
+	</form>	
+	
+	// Add Store (To hide for customer, add -if user-role is- statement to form e.g. th:if="${param.error}")	
+	<form class="pure-form pure-form-aligned" action="#" th:action="@{/addStore}" method="post">
+		<div class="pure-controls">
+			<input type="button" value="addStore" class="pure-button pure-button-primary">
+		</div>
+	</form>		
+	
+	// View Stores (To hide for customer, add -if user-role is- statement to form e.g. th:if="${param.error}")
+	<form class="pure-form pure-form-aligned" action="#" th:action="@{/manageStores}" method="post">
+		<div class="pure-controls">
+			<input type="button" value="manageStores" class="pure-button pure-button-primary">
+		</div>
+	</form>
+	
+	// Logout
+	<form class="pure-form pure-form-aligned" action="#" th:action="@{/logout}" method="post">
+		<div class="pure-controls">
+			<input type="submit" value="Logout" class="pure-button pure-button-primary">
+		</div>
+	</form>	
+		
+	<footer th:insert="index.html :: footer"></footer>
+</body>
+</html>

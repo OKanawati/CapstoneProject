@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>Register Owner Placeholder</title>
+<head th:include="index.html :: header (pageTitle='Register Owner')">
 </head>
 <body>
-	<h1>This is a placeholder for the Owner registration page</h1>
-	<h2>This will only be used for testing the backend</h2>
+
+	<div id="LayoutHeaders">
+		<h1>SHOP-OWNER REGISTRATION</h1>
+	</div>
 	
-	<form action="#" th:action="@{/registerOwner}" th:object="${owner}" method="post">
+	<form class="pure-form pure-form-aligned" action="#" th:action="@{/registerOwner}" th:object="${owner}" method="post">
 		<fieldset>
-			<div>
+			<div class="pure-control-group">
 				<label>First Name:</label>
 				<input type="text" th:field="*{firstName}">
 			</div>
-			<div>
+			<div class="pure-control-group">
 				<label>Last Name:</label>
 				<input type="text" th:field="*{lastName}">
 			</div>
-			<div>
+			<div class="pure-control-group">
 				<label>Email:</label>
 				<input type="text" th:field="*{email}">
 			</div>
-			<div>
+			<div class="pure-control-group">
 				<label>Password:</label>
 				<input type="password" th:field="*{encryptedPassword}">
 			</div>
-			<div>
+			<div class="pure-control-group">
 				<label>Phone Number:</label>
 				<input type="text" th:field="*{phoneNumber}">
 			</div>
-			<div>
+			<div class="pure-control-group">
 				<label>Address:</label>
 				<input type="text" th:field="*{address}">
 			</div>
-			<div>
-				<input type="submit" value="Submit">
+			<div class="pure-controls">
+				<input type="submit" value="Submit" class="pure-button pure-button-primary">
 			</div>
 		</fieldset>
 	</form>
+	
+	<footer th:insert="index.html :: footer"></footer>
 	
 </body>
 </html>

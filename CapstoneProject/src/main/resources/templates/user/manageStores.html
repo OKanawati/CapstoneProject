@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeLeaf.org">
+<head th:include="index.html :: header (pageTitle='Accounts List')">
+</head>
+<body>
+	<div id="LayoutHeaders">
+		<h1>LIST OF STORES</h1>
+	</div>
+	<div id="AccountInformation">
+	<h2>Welcome, [[${user.name}]]</h2>
+		<div th:each="shop : ${shopList}">
+			Name: <span th:text="${shop.name}"></span><br>
+			Address: <span th:text="${shop.address}"></span><br>
+			Phone Number: <span th:text="${shop.phonenumber}"></span><br>
+			<br>
+		</div>
+	</div>
+	<br>
+
+		<form class="pure-form pure-form-aligned" action="#" th:action="@{/logout}" method="post">
+			<div class="pure-controls">
+				<input type="submit" value="Logout" class="pure-button pure-button-primary">
+			</div>
+		</form>
+	<footer th:insert="index.html :: footer"></footer>
+</body>
+</html>
