@@ -1,6 +1,7 @@
 package ca.sheridancollege.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,10 +9,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.mail.MessagingException;
 
 import ca.sheridancollege.beans.Customer;
 import ca.sheridancollege.beans.Owner;
+import ca.sheridancollege.beans.Role;
+import ca.sheridancollege.beans.User;
 import ca.sheridancollege.repositories.RoleRepository;
 import ca.sheridancollege.repositories.UserRepository;
 
@@ -94,6 +101,43 @@ public class HomeController {
 				
 				// returns home for testing purposes
 				return "index.html";
+	}
+	
+	@GetMapping("/viewAccount")
+	public String viewAccount(Authentication authentication, Model model) {
+		
+		// if the user hasn't logged in, they will be redirected to the login page
+		if (authentication == null) {
+			return "redirect:/login";
+		}
+		
+		// find user based on username and retrieve list of roles.
+		List<Role> roles = new ArrayList<Role>();
+		roles = userRepo.findByEmail(authentication.getName()).getRoles();
+		
+		// check list of roles
+		for (Role role : roles) {
+			// if one of the roles is OWNER, create a new Owner object
+			if (role.getRolename().equals("ROLE_OWNER")) {
+				
+				// creates Owner and adds it to the model
+				User owner = new Owner();
+				owner = userRepo.findByEmail(authentication.getName());
+				model.addAttribute("owner", owner);
+				
+				// send Owner user to Owner account page
+				return "user/viewOwnerAccount.html";
+			}
+		}
+		
+		// If the user isn't an Owner or Admin, and the user is authenticated
+		// Create Customer and add to model
+		User customer = new Customer();
+		customer = userRepo.findByEmail(authentication.getName());
+		model.addAttribute("customer", customer);
+		
+		return "user/viewCustomerAccount.html";
+		
 	}
 	
 	@GetMapping("/login")

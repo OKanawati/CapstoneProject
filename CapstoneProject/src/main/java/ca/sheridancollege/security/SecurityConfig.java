@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
@@ -20,6 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.headers().frameOptions().disable();
 		
 		http.authorizeRequests()
+			.antMatchers("/user/viewOwnerAccount").hasRole("OWNER")
+			.antMatchers("/user/registerShop").hasRole("OWNER")
+			.antMatchers("/user/viewCustomerAccount").hasRole("CUSTOMER")
 			.antMatchers("/", "/images/**", "/css/**", "/**").permitAll()
 			.antMatchers("/h2-console/**").permitAll()
 			.anyRequest().authenticated()
@@ -27,6 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 				.loginPage("/login")
 				.permitAll()
+				.defaultSuccessUrl("/viewAccount")
 			.and()
 			.logout()
 				.invalidateHttpSession(true)
@@ -40,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
 	
 	@Autowired
 	UserDetailsServiceImpl userDetailsService;

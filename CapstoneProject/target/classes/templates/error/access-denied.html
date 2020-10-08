@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeLeaf.org">
+<head th:include="index.html :: header (pageTitle='Access Denied')">
+<title>Access Denied</title>
+</head>
+<body>
+	<div id="LayoutHeaders">
+		<h4>ACCESS</h4>	
+		<h1>DENIED</h1>
+	</div>
+	<form class="pure-form pure-form-aligned" action="#" th:action="@{/logout}" method="post">
+		<div class="pure-controls">
+			<input type="submit" value="logout" class="pure-button pure-button-primary">
+		</div>
+	</form>
+	<footer th:insert="index.html :: footer"></footer>
+</body>
+</html>
