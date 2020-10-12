@@ -1,9 +1,11 @@
 package ca.sheridancollege.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.*;
 
@@ -20,4 +22,11 @@ public class Appointment {
 	private Integer id;
 	private String serviceDetails;
 	private String date;
+	
+	// A single customer can have many appointments
+	@ManyToOne(cascade=CascadeType.ALL)
+	Customer customer = new Customer();
+	
+	@ManyToOne(cascade=CascadeType.ALL)
+	Shop shop = new Shop();
 }

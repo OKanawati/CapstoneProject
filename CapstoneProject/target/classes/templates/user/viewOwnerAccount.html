@@ -13,6 +13,32 @@
 			Account Active: <span th:text="${owner.accountStatus}"></span><br>
 	</div>
 	<br>
+	
+<!-- 	View the list of registered shops belonging to the owner logged in -->
+	<div>
+		<h3>Registered Shops</h3>
+			<div th:if="${not #lists.isEmpty(owner.shopList)}">
+				<div th:each="shop : ${owner.shopList}">
+				Name: <span th:text="${shop.name}"></span><br>
+				Phone: <span th:text="${shop.phoneNumber}"></span><br>
+				Address: <span th:text="${shop.address}"></span><br>
+				<br>
+				Appointments:<br>
+					<div th:if="${not #lists.isEmpty(shop.appointments)}">
+						<div th:each="appointment : ${shop.appointments}">
+						
+						</div>
+					</div>
+					<div th:unless="${not #lists.isEmpty(shop.appointments)}">
+						<span>No appointments scheduled</span>
+					</div>
+				</div>
+			</div>
+			<div th:unless="${not #lists.isEmpty(owner.shopList)">
+				<span>No shops registered</span>			
+			</div>
+			
+	</div>
 		
 	<form class="pure-form pure-form-aligned" action="#" th:action="@{/logout}" method="post">
 		<div class="pure-controls">

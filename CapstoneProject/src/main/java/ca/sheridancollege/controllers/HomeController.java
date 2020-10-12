@@ -43,7 +43,7 @@ public class HomeController {
 		return "deviceSupportRegistration.html";
 	}
 	
-	// controller directs user to registration page for Shop Owner
+	// directs to shop Owner registration page
 	@GetMapping("/goRegisterOwner")
 	public String goRegisterOwner(Model model) {
 		
@@ -53,6 +53,7 @@ public class HomeController {
 		return "registerOwner.html";
 	}
 	
+	// registers a new shop Owner to the website
 	@PostMapping("/registerOwner")
 	public String registerOwner(@ModelAttribute Owner owner, Model model) {
 		
@@ -74,6 +75,7 @@ public class HomeController {
 		return "index.html";
 	}
 	
+	// directs to customer registration page
 	@GetMapping("/goRegisterCustomer")
 	public String goRegisterCustomer(Model model) {
 		
@@ -83,6 +85,7 @@ public class HomeController {
 		return "registerCustomer.html";
 	}
 	
+	// registers a new customer to the website
 	@PostMapping("/registerCustomer")
 	public String registerCustmer(@ModelAttribute Customer customer, Model model) {
 		
@@ -103,6 +106,7 @@ public class HomeController {
 				return "index.html";
 	}
 	
+	// allows users to view account information
 	@GetMapping("/viewAccount")
 	public String viewAccount(Authentication authentication, Model model) {
 		
@@ -140,6 +144,7 @@ public class HomeController {
 		
 	}
 	
+	// directs to login page
 	@GetMapping("/login")
 	public String login() {
 		return "login.html";

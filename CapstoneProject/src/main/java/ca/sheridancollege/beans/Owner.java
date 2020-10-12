@@ -1,6 +1,10 @@
 package ca.sheridancollege.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import lombok.*;
 
@@ -15,6 +19,11 @@ public class Owner extends User {
 	private String phoneNumber;
 	private String accountStatus;
 	private String address;
+	
+	// A single owner can have many shops
+	@OneToMany
+	// list of shops registered by owner
+	private List<Shop> shopList = new ArrayList<Shop>();
 	
 	public Owner(String firstName, String lastName, String email, String password, 
 			String phoneNumber, String address) {
