@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="index.html :: header (pageTitle='Register Shop')">
 </head>
 <body>
 
+	<div id="LayoutHeaders">
+		<h1>SHOP REGISTRATION</h1>
+	</div>
+	
+	<form class="pure-form pure-form-aligned" action="#" th:action="@{/registerShop}" th:object="${shop}" method="post">
+		<fieldset>
+			<div class="pure-control-group">
+				<label>Shop Name:</label>
+				<input type="text" th:field="*{name}">
+			</div>
+			<div class="pure-control-group">
+				<label>Phone Number:</label>
+				<input type="text" th:field="*{phoneNumber}">
+			</div>
+			<div class="pure-control-group">
+				<label>Address:</label>
+				<input type="text" th:field="*{address}">
+			</div>
+			<div class="pure-control-group">
+				<label>Brands Serviced:</label>
+				
+				<label>iPhone</label>
+				<input type="checkbox" name="iPhone" value="iPhone" th:field="*{brands}">
+				
+				<label>Samsung</label>
+				<input type="checkbox" name="Samsung" value="Samsung" th:field="*{brands}">
+				
+				<label>LG</label>
+				<input type="checkbox" name="LG" value="LG" th:field="*{brands}">
+			</div>
+			<div class="pure-controls">
+				<input type="submit" value="Submit" class="pure-button pure-button-primary">
+			</div>
+		</fieldset>
+	</form>
+	
+	<footer th:insert="index.html :: footer"></footer>
+	
 </body>
 </html>

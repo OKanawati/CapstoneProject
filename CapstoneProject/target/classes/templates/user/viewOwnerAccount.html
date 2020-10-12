@@ -32,11 +32,14 @@
 					<div th:unless="${not #lists.isEmpty(shop.appointments)}">
 						<span>No appointments scheduled</span>
 					</div>
+					<br>
 				</div>
 			</div>
 			<div th:unless="${not #lists.isEmpty(owner.shopList)}">
 				<span>No shops registered</span>			
 			</div>
+			<br>
+			<a href="/goRegisterShop" th:href="@{/goRegisterShop}">Add Shop</a>
 			
 	</div>
 		

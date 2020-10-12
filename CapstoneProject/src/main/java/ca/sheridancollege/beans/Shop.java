@@ -28,6 +28,10 @@ public class Shop {
 	private String phoneNumber;
 	private String address;
 	
+	// List of device brands
+	// For testing purposes, the list will be represented as a single string
+	private String brands;
+	
 
 	// TODO: Add list of brands that can be stored safely in the database
 	
@@ -37,4 +41,6 @@ public class Shop {
 	
 	@OneToMany
 	private List<Appointment> appointments = new ArrayList<Appointment>();
+	
+	
 }

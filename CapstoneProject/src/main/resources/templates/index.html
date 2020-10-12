@@ -9,9 +9,15 @@
 </head>
 <body>
 	<div id="LayoutHeaders">
-		<h4>PLEASE</h4>	
-		<h1>SELECT AN OPTION BELOW</h1>
+		<h1>localFix</h1>	
+		<h2>Search for a Shop by entering your device</h2>
 	</div>
+	
+	<form action="#" th:action="@{/goSearch}">
+		Search: <input type="text" name="search">
+	</form>
+	
+	
 	
 	<footer th:fragment="footer">
 		<div>
