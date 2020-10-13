@@ -13,14 +13,19 @@
 		<h2>Search for a Shop by entering your device</h2>
 	</div>
 	
-	<form action="#" th:action="@{/goSearch}">
+	<form action="#" th:action="@{/search}">
 		Search: <input type="text" name="search">
 	</form>
 	
-	
+	<div th:each="shop : ${results}">
+		<span th:text="${shop.name}"></span><br>
+		<span th:text="${shop.address}"></span><br>
+		<span th:text="${shop.brands}"></span><br><br>
+	</div>
 	
 	<footer th:fragment="footer">
 		<div>
+			<a href="/" th:href="@{/}">Home</a> ||
 			<a href="/goRegisterCustomer" th:href="@{/goRegisterCustomer}">Register Customer</a> ||
 			<a href="/goRegisterOwner" th:href="@{/goRegisterOwner}">Register Shop Owner</a> ||
 			<a href="/viewAccount" th:href="@{/viewAccount}">View Account</a>

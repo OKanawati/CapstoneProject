@@ -22,6 +22,7 @@
 				Name: <span th:text="${shop.name}"></span><br>
 				Phone: <span th:text="${shop.phoneNumber}"></span><br>
 				Address: <span th:text="${shop.address}"></span><br>
+				Supported Brands: <span th:text="${shop.brands}"></span><br>
 				<br>
 				Appointments:<br>
 					<div th:if="${not #lists.isEmpty(shop.appointments)}">

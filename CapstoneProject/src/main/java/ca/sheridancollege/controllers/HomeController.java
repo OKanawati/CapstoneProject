@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -37,7 +38,7 @@ public class HomeController {
 	@Autowired
 	ShopRepository shopRepo;
 	
-	// displays index page
+	// displays index page with search bar
 	@GetMapping("/")
 	public String goHome() {
 		
@@ -200,7 +201,23 @@ public class HomeController {
 	
 	// -------------------------SEARCH AND DISPLAY RESULTS------------------------//
 	
-	// TODO: Search shops based on device name and display results
+	@GetMapping("/search")
+	public String search(@RequestParam String search, Model model) {
+	
+		List<Shop> shopList = shopRepo.findAll();
+		
+		List<Shop> results = new ArrayList<Shop>();
+		
+		for (Shop shop : shopList) {
+			if (shop.getBrands().contains(search.toUpperCase())) {
+				results.add(shop);
+			}
+		}
+		
+		model.addAttribute("results", results);
+		
+		return "index.html";
+	}
 	
 	// -----------------------------APPOINTMENT BOOKING---------------------------//
 	
