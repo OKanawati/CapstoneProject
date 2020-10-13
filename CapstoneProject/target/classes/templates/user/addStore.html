@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="index.html :: header (pageTitle='Register Owner')">
+</head>
+<body>
+
+	<div id="LayoutHeaders">
+		<h1>SHOP-OWNER REGISTRATION</h1>
+	</div>
+	
+	<form class="pure-form pure-form-aligned" action="#" th:action="@{/addShop}" th:object="${shop}" method="post">
+		<fieldset>
+			<div class="pure-control-group">
+				<label>Name of Shop:</label>
+				<input type="text" th:field="*{name}">
+			</div>
+			<div class="pure-control-group">
+				<label>Phone Number:</label>
+				<input type="text" th:field="*{phone_number}">
+			</div>
+			<div class="pure-control-group">
+				<label>Address:</label>
+				<input type="text" th:field="*{address}">
+			</div>
+			<div class="pure-control-group">
+				<label>Address:</label>
+				<input type="text" th:field="*{address}">
+			</div>
+			<div class="pure-control-group">
+				<table class="pure-table">
+					<thead>
+				        <tr>
+				            <th>Brand</th>
+				            <th>Supported</th>
+				        </tr>
+				    </thead>
+				    <tbody>
+				    <!-- Connect the SQL brand list values to these -->
+				    	<div th:each="brand : ${brandList}">
+				        	<tr class="pure-table-odd">
+					            <td><span th:text="${brand.name}"></span></td>
+					            <td><input type="checkbox" id="${brand.name}.chkbox"/></td>
+					        </tr>
+					    </div>
+				    </tbody>
+				</table>
+			</div>
+			
+			<div class="pure-controls">
+				<input type="submit" value="Submit" class="pure-button pure-button-primary">
+			</div>
+		</fieldset>
+	</form>
+	
+	<footer th:insert="index.html :: footer"></footer>
+	
+</body>
+</html>
