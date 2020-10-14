@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeLeaf.org">
+<head th:replace="index.html :: header (pageTitle='Schedule Appointment')">
+
+</head>
+<head>
+
+	<!-- JQuery -->
+    <script 
+    src="../static/js/jquery.js"
+    th:src="@{/js/jquery.js}"
+    ></script>
+
+	<style type="text/css">
+		:root {
+		    font-size: 16px;
+		    --color1: #0D0D0D;
+		    --color2: #8E8E8F;
+		    --color3: #F4F4F5;
+		    --color4: #3E3A3F;
+		    --color5: #5E5F60;
+		    --color6: #C2B6C0;
+		    --color7: #ec5d5d;
+		}
+		
+		* {
+		    margin: 0;
+		    padding: 0;
+		    box-sizing: border-box;
+		}
+		
+		.page {
+		    width: 100%;
+		    height: 100%;
+		    display: none;
+		    opacity: 0;
+		    transition: all 1s ease;
+		    overflow-y: auto;
+		}
+		
+		.show {
+		    display: block;
+		}
+		
+		.showVisually {
+		    opacity: 1;
+		}
+		
+		.btn {
+		    color: var(--color3);
+		    
+		}
+		
+		.btn:hover {
+		    color: var(--color6);
+		}
+		
+		.proceed-btn {
+			background-color: var(--color7);
+		}
+		
+		.back-btn {
+			background-color: var(--color2);
+		}
+		
+		#model-select {
+			height: auto;
+		}
+		
+		div.pure-g {
+			letter-spacing: normal !important;
+		}
+		.container {
+			padding: 0 5em;
+		}
+		
+		.container h2 {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="LayoutHeaders">
+		<h1>Appointment Registration</h1>
+	</div>
+	<form action="#" th:action="@{/createAppointment}" th:object="${appointment}" method="post" class="pure-form pure-form-aligned">
+		<div class="page" data-page="0">
+				<div class="pure-g">
+                    
+                    <div class="pure-control-group pure-u-sm-1-4">
+                        <label for="fphone">Contact Number</label>
+                        <input type="tel" class="" id="fphone" />
+                    </div>
+                </div>
+                <div class="pure-g">
+                    <div class="pure-control-group pure-u-sm-1-2">
+                        <label for="faddress">Address</label>
+                        <input type="text" class="" id="faddress" required />
+                    </div>
+                    <div class="pure-control-group pure-u-sm-1-4">
+                        <label for="fcity">City</label>
+                        <input type="text" class="" id="fcity" required />
+                    </div>
+                    <div class="pure-control-group pure-u-sm-1-4">
+                        <label for="fpostal">Postal or ZIP</label>
+                        <input type="text" class="" id="fpostal" required />
+                    </div>
+                </div>
+                <div class="pure-g">
+                    <div class="pure-control-group pure-u-sm-1-2">
+                        <label for="fdate">Date</label>
+                        <input type="date" class="" id="fdate" th:field="*{date}" required />
+                    </div>
+                    <div class="pure-control-group pure-u-sm-1-2">
+                        <label for="ftime">Time</label>
+                        <input type="time" class="" id="ftime" required />
+                    </div>
+                    
+                </div>
+                <div class="pure-g">   
+                    <div class="pure-control-group pure-u-1">
+                        <label for="model-select" class="">Model:</label>
+                    
+	                    <select id="model-select" class="" name="model" size="4" required>
+	                        <option value="" disabled selected>Select your option</option>
+	                        <option th:each="model : ${modelList}" th:value="${model}" th:text="${model}"/>
+	                    </select>
+                    </div>
+                </div>
+                <div class="pure-g">
+                    <div class="pure-control-group pure-u-1">
+                        <label for="fdescription">Description</label>
+                        <textarea class="" id="fdescription" th:field="*{serviceDetails}">
+
+                        </textarea>
+                        <input type="button" class="pure-button btn proceed-btn" value="Proceed" />
+                     
+                    </div>
+                </div>
+		</div>
+		<div class="page" data-page="1">
+			<div class="container">
+                <h2>Select Service</h2>
+                <div class="">
+               	    <label for="checkbox-option-one" class="pure-checkbox">
+       					<input type="checkbox" id="checkbox-option-one" class="service-checkbox" name="service" value="screen" /> - Screen Repair
+       				</label>
+       				<label for="checkbox-option-two" class="pure-checkbox">
+       					<input type="checkbox" id="checkbox-option-two" class="service-checkbox" name="service" value="battery" /> - Battery Repair
+       				</label>
+       				<label for="checkbox-option-three" class="pure-checkbox">
+       					<input type="checkbox" id="checkbox-option-three" class="service-checkbox" name="service" value="software" /> - Software Repair
+       				</label>
+       				<label for="checkbox-option-four" class="pure-checkbox">
+       					<input type="checkbox" id="checkbox-option-four" class="service-checkbox" name="service" value="motherboard" /> - Motherboard Repair
+       				</label>
+       				<label for="checkbox-option-five" class="pure-checkbox">
+       					<input type="checkbox" id="checkbox-option-five" class="service-checkbox" name="service" value="camera" /> - Camera Repair
+       				</label>
+                </div>	
+                
+            	<input type="button" class="pure-button btn back-btn" value="Back" />
+				<input type="button" class="pure-button btn proceed-btn go-to-summary" value="Proceed" />
+            
+            </div>     
+		</div>
+		<div class="page summary" data-page="2">
+                <div class="container">
+                	<h2>Summary</h2>
+                    <p>First Name: <span th:text="*{customer.firstName}"></span></p>
+                    <p>Last Name: <span th:text="*{customer.lastName}"></span></p>
+                    <p>Email: <span th:text="*{customer.email}"></span></p>
+                    <p>Phone: <span class="fphone">not provided</span></p>
+                    <p>Address: <span class="faddress">required</span>, City: <span class="fcity">required</span>, Postal or ZIP: <span class="fpostal">required</span></p>
+                    <p>Scheduled for: <span class="fdate">required</span> at Time: <span class="ftime">required</span></p>
+                    <p>Device: <span class="model-select">required</span></p>
+                    <p>Services: <span class="service-checkbox-summary">not provided</span></p>
+                    <p>Description: <span class="fdescription">required</span></p>
+                    <input type="button" class="pure-button btn back-btn" value="Back" />
+                    <input type="submit" class="pure-button btn book-btn" value="Book Appointment" />
+                        
+                </div>
+          </div>
+		
+	</form>
+	<footer th:insert="index.html :: footer"></footer>
+	
+    
+    <script 
+    type="module"
+    src="../static/js/createAppointment.js"
+    th:src="@{/js/createAppointment.js}"
+    ></script>
+</body>
+</html>

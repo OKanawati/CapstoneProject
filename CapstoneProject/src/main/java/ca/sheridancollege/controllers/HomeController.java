@@ -222,6 +222,28 @@ public class HomeController {
 	// -----------------------------APPOINTMENT BOOKING---------------------------//
 	
 	// TODO: Appointment booking
+	@GetMapping("/createAppointment")
+	public String goCreateAppointment(Model model) {
+		List<String> modelList = new ArrayList<String>();
+		modelList.add("Moto X");
+		modelList.add("SMG A10e");
+		modelList.add("Pixel");
+		modelList.add("Galaxy S5");
+		modelList.add("IPhone X");
+
+		ca.sheridancollege.beans.Appointment app = new ca.sheridancollege.beans.Appointment();
+		app.getCustomer().setFirstName("John");
+		app.getCustomer().setLastName("Doe");
+		app.getCustomer().setEmail("John@email.com");
+		app.setServiceDetails("This is message from the controller");
+		model.addAttribute("modelList", modelList);
+		model.addAttribute("appointment", app);
+		
+		
+		
+		
+		return "user/createAppointment.html";
+	}
 	
 	@GetMapping("/deviceRegistration")
 	public String goDeviceRegistration() {
