@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -17,8 +21,6 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Entity
-
-// represents registered local repair shops
 public class Shop {
 	
 	@Id
@@ -26,11 +28,14 @@ public class Shop {
 	private Integer id;
 	private String name;
 	private String phoneNumber;
-	private String address;
+	
+	@Embedded
+	private Address address;
 	
 	// List of device brands
 	// For testing purposes, the list will be represented as a single string
-	private String brands;
+	@ManyToMany(cascade=CascadeType.ALL)
+	private List<Brand> brands;
 	
 
 	// TODO: Add list of brands that can be stored safely in the database

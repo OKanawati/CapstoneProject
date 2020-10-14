@@ -7,17 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import javax.mail.MessagingException;
-
+import ca.sheridancollege.beans.Brand;
 import ca.sheridancollege.beans.Customer;
-import ca.sheridancollege.beans.Encryption;
 import ca.sheridancollege.beans.Owner;
 import ca.sheridancollege.beans.Role;
 import ca.sheridancollege.beans.Shop;
@@ -139,7 +135,6 @@ public class HomeController {
 			// TESTING: checking output of brands checkboxes
 			System.out.println(registeredShop.getBrands());
 			
-			
 			// save shop to database
 			shopRepo.save(registeredShop);
 			
@@ -209,8 +204,13 @@ public class HomeController {
 		List<Shop> results = new ArrayList<Shop>();
 		
 		for (Shop shop : shopList) {
-			if (shop.getBrands().contains(search.toUpperCase())) {
-				results.add(shop);
+			
+			for (Brand brand : shop.getBrands()) {
+				
+				if (brand.getBrandName().contains(search.toUpperCase())) {
+					results.add(shop);
+				}
+			
 			}
 		}
 		
