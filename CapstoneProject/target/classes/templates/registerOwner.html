@@ -12,28 +12,45 @@
 		<fieldset>
 			<div class="pure-control-group">
 				<label>First Name:</label>
-				<input type="text" th:field="*{firstName}">
+				<input type="text" th:field="*{firstName}" required>
 			</div>
 			<div class="pure-control-group">
 				<label>Last Name:</label>
-				<input type="text" th:field="*{lastName}">
+				<input type="text" th:field="*{lastName}" required>
 			</div>
 			<div class="pure-control-group">
 				<label>Email:</label>
-				<input type="text" th:field="*{email}">
+				<input type="text" th:field="*{email}" required>
 			</div>
 			<div class="pure-control-group">
 				<label>Password:</label>
-				<input type="password" th:field="*{encryptedPassword}">
+				<input type="password" th:field="*{encryptedPassword}" required>
 			</div>
 			<div class="pure-control-group">
 				<label>Phone Number:</label>
-				<input type="text" th:field="*{phoneNumber}">
+				<input type="text" th:field="*{phoneNumber}" required>
+			</div>
+			============================================
+			<div class="pure-control-group">
+				<label>Billing Address</label>
 			</div>
 			<div class="pure-control-group">
-				<label>Address:</label>
-				<input type="text" th:field="*{address}">
+				<label>Street:</label>
+				<input type="text" th:field="*{address.street}" required>
 			</div>
+			<div class="pure-control-group">
+				<label>City:</label>
+				<input type="text" th:field="*{address.city}" required>
+			</div>
+			<div class="pure-control-group">
+				<label>Province:</label>
+				<input type="text" th:field="*{address.province}" required>
+			</div>
+			<div class="pure-control-group">
+				<label>Postal Code:</label>
+				<input type="text" th:field="*{address.postal}" required>
+			</div>
+			
 			<div class="pure-controls">
 				<input type="submit" value="Submit" class="pure-button pure-button-primary">
 			</div>

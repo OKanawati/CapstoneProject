@@ -65,3 +65,11 @@ input[type=submit]:hover{
 .alert{
 	color:red;
 }
+
+#appointments{
+	text-align: center;
+}
+
+#shops{
+	text-align: center;
+}

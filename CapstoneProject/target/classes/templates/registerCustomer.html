@@ -12,19 +12,19 @@
 		<fieldset>
 			<div class="pure-control-group">
 				<label>First Name:</label>
-				<input type="text" th:field="*{firstName}">
+				<input type="text" th:field="*{firstName}" required>
 			</div>
 			<div class="pure-control-group">
 				<label>Last Name:</label>
-				<input type="text" th:field="*{lastName}">
+				<input type="text" th:field="*{lastName}" required>
 			</div>
 			<div class="pure-control-group">
 				<label>Email:</label>
-				<input type="text" th:field="*{email}">
+				<input type="text" th:field="*{email}" required>
 			</div>
 			<div class="pure-control-group">
 				<label>Password:</label>
-				<input type="password" th:field="*{encryptedPassword}">
+				<input type="password" th:field="*{encryptedPassword}" required>
 			</div>
 			<div class="pure-controls">
 				<input type="submit" value="Submit" class="pure-button pure-button-primary">

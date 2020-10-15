@@ -9,9 +9,21 @@
 	<div id="AccountInformation">
 		<h2>Welcome, [[${customer.firstName}]]</h2>
 			Name: <span>[[${customer.firstName}]] [[${customer.lastName}]]</span><br>
-			Email: <span th:text="${owner.email}"></span><br>
+			Email: <span th:text="${customer.email}"></span><br>
 	</div>
 	<br>
+	<div id='appointments'>
+		Appointments:<br>
+		<div th:if="${not #lists.isEmpty(customer.appointments)}">
+			<div th:each="appointment : ${customer.appointments}"></div>
+		</div>
+		<div th:unless="${not #lists.isEmpty(customer.appointments)}">
+			<span>No appointments scheduled</span>
+		</div>
+		<br>
+	</div>
+			
+					
 		
 	<form class="pure-form pure-form-aligned" action="#" th:action="@{/logout}" method="post">
 		<div class="pure-controls">

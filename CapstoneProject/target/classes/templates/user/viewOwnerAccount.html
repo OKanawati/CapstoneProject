@@ -15,14 +15,22 @@
 	<br>
 	
 <!-- 	View the list of registered shops belonging to the owner logged in -->
-	<div>
+	<div id="shops">
 		<h3>Registered Shops</h3>
 			<div th:if="${not #lists.isEmpty(owner.shopList)}">
 				<div th:each="shop : ${owner.shopList}">
 				Name: <span th:text="${shop.name}"></span><br>
 				Phone: <span th:text="${shop.phoneNumber}"></span><br>
-				Address: <span th:text="${shop.address}"></span><br>
-				Supported Brands: <span th:text="${shop.brands}"></span><br>
+				Address:<br>
+				<span th:text="${shop.address.street}"></span><br>
+				<span th:text="${shop.address.city}"></span><br>
+				<span th:text="${shop.address.province}"></span><br>
+				<span th:text="${shop.address.postal}"></span><br>
+				Supported Brands: 
+				<div th:each="brand : ${shop.brands}">
+					<span th:text="${brand.brandName}"></span><br>
+				</div>
+					
 				<br>
 				Appointments:<br>
 					<div th:if="${not #lists.isEmpty(shop.appointments)}">

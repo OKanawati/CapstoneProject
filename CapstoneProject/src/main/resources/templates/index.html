@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
 	<script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
+	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
 </head>
 <body>
 	<div id="LayoutHeaders">
@@ -19,16 +21,34 @@
 		Search: <input type="text" name="search">
 	</form>
 	
+	<!-- Map Initilization and Control -->
+	<!-- Will put in separate javascript file after testing -->
 	<div id='map' class='map pad2' style='width: 800px; height: 400px;'></div>
 	<script>
-  		mapboxgl.accessToken = 'pk.eyJ1Ijoib2thbmF3YXRpIiwiYSI6ImNrZzhsOXlueDBpZmYyeW8yZnFoaHplOGMifQ.oVTSOlNLzBcJN7EfekHy9g';
-  		var map = new mapboxgl.Map({
+  		
+		mapboxgl.accessToken = 'pk.eyJ1Ijoib2thbmF3YXRpIiwiYSI6ImNrZzhsOXlueDBpZmYyeW8yZnFoaHplOGMifQ.oVTSOlNLzBcJN7EfekHy9g';
+  		
+		var map = new mapboxgl.Map({
     	container: 'map',
     	style: 'mapbox://styles/mapbox/streets-v11',
     	center: [-79.644234, 43.590238],
     	zoom: 14
   		});
+		
+	
+		/* var geocoder = new MapboxGeocoder({
+			accessToken: mapboxgl.accessToken,
+			placeholder: 'Search device',
+			mapboxgl: mapboxgl
+		});
+		
+		// add the geocoder to the map
+		map.addControl(geocoder); */
 	</script>
+	
+	
+	
+	
 	
 	
 	<div th:each="shop : ${results}">

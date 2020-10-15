@@ -18,6 +18,7 @@ import ca.sheridancollege.beans.Owner;
 import ca.sheridancollege.beans.Role;
 import ca.sheridancollege.beans.Shop;
 import ca.sheridancollege.beans.User;
+import ca.sheridancollege.repositories.BrandRepository;
 import ca.sheridancollege.repositories.RoleRepository;
 import ca.sheridancollege.repositories.ShopRepository;
 import ca.sheridancollege.repositories.UserRepository;
@@ -33,6 +34,9 @@ public class HomeController {
 	
 	@Autowired
 	ShopRepository shopRepo;
+	
+	@Autowired
+	BrandRepository brandRepo;
 	
 	// displays index page with search bar
 	@GetMapping("/")
@@ -113,6 +117,10 @@ public class HomeController {
 			// create a new Shop object and attach it to model
 			model.addAttribute("shop", new Shop());
 			
+			// retrieves list of device brands
+			List<Brand> brands = brandRepo.findAll();
+			model.addAttribute("brands", brands);
+			
 			return "user/registerShop.html";
 		}
 		
@@ -131,9 +139,6 @@ public class HomeController {
 					shop.getBrands(),
 					owner, null);
 			
-			
-			// TESTING: checking output of brands checkboxes
-			System.out.println(registeredShop.getBrands());
 			
 			// save shop to database
 			shopRepo.save(registeredShop);

@@ -3,6 +3,7 @@ package ca.sheridancollege.beans;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -18,7 +19,9 @@ import lombok.*;
 public class Owner extends User {
 	private String phoneNumber;
 	private String accountStatus;
-	private String address;
+	
+	@Embedded
+	private Address address;
 	
 	// A single owner can have many shops
 	@OneToMany
@@ -26,7 +29,7 @@ public class Owner extends User {
 	private List<Shop> shopList = new ArrayList<Shop>();
 	
 	public Owner(String firstName, String lastName, String email, String password, 
-			String phoneNumber, String address) {
+			String phoneNumber, Address address) {
 		
 		// calls User constructor first
 		super(firstName, lastName, email, password);

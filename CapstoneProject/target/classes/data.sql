@@ -1,9 +1,10 @@
 INSERT INTO Role (rolename) VALUES ('ROLE_CUSTOMER');
 INSERT INTO Role (rolename) VALUES ('ROLE_OWNER');
 
-INSERT INTO User (first_Name, last_Name, email, encrypted_Password, phone_Number, address, enabled, dtype) 
+INSERT INTO User (first_Name, last_Name, email, encrypted_Password, phone_Number, 
+street, city, province, postal, enabled, dtype) 
 	VALUES ('Greg', 'Jenkins', 'jenkins@gmail.com', '$2a$10$myb1kXeBRa0.j7pwf/Go5.ZTLqBDUjtwNzFLr1tRB93Dctc8zaM8y',
-	'905-784-4532', '123 Test Street', 1, 'Owner');
+	'905-784-4532', '123 Test Street', 'Oakville', 'ON', 'L4T H73', 1, 'Owner');
 	
 INSERT INTO user_roles (users_id, roles_id) VALUES (1, 2);
 
