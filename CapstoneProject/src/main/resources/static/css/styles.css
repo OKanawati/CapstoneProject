@@ -9,7 +9,7 @@ body{
 .map {
 	border-left: 1px solid #fff;
   	position: absolute;
-  	left: 33.3333%;
+  	left: 30%;
   	width: 66.6666%;
   	top: 0;
   	bottom: 0;
@@ -24,6 +24,13 @@ body{
 
 #search {
 	margin-top: 5%;
+	margin-left: 5%;
+}
+
+#results{
+	position: relative;
+	text-align: center;
+	top:100px;
 }
 
 #LayoutHeaders{
@@ -72,4 +79,10 @@ input[type=submit]:hover{
 
 #shops{
 	text-align: center;
+}
+
+.logout{
+	position: relative;
+	top: 300px;
+	left: 100px;
 }

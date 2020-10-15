@@ -51,7 +51,7 @@
 	
 	
 	
-	<div th:each="shop : ${results}">
+	<div id="results" th:each="shop : ${results}">
 		<span th:text="${shop.name}"></span><br>
 		<span th:text="${shop.address.street}"></span><br>
 		<span th:text="${shop.address.city}"></span><br>
