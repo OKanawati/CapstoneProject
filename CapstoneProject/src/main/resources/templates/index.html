@@ -12,47 +12,31 @@
 	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
 </head>
 <body>
+
+	<input type="hidden" id="geocoder" th:value="${geocoder}">
+	
 	<div id="LayoutHeaders">
 		<h1>localFix</h1>	
 		<h2>Search for a Shop by entering your device</h2>
 	</div>
+
+	<!-- Map Initilization and Control -->
+	<div class='sidebar'>
+		<div class='heading'>
+			<h1>Locations</h1>
+		</div>
+		<div id='listings' class='listings'></div>
+	</div>
+	
+	<div id='map' class='map pad2' style='width: 800px; height: 400px;'>Map</div>
 	
 	<form id='search' action="#" th:action="@{/search}">
 		Search: <input type="text" name="search">
 	</form>
 	
-	<!-- Map Initilization and Control -->
-	<!-- Will put in separate javascript file after testing -->
-	<div id='map' class='map pad2' style='width: 800px; height: 400px;'></div>
-	<script>
-  		
-		mapboxgl.accessToken = 'pk.eyJ1Ijoib2thbmF3YXRpIiwiYSI6ImNrZzhsOXlueDBpZmYyeW8yZnFoaHplOGMifQ.oVTSOlNLzBcJN7EfekHy9g';
-  		
-		var map = new mapboxgl.Map({
-    	container: 'map',
-    	style: 'mapbox://styles/mapbox/streets-v11',
-    	center: [-79.644234, 43.590238],
-    	zoom: 14
-  		});
-		
-	
-		/* var geocoder = new MapboxGeocoder({
-			accessToken: mapboxgl.accessToken,
-			placeholder: 'Search device',
-			mapboxgl: mapboxgl
-		});
-		
-		// add the geocoder to the map
-		map.addControl(geocoder); */
-	</script>
-	
-	
-	
-	
-	
-	
 	<div id="results" th:each="shop : ${results}">
-		<span th:text="${shop.name}"></span><br>
+		<span id='shopId' th:value="${shop.id}"></span><br>
+		<span id='shopName' th:text="${shop.name}"></span><br>
 		<span th:text="${shop.address.street}"></span><br>
 		<span th:text="${shop.address.city}"></span><br>
 		<span th:text="${shop.address.province}"></span><br>
@@ -72,5 +56,6 @@
 			<a href="/viewAccount" th:href="@{/viewAccount}">View Account</a>
 		</div>
 	</footer>
+<script src="../static/js/mapControl.js" th:src="@{/js/mapControl.js}"></script>
 </body>
 </html>

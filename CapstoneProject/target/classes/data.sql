@@ -17,14 +17,21 @@ INSERT INTO Shop (name, phone_number, street, city, province, postal, owner_id)
 	'L5M 7L9', 1);
 	
 INSERT INTO Shop (name, phone_number, street, city, province, postal, owner_id)
-	VALUES('Mobile Phone Repair', '(289) 814-0027', '5602 Tenth Line W', 'Mississauga', 'ON',
-	'L5M 7L9', 1);
+	VALUES('Comet Squared', '(647) 542-6638', '675 The Chase #21', 'Mississauga', 'ON',
+	'L5M 5Y7', 1);
+	
+INSERT INTO Shop (name, phone_number, street, city, province, postal, owner_id)
+	VALUES ('PcNcell', '(905) 624-0297', '243 Queen St S', 'Mississauga', 'ON',
+	'L5M 1L7', 1);
 	
 INSERT INTO shop_brands(shops_id, brands_id) VALUES (1, 1);
 INSERT INTO shop_brands(shops_id, brands_id) VALUES (1, 2);
 INSERT INTO shop_brands(shops_id, brands_id) VALUES (2, 2);
 INSERT INTO shop_brands(shops_id, brands_id) VALUES (2, 3);
+INSERT INTO shop_brands(shops_id, brands_id) VALUES (3, 2);
+INSERT INTO shop_brands(shops_id, brands_id) VALUES (3, 3);
 
 INSERT INTO user_shop_list (owner_id, shop_list_id) VALUES (1, 1);
 INSERT INTO user_shop_list (owner_id, shop_list_id) VALUES (1, 2);
+INSERT INTO user_shop_list (owner_id, shop_list_id) VALUES (1, 3);
 	

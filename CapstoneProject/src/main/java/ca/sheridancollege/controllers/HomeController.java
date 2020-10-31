@@ -204,22 +204,61 @@ public class HomeController {
 	@GetMapping("/search")
 	public String search(@RequestParam String search, Model model) {
 	
+		// retrieve all registered shops
 		List<Shop> shopList = shopRepo.findAll();
 		
+		// list for shops that match search string
 		List<Shop> results = new ArrayList<Shop>();
 		
+		// builds a string that contains the geocoder
+		StringBuilder geocoder = new StringBuilder
+				("https://api.mapbox.com/geocoding/v5/mapbox.places-permanent/");
+		
+		// iterates through shop list
 		for (Shop shop : shopList) {
 			
+			// iterates through each brand supported by shop
 			for (Brand brand : shop.getBrands()) {
 				
+				// checks if brand name matches the search string
 				if (brand.getBrandName().contains(search.toUpperCase())) {
+					
+					// adds shop if matches
 					results.add(shop);
 				}
 			
 			}
 		}
 		
+		// iterates through results and appends address parameter to geocoder
+		int i = 0;
+		for (Shop shop : results)  {
+			
+			String address = shop.getAddress().getStreet().replaceAll(" ", "%20");
+			address = address.replaceAll("#", "");
+			geocoder.append(address + "%20" 
+					+ shop.getAddress().getCity()
+					+ "%20"
+					+ shop.getAddress().getProvince());
+			
+			i++;
+			
+			if (i < results.size()) {
+				geocoder.append(";");
+			}
+		}
+		
+		geocoder.append(".json?country=CA&access_token=" 
+		+ "pk.eyJ1Ijoib2thbmF3YXRpIiwiYSI6ImNrZzhsOXlueDBpZmYyeW8yZnFoaHplOGMifQ.oVTSOlNLzBcJN7EfekHy9g&limit=1");
+		
+		// prints geocoder string for debugging
+		System.out.println(geocoder);
+		
+		// attaches results to model
 		model.addAttribute("results", results);
+		
+		// attaches geocoder string to model
+		model.addAttribute("geocoder", geocoder);
 		
 		return "index.html";
 	}
