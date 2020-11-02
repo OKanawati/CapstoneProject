@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -210,6 +211,12 @@ public class HomeController {
 		// list for shops that match search string
 		List<Shop> results = new ArrayList<Shop>();
 		
+		// list of shop names
+		List<String> shopNames = new ArrayList<String>();
+		
+		// list of shop IDs
+		List<Integer> shopIDs = new ArrayList<Integer>();
+		
 		// builds a string that contains the geocoder
 		StringBuilder geocoder = new StringBuilder
 				("https://api.mapbox.com/geocoding/v5/mapbox.places-permanent/");
@@ -225,6 +232,12 @@ public class HomeController {
 					
 					// adds shop if matches
 					results.add(shop);
+					
+					// adds name to separate list
+					shopNames.add(shop.getName());
+					
+					// adds ids to a separate lsit
+					shopIDs.add(shop.getId());
 				}
 			
 			}
@@ -257,6 +270,12 @@ public class HomeController {
 		// attaches results to model
 		model.addAttribute("results", results);
 		
+		// attaches list of shop names to model
+		model.addAttribute("shopNames", shopNames);
+		
+		// attaches a list of shop ids to model
+		model.addAttribute("shopIDs", shopIDs);
+		
 		// attaches geocoder string to model
 		model.addAttribute("geocoder", geocoder);
 		
@@ -267,13 +286,17 @@ public class HomeController {
 	
 	// TODO: Appointment booking
 	@GetMapping("/createAppointment")
-	public String goCreateAppointment(Model model) {
+	public String goCreateAppointment(Model model, @RequestParam int shopID) {
 		List<String> modelList = new ArrayList<String>();
 		modelList.add("Moto X");
 		modelList.add("SMG A10e");
 		modelList.add("Pixel");
 		modelList.add("Galaxy S5");
 		modelList.add("IPhone X");
+		
+		
+		Shop shop = shopRepo.findById(shopID);
+		model.addAttribute("shop", shop);
 
 		ca.sheridancollege.beans.Appointment app = new ca.sheridancollege.beans.Appointment();
 		app.getCustomer().setFirstName("John");

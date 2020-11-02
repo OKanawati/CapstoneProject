@@ -14,6 +14,9 @@
 <body>
 
 	<input type="hidden" id="geocoder" th:value="${geocoder}">
+	<input type="hidden" id="shopNames" th:value="${shopNames}">
+	<input type="hidden" id="shopIDs" th:value="${shopIDs}">
+	
 	
 	<div id="LayoutHeaders">
 		<h1>localFix</h1>	
@@ -35,8 +38,7 @@
 	</form>
 	
 	<div id="results" th:each="shop : ${results}">
-		<span id='shopId' th:value="${shop.id}"></span><br>
-		<span id='shopName' th:text="${shop.name}"></span><br>
+		<span th:text="${shop.name}"></span><br>
 		<span th:text="${shop.address.street}"></span><br>
 		<span th:text="${shop.address.city}"></span><br>
 		<span th:text="${shop.address.province}"></span><br>
@@ -56,6 +58,10 @@
 			<a href="/viewAccount" th:href="@{/viewAccount}">View Account</a>
 		</div>
 	</footer>
+<script th:inline="javascript">
+	var shopNames = document.getElementById('shopNames').value;
+	var shopIDs = document.getElementById('shopIDs').value;
+</script>
 <script src="../static/js/mapControl.js" th:src="@{/js/mapControl.js}"></script>
 </body>
 </html>

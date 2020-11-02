@@ -20,133 +20,15 @@ var map = new mapboxgl.Map({
 // retrieves geocoder API string
 var geocoder = document.getElementById("geocoder").value;
 
-// initialize shop list (hard coded for testing)
-
+// initialize shop list
 var shops = [];
 
-/*var shops = [{
-    "type": "FeatureCollection",
-    "query": ["5602", "tenth", "line", "w", "122", "mississauga", "on"],
-    "features": [{
-        "id": "address.4800875659823766",
-        "type": "Feature",
-        "place_type": ["address"],
-        "relevance": 0.797619,
-        "properties": {
-            "accuracy": "point"
-        },
-        "text": "Tenth Line West",
-        "place_name": "5602 Tenth Line West, Mississauga, Ontario L5M 7E2, Canada",
-        "center": [-79.743798, 43.558375],
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-79.743798, 43.558375]
-        },
-        "address": "5602",
-        "context": [{
-            "id": "neighborhood.16435117286408010",
-            "text": "Churchill Meadows"
-        }, {
-            "id": "postcode.14843315390233500",
-            "text": "L5M 7E2"
-        }, {
-            "id": "place.12145266183380350",
-            "wikidata": "Q50816",
-            "text": "Mississauga"
-        }, {
-            "id": "region.10598799396263190",
-            "wikidata": "Q1904",
-            "short_code": "CA-ON",
-            "text": "Ontario"
-        }, {
-            "id": "country.10278600750587150",
-            "wikidata": "Q16",
-            "short_code": "ca",
-            "text": "Canada"
-        }]
-    }],
-    "attribution": "© 2020 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service. (https://www.mapbox.com/about/maps/)"
-}, {
-    "type": "FeatureCollection",
-    "query": ["675", "the", "chase", "21", "mississauga", "on"],
-    "features": [{
-        "id": "address.3133399086200702",
-        "type": "Feature",
-        "place_type": ["address"],
-        "relevance": 0.712963,
-        "properties": {
-            "accuracy": "street"
-        },
-        "text": "the Chase",
-        "place_name": "the Chase, Mississauga, Ontario L5M 2Y8, Canada",
-        "center": [-79.6966585, 43.5636707],
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-79.6966585, 43.5636707]
-        },
-        "context": [{
-            "id": "postcode.19298927985173810",
-            "text": "L5M 2Y8"
-        }, {
-            "id": "place.12145266183380350",
-            "wikidata": "Q50816",
-            "text": "Mississauga"
-        }, {
-            "id": "region.10598799396263190",
-            "wikidata": "Q1904",
-            "short_code": "CA-ON",
-            "text": "Ontario"
-        }, {
-            "id": "country.10278600750587150",
-            "wikidata": "Q16",
-            "short_code": "ca",
-            "text": "Canada"
-        }]
-    }],
-    "attribution": "© 2020 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service. (https://www.mapbox.com/about/maps/)"
-}, {
-    "type": "FeatureCollection",
-    "query": ["243", "queen", "st", "s", "mississauga", "on"],
-    "features": [{
-        "id": "address.8494029921921510",
-        "type": "Feature",
-        "place_type": ["address"],
-        "relevance": 1,
-        "properties": {
-            "accuracy": "point"
-        },
-        "text": "Queen Street South",
-        "place_name": "243 Queen Street South, Mississauga, Ontario L5M 1Z5, Canada",
-        "center": [-79.711742, 43.580448],
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-79.711742, 43.580448]
-        },
-        "address": "243",
-        "context": [{
-            "id": "neighborhood.7649906197038000",
-            "text": "East Credit"
-        }, {
-            "id": "postcode.14225916045492640",
-            "text": "L5M 1Z5"
-        }, {
-            "id": "place.12145266183380350",
-            "wikidata": "Q50816",
-            "text": "Mississauga"
-        }, {
-            "id": "region.10598799396263190",
-            "wikidata": "Q1904",
-            "short_code": "CA-ON",
-            "text": "Ontario"
-        }, {
-            "id": "country.10278600750587150",
-            "wikidata": "Q16",
-            "short_code": "ca",
-            "text": "Canada"
-        }]
-    }],
-    "attribution": "© 2020 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service. (https://www.mapbox.com/about/maps/)"
-}]*/
+// removes square brackets around list of shop names
+shopNames = shopNames.substring(1, shopNames.length-1);
+shopNames = shopNames.split(', ');
+
+shopIDs = shopIDs.substring(1, shopIDs.length-1);
+shopIDs = shopIDs.split(', ');
 
 // assigns json object to shops variable
 fetch(geocoder)
@@ -170,11 +52,6 @@ fetch(geocoder)
 
     });
 
-/*for (var i = 0; i < shops.length; i++) {
-    shops[i]["features"][0].id = i;
-}*/
-
-
 // on map load, add a new layer for each store
 map.on('load', function(e) {
     if (Array.isArray(shops)) {
@@ -189,7 +66,7 @@ map.on('load', function(e) {
                     "data": shop
                 },
                 "layout": {
-                    "icon-image": "restaurant-15",
+                    "icon-image": "hardware-15",
                     "icon-allow-overlap": true,
                 }
             });
@@ -204,7 +81,7 @@ map.on('load', function(e) {
                 "data": shops
             },
             "layout": {
-                "icon-image": "restaurant-15",
+                "icon-image": "hardware-15",
                 "icon-allow-overlap": true,
             }
         })
@@ -234,11 +111,11 @@ function buildLocationList(data) {
             link.href = '#';
             link.className = 'title';
             link.id = "link-" + prop.id;
-            link.innerHTML = prop.address + " " + prop.text;
+            link.innerHTML = shopNames[i];
 
             /* Add details to the individual listing. */
             var details = listing.appendChild(document.createElement('div'));
-            details.innerHTML = prop.context[2].text;
+            details.innerHTML = prop.address + " " + prop.text;
             /*if (prop.phone) {
               details.innerHTML += ' · ' + prop.phoneFormatted;
             }*/
@@ -248,7 +125,7 @@ function buildLocationList(data) {
                     if (this.id === "link-" + data[j].features[0].id) {
                         var clickedListing = data[j].features[0];
                         flyToShop(clickedListing);
-                        createPopUp(clickedListing);
+                        createPopUp(clickedListing, shopNames[j], shopIDs[j]);
                     }
                 }
                 var activeItem = document.getElementsByClassName('active');
@@ -272,13 +149,16 @@ function buildLocationList(data) {
         link.href = '#';
         link.className = 'title';
         link.id = "link-" + prop.id;
-        link.innerHTML = prop.address + " " + prop.text;
+        link.innerHTML = shopNames[0];
+
+		var details = listing.appendChild(document.createElement('div'));
+		details.innerHTML = prop.address + " " + prop.text;
 
         link.addEventListener('click', function(e) {
 
             var clickedListing = prop;
             flyToShop(clickedListing);
-            createPopUp(clickedListing);
+            createPopUp(clickedListing, shopNames[0], shopIDs[0]);
 
             var activeItem = document.getElementsByClassName('active');
             if (activeItem[0]) {
@@ -296,7 +176,7 @@ function flyToShop(currentFeature) {
     })
 }
 
-function createPopUp(currentFeature) {
+function createPopUp(currentFeature, shopName, shopID) {
     var popUps = document.getElementsByClassName('mapboxgl-popup');
     /** Check if there is already a popup on the map and if so, remove it */
     if (popUps[0]) popUps[0].remove();
@@ -305,8 +185,12 @@ function createPopUp(currentFeature) {
             closeOnClick: false
         })
         .setLngLat(currentFeature.geometry.coordinates)
-        .setHTML('<h3>' + document.getElementById('shopName').innerHTML + '</h3>' +
-            '<h4>' + currentFeature.address + ' ' + currentFeature.text + '</h4>')
+        .setHTML('<h3>' + shopName + '</h3>' +
+            '<h4>' + currentFeature.address + ' ' + currentFeature.text + '</h4>' +
+			'<form id="shopID" action="/createAppointment">' +
+			'<input type=hidden value=' + parseInt(shopID) + ' name="shopID"><br><br><br>' +
+			'<input type=submit value="Book Appointment">' +
+			'</form>')
         .addTo(map);
 }
 
