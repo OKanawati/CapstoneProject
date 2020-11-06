@@ -115,7 +115,7 @@
                     </div>
                     <div class="pure-control-group pure-u-sm-1-2">
                         <label for="ftime">Time</label>
-                        <input type="time" class="" id="ftime" required />
+                        <input type="time" class="" id="ftime" th:field="*{time}" required />
                     </div>
                     
                 </div>
@@ -123,7 +123,7 @@
                     <div class="pure-control-group pure-u-1">
                         <label for="model-select" class="">Model:</label>
                     
-	                    <select id="model-select" class="" name="model" size="4" required>
+	                    <select id="model-select" class="" name="model" size="4" th:field="*{deviceBrand}" required>
 	                        <option value="" disabled selected>Select your option</option>
 	                        <option th:each="model : ${modelList}" th:value="${model}" th:text="${model}"/>
 	                    </select>
@@ -145,19 +145,19 @@
                 <h2>Select Service</h2>
                 <div class="">
                	    <label for="checkbox-option-one" class="pure-checkbox">
-       					<input type="checkbox" id="checkbox-option-one" class="service-checkbox" name="service" value="screen" /> - Screen Repair
+       					<input type="checkbox" id="checkbox-option-one" class="service-checkbox" name="service" value="screen" th:field="*{services}"/> - Screen Repair
        				</label>
        				<label for="checkbox-option-two" class="pure-checkbox">
-       					<input type="checkbox" id="checkbox-option-two" class="service-checkbox" name="service" value="battery" /> - Battery Repair
+       					<input type="checkbox" id="checkbox-option-two" class="service-checkbox" name="service" value="battery" th:field="*{services}"/> - Battery Repair
        				</label>
        				<label for="checkbox-option-three" class="pure-checkbox">
-       					<input type="checkbox" id="checkbox-option-three" class="service-checkbox" name="service" value="software" /> - Software Repair
+       					<input type="checkbox" id="checkbox-option-three" class="service-checkbox" name="service" value="software" th:field="*{services}"/> - Software Repair
        				</label>
        				<label for="checkbox-option-four" class="pure-checkbox">
-       					<input type="checkbox" id="checkbox-option-four" class="service-checkbox" name="service" value="motherboard" /> - Motherboard Repair
+       					<input type="checkbox" id="checkbox-option-four" class="service-checkbox" name="service" value="motherboard" th:field="*{services}"/> - Motherboard Repair
        				</label>
        				<label for="checkbox-option-five" class="pure-checkbox">
-       					<input type="checkbox" id="checkbox-option-five" class="service-checkbox" name="service" value="camera" /> - Camera Repair
+       					<input type="checkbox" id="checkbox-option-five" class="service-checkbox" name="service" value="camera" th:field="*{services}"/> - Camera Repair
        				</label>
                 </div>	
                 

@@ -16,10 +16,14 @@
 		Appointments:<br>
 		<div th:if="${not #lists.isEmpty(customer.appointments)}">
 			<div th:each="appointment : ${customer.appointments}">
-				<span th:text="${appointment.shop.name}"></span>
-				<span th:text="${appointment.date}"></span>
+				<span th:text="${appointment.shop.name}"></span><br>
+				<span th:text="${appointment.date}"></span><br>
+				<span th:text="${appointment.time}"></span><br>
+				<span th:text="${appointment.deviceBrand}"></span><br>
+				<span th:text="${appointment.services}"></span><br>
 				<span th:text="${appointment.serviceDetails}"></span>
 			</div>
+			<br>
 		</div>
 		<div th:unless="${not #lists.isEmpty(customer.appointments)}">
 			<span>No appointments scheduled</span>
