@@ -15,16 +15,18 @@
 	<div id='appointments'>
 		Appointments:<br>
 		<div th:if="${not #lists.isEmpty(customer.appointments)}">
-			<div th:each="appointment : ${customer.appointments}"></div>
+			<div th:each="appointment : ${customer.appointments}">
+				<span th:text="${appointment.shop.name}"></span>
+				<span th:text="${appointment.date}"></span>
+				<span th:text="${appointment.serviceDetails}"></span>
+			</div>
 		</div>
 		<div th:unless="${not #lists.isEmpty(customer.appointments)}">
 			<span>No appointments scheduled</span>
 		</div>
 		<br>
 	</div>
-			
-					
-		
+				
 	<form class="pure-form pure-form-aligned" action="#" th:action="@{/logout}" method="post">
 		<div class="logout">
 			<input type="submit" value="Logout" class="pure-button pure-button-primary">

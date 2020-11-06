@@ -84,7 +84,8 @@
 		<h1>Appointment Registration</h1>
 		<h2>[[${shop.name}]]</h2>
 	</div>
-	<form action="#" th:action="@{/createAppointment}" th:object="${appointment}" method="post" class="pure-form pure-form-aligned">
+	<form action="#" th:action="@{/saveAppointment}" th:object="${appointment}" method="post" class="pure-form pure-form-aligned">
+		<input type=hidden th:value="${shop.id}" name="shopID">
 		<div class="page" data-page="0">
 				<div class="pure-g">
                     

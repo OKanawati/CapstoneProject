@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.sheridancollege.beans.Appointment;
 import ca.sheridancollege.beans.Brand;
 import ca.sheridancollege.beans.Customer;
 import ca.sheridancollege.beans.Owner;
 import ca.sheridancollege.beans.Role;
 import ca.sheridancollege.beans.Shop;
 import ca.sheridancollege.beans.User;
+import ca.sheridancollege.repositories.AppointmentRepository;
 import ca.sheridancollege.repositories.BrandRepository;
 import ca.sheridancollege.repositories.RoleRepository;
 import ca.sheridancollege.repositories.ShopRepository;
@@ -38,6 +40,9 @@ public class HomeController {
 	
 	@Autowired
 	BrandRepository brandRepo;
+	
+	@Autowired
+	AppointmentRepository appointmentRepo;
 	
 	// displays index page with search bar
 	@GetMapping("/")
@@ -286,28 +291,42 @@ public class HomeController {
 	
 	// TODO: Appointment booking
 	@GetMapping("/createAppointment")
-	public String goCreateAppointment(Model model, @RequestParam int shopID) {
-		List<String> modelList = new ArrayList<String>();
-		modelList.add("Moto X");
-		modelList.add("SMG A10e");
-		modelList.add("Pixel");
-		modelList.add("Galaxy S5");
-		modelList.add("IPhone X");
+	public String goCreateAppointment(Model model, @RequestParam int shopID, Authentication auth) {
+		// if the user hasn't logged in, they will be redirected to the login page
+		if (auth == null) {
+			return "redirect:/login";
+		}
 		
+		List<String> modelList = new ArrayList<String>();
 		
 		Shop shop = shopRepo.findById(shopID);
+		
+		// populates the list with brands serviced by store
+		for (Brand brand : shop.getBrands()) {
+			modelList.add(brand.getBrandName());
+		}
+		
+		
+//		modelList.add("Moto X");
+//		modelList.add("SMG A10e");
+//		modelList.add("Pixel");
+//		modelList.add("Galaxy S5");
+//		modelList.add("IPhone X");
+		
+		// adds a shop to the model
 		model.addAttribute("shop", shop);
 
+		// creates a customer out of authentication credentials
+		User customer = userRepo.findByEmail(auth.getName());
+		
+		
 		ca.sheridancollege.beans.Appointment app = new ca.sheridancollege.beans.Appointment();
-		app.getCustomer().setFirstName("John");
-		app.getCustomer().setLastName("Doe");
-		app.getCustomer().setEmail("John@email.com");
+		app.getCustomer().setFirstName(customer.getFirstName());
+		app.getCustomer().setLastName(customer.getLastName());
+		app.getCustomer().setEmail(customer.getEmail());
 		app.setServiceDetails("This is message from the controller");
 		model.addAttribute("modelList", modelList);
 		model.addAttribute("appointment", app);
-		
-		
-		
 		
 		return "user/createAppointment.html";
 	}
@@ -315,6 +334,27 @@ public class HomeController {
 	@GetMapping("/deviceRegistration")
 	public String goDeviceRegistration() {
 		return "deviceSupportRegistration.html";
+	}
+	
+	@PostMapping("/saveAppointment")
+	public String saveAppointment(@ModelAttribute Appointment appointment, Authentication auth,
+			@RequestParam int shopID) {
+		
+		Customer customer = (Customer) userRepo.findByEmail(auth.getName());
+		Shop shop = shopRepo.findById(shopID);
+		
+		appointment.setCustomer(customer);
+		appointment.setShop(shop);
+		
+		customer.getAppointments().add(appointment);
+		shop.getAppointments().add(appointment);
+		
+		appointmentRepo.save(appointment);
+		userRepo.save(customer);
+		shopRepo.save(shop);
+		
+		
+		return "redirect:/viewAccount";
 	}
 	
 }
