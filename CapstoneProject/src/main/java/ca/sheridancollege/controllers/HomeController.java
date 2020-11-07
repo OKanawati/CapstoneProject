@@ -269,6 +269,7 @@ public class HomeController {
 		geocoder.append(".json?country=CA&access_token=" 
 		+ "pk.eyJ1Ijoib2thbmF3YXRpIiwiYSI6ImNrZzhsOXlueDBpZmYyeW8yZnFoaHplOGMifQ.oVTSOlNLzBcJN7EfekHy9g&limit=1");
 		
+		
 		// prints geocoder string for debugging
 		System.out.println(geocoder);
 		
