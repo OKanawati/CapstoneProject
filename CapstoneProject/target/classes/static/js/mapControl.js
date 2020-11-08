@@ -188,7 +188,7 @@ function createPopUp(currentFeature, shopName, shopID) {
         .setHTML('<h3>' + shopName + '</h3>' +
             '<h4>' + currentFeature.address + ' ' + currentFeature.text + '</h4>' +
 			'<form id="shopID" action="/createAppointment">' +
-			'<input type=hidden value=' + parseInt(shopID) + ' name="shopID"><br><br><br>' +
+			'<input type=hidden value=' + parseInt(shopID) + ' name="shopID">' +
 			'<input type=submit value="Book Appointment">' +
 			'</form>')
         .addTo(map);
