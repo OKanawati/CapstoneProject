@@ -8,7 +8,7 @@
 		<h1>SHOP REGISTRATION</h1>
 	</div>
 	
-	<form class="pure-form pure-form-aligned" action="#" th:action="@{/registerShop}" th:object="${shop}" method="post">
+	<form id='PureForm' class="pure-form pure-form-aligned" action="#" th:action="@{/registerShop}" th:object="${shop}" method="post">
 		<fieldset>
 			<div class="pure-control-group">
 				<label>Shop Name:</label>
@@ -34,6 +34,7 @@
 				<label>Postal Code</label>
 				<input type="text" th:field="*{address.postal}" required>
 			</div>
+			<br>
 			<div class="pure-control-group">
 				<table class="pure-table">
 					<thead>

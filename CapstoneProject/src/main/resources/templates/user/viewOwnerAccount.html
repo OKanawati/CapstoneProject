@@ -10,7 +10,6 @@
 		<h2>Welcome, [[${owner.firstName}]]</h2>
 			Name: <span>[[${owner.firstName}]] [[${owner.lastName}]]</span><br>
 			Email: <span th:text="${owner.email}"></span><br>
-			Account Active: <span th:text="${owner.accountStatus}"></span><br>
 	</div>
 	<br>
 	
@@ -53,14 +52,20 @@
 			</div>
 			<br>
 			<a href="/goRegisterShop" th:href="@{/goRegisterShop}">Add Shop</a>
-			
+			<br>
+			<br>	
+			<form action="#" th:action="@{/logout}" method="post">
+				<div class='logout'>
+					<input type="submit" value="Logout" class="pure-button pure-button-primary">
+				</div>
+			</form>
+			<br>
+			<br>
+			<br>
+			<br>	
 	</div>
-		
-	<form action="#" th:action="@{/logout}" method="post">
-		<div class='logout'>
-			<input type="submit" value="Logout" class="pure-button pure-button-primary">
-		</div>
-	</form>	
+	
+	
 	<footer th:insert="index.html :: footer"></footer>
 </body>
 </html>

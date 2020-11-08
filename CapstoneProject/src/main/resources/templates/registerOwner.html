@@ -8,7 +8,7 @@
 		<h1>SHOP-OWNER REGISTRATION</h1>
 	</div>
 	
-	<form class="pure-form pure-form-aligned" action="#" th:action="@{/registerOwner}" th:object="${owner}" method="post">
+	<form id='PureForm' class="pure-form pure-form-aligned" action="#" th:action="@{/registerOwner}" th:object="${owner}" method="post">
 		<fieldset>
 			<div class="pure-control-group">
 				<label>First Name:</label>
@@ -29,10 +29,6 @@
 			<div class="pure-control-group">
 				<label>Phone Number:</label>
 				<input type="text" th:field="*{phoneNumber}" required>
-			</div>
-			============================================
-			<div class="pure-control-group">
-				<label>Billing Address</label>
 			</div>
 			<div class="pure-control-group">
 				<label>Street:</label>

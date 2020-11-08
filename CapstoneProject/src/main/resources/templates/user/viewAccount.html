@@ -15,28 +15,28 @@
 		
 		
 	<!-- Make Appointments  -->
-	<form class="pure-form pure-form-aligned" action="#" th:action="@{/makeAppointment}" method="post">
+	<form id='PureForm' class="pure-form pure-form-aligned" action="#" th:action="@{/makeAppointment}" method="post">
 		<div class="pure-controls">
 			<input type="button" value="Make an Appointment" class="pure-button pure-button-primary">
 		</div>
 	</form>
 	
 	<!-- View Appointments -->
-	<form class="pure-form pure-form-aligned" action="#" th:action="@{/viewAppointments}" method="post">
+	<form id='PureForm' class="pure-form pure-form-aligned" action="#" th:action="@{/viewAppointments}" method="post">
 		<div class="pure-controls">
 			<input type="button" value="View Appointments" class="pure-button pure-button-primary">
 		</div>
 	</form>	
 	
 	<!-- Add Store (To hide for customer, add -if user-role is- statement to form e.g. th:if="${param.error}")  -->	
-	<form class="pure-form pure-form-aligned" action="#" th:action="@{/addStore}" method="post">
+	<form id='PureForm' class="pure-form pure-form-aligned" action="#" th:action="@{/addStore}" method="post">
 		<div class="pure-controls">
 			<input type="button" value="Add Store" class="pure-button pure-button-primary">
 		</div>
 	</form>		
 	
 	<!-- View Stores (To hide for customer, add -if user-role is- statement to form e.g. th:if="${param.error}")  -->
-	<form class="pure-form pure-form-aligned" action="#" th:action="@{/manageStores}" method="post">
+	<form id='PureForm' class="pure-form pure-form-aligned" action="#" th:action="@{/manageStores}" method="post">
 		<div class="pure-controls">
 			<input type="button" value="Manage Stores" class="pure-button pure-button-primary">
 		</div>

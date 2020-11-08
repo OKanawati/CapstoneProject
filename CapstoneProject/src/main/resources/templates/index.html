@@ -21,9 +21,13 @@
 	<div id="LayoutHeaders">
 		<h1>localFix</h1>	
 		<h2>Search for a Shop by entering your device</h2>
+		<form id='search' action="#" th:action="@{/search}">
+			Search: <input type="text" name="search">
+		</form>
+		<br>
 	</div>
 
-	<!-- Map Initilization and Control -->
+	<!-- Map Initialization and Control -->
 	<div class='sidebar'>
 		<div class='heading'>
 			<h1>Locations</h1>
@@ -31,11 +35,9 @@
 		<div id='listings' class='listings'></div>
 	</div>
 	
-	<div id='map' class='map pad2' style='width: 800px; height: 400px;'>Map</div>
+	<div id='map' class='map pad2' style='width: 675px; height: 400px;'>Map</div>
 	
-	<form id='search' action="#" th:action="@{/search}">
-		Search: <input type="text" name="search">
-	</form>
+	
 	
 	<div id="results" th:each="shop : ${results}">
 		<span th:text="${shop.name}"></span><br>
@@ -58,10 +60,13 @@
 			<a href="/viewAccount" th:href="@{/viewAccount}">View Account</a>
 		</div>
 	</footer>
-<script th:inline="javascript">
-	var shopNames = document.getElementById('shopNames').value;
-	var shopIDs = document.getElementById('shopIDs').value;
-</script>
-<script src="../static/js/mapControl.js" th:src="@{/js/mapControl.js}"></script>
+	
+	<script th:inline="javascript">
+		var shopNames = document.getElementById('shopNames').value;
+		var shopIDs = document.getElementById('shopIDs').value;
+	</script>
+	<script src="../static/js/mapControl.js" th:src="@{/js/mapControl.js}"></script>
+
+
 </body>
 </html>

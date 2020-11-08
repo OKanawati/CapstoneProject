@@ -29,13 +29,18 @@
 			<span>No appointments scheduled</span>
 		</div>
 		<br>
+		<br>	
+			<form action="#" th:action="@{/logout}" method="post">
+				<div class='logout'>
+					<input type="submit" value="Logout" class="pure-button pure-button-primary">
+				</div>
+			</form>	
 	</div>
-				
-	<form class="pure-form pure-form-aligned" action="#" th:action="@{/logout}" method="post">
-		<div class="logout">
-			<input type="submit" value="Logout" class="pure-button pure-button-primary">
-		</div>
-	</form>	
+	<br>
+	<br>
+	<br>
+	<br>
+	
 	<footer th:insert="index.html :: footer"></footer>
 </body>
 </html>

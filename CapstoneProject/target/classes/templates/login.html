@@ -6,7 +6,7 @@
 	<div id="LayoutHeaders">
 		<h1>LOG-IN</h1>
 	</div>
-		<form class="pure-form pure-form-aligned" th:action="@{/login}" method="post">
+		<form id='PureForm' class="pure-form pure-form-aligned" th:action="@{/login}" method="post">
 			<fieldset>
 				<div class="pure-control-group" th:if="${param.error}">
 					<div class="alert">

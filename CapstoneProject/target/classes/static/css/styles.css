@@ -31,7 +31,7 @@ a:hover {
 
 .sidebar {
   position: absolute;
-  width: 33.3333%;
+  width: 30%;
   height: 100%;
   top: 0;
   left: 0;
@@ -168,6 +168,14 @@ a:hover {
 	
 }
 
+#PureForm{
+	position: absolute;
+    top: 50%;
+    left: 47%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
 #results{
 	position: relative;
 	text-align: center;
@@ -181,14 +189,6 @@ a:hover {
 
 #AccountInformation{
 	text-align: center;
-}
-
-form{
-	position: absolute;
-    top: 50%;
-    left: 45%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)
 }
 
 footer{
@@ -223,7 +223,11 @@ input[type=submit]:hover{
 }
 
 .logout{
-	position: relative;
-	top: 300px;
-	left: 100px;
+	margin: auto;
+	width: 9%;
+}
+
+.pure-table{
+	margin: auto;
+	margin-right: 20px;
 }
