@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -85,37 +84,6 @@ public class HomeController {
 			return "index.html";
 		}
 		
-		// directs to customer registration page
-		@GetMapping("/goRegisterCustomer")
-		public String goRegisterCustomer(Model model) {
-			
-			// creates a new Customer and adds it to the model
-			model.addAttribute("customer", new Customer());
-			
-			return "registerCustomer.html";
-		}
-		
-		// registers a new customer to the website
-		@PostMapping("/registerCustomer")
-		public String registerCustmer(@ModelAttribute Customer customer, Model model) {
-			
-			// create a new Customer using specific class constructor
-					Customer registeredCustomer = new Customer(customer.getFirstName(),
-							customer.getLastName(),
-							customer.getEmail(),
-							customer.getEncryptedPassword());
-					
-					
-					// retrieve the name for owner role and set it to new Owner
-					registeredCustomer.getRoles().add(roleRepo.findById(1));
-					
-					// saves Owner to UserRepository
-					userRepo.save(registeredCustomer);
-					
-					// returns home for testing purposes
-					return "index.html";
-		}
-		
 		// directs to shop registration page
 		@GetMapping("/goRegisterShop")
 		public String goRegisterShop(Model model) {
@@ -143,7 +111,7 @@ public class HomeController {
 					shop.getPhoneNumber(),
 					shop.getAddress(),
 					shop.getBrands(),
-					owner, null);
+					owner, null, null, null, null);
 			
 			
 			// save shop to database
@@ -194,13 +162,8 @@ public class HomeController {
 			}
 		}
 		
-		// If the user isn't an Owner or Admin, and the user is authenticated
-		// Create Customer and add to model
-		User customer = new Customer();
-		customer = userRepo.findByEmail(auth.getName());
-		model.addAttribute("customer", customer);
 		
-		return "user/viewCustomerAccount.html";
+		return "index.html";
 		
 	}
 	
@@ -292,11 +255,7 @@ public class HomeController {
 	
 	// TODO: Appointment booking
 	@GetMapping("/createAppointment")
-	public String goCreateAppointment(Model model, @RequestParam int shopID, Authentication auth) {
-		// if the user hasn't logged in, they will be redirected to the login page
-		if (auth == null) {
-			return "redirect:/login";
-		}
+	public String goCreateAppointment(Model model, @RequestParam int shopID) {
 		
 		List<String> modelList = new ArrayList<String>();
 		
@@ -306,56 +265,43 @@ public class HomeController {
 		for (Brand brand : shop.getBrands()) {
 			modelList.add(brand.getBrandName());
 		}
-		
-		
-//		modelList.add("Moto X");
-//		modelList.add("SMG A10e");
-//		modelList.add("Pixel");
-//		modelList.add("Galaxy S5");
-//		modelList.add("IPhone X");
-		
+				
 		// adds a shop to the model
 		model.addAttribute("shop", shop);
 
-		// creates a customer out of authentication credentials
-		User customer = userRepo.findByEmail(auth.getName());
+		Appointment app = new Appointment();
 		
-		
-		ca.sheridancollege.beans.Appointment app = new ca.sheridancollege.beans.Appointment();
-		app.getCustomer().setFirstName(customer.getFirstName());
-		app.getCustomer().setLastName(customer.getLastName());
-		app.getCustomer().setEmail(customer.getEmail());
-		app.setServiceDetails("This is message from the controller");
+		app.setServiceDetails("Write your problems here");
 		model.addAttribute("modelList", modelList);
 		model.addAttribute("appointment", app);
 		
-		return "user/createAppointment.html";
-	}
-	
-	@GetMapping("/deviceRegistration")
-	public String goDeviceRegistration() {
-		return "deviceSupportRegistration.html";
+		return "createAppointment.html";
 	}
 	
 	@PostMapping("/saveAppointment")
 	public String saveAppointment(@ModelAttribute Appointment appointment, Authentication auth,
 			@RequestParam int shopID) {
 		
-		Customer customer = (Customer) userRepo.findByEmail(auth.getName());
+
 		Shop shop = shopRepo.findById(shopID);
 		
-		appointment.setCustomer(customer);
+		appointment.setAppointmentKey(Appointment.keyGenerator());
 		appointment.setShop(shop);
 		
-		customer.getAppointments().add(appointment);
 		shop.getAppointments().add(appointment);
 		
 		appointmentRepo.save(appointment);
-		userRepo.save(customer);
 		shopRepo.save(shop);
 		
+		//TODO: Create confirmation page to redirect to
+		return "index.html";
+	}
+	
+	//TODO: Implement view and editing of appointments using appointment link
+	@PostMapping("/viewAppointment")
+	public String viewAppointment() {
 		
-		return "redirect:/viewAccount";
+		return "viewAppointments.html";
 	}
 	
 }

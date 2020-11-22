@@ -1,5 +1,6 @@
 package ca.sheridancollege.beans;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +34,6 @@ public class Shop {
 	private Address address;
 	
 	// List of device brands
-	// For testing purposes, the list will be represented as a single string
 	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Brand> brands;
 	
@@ -46,6 +46,11 @@ public class Shop {
 	
 	@OneToMany
 	private List<Appointment> appointments = new ArrayList<Appointment>();
+	
+	private String description; // extra details that owner can use to market their shop
+	private Date joinDate; // date the shop was registered
+	private Boolean active; // whether shop is still operating
+	
 	
 	
 }

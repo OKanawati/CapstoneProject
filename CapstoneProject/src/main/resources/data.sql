@@ -11,13 +11,10 @@ street, city, province, postal, enabled, dtype)
 	VALUES('Barbara', 'Thompson', 'bthompson@yahoo.com', '$2a$10$YXFQuoPD9VXegC9IvYaUKuBN/gor7FTNSj9BEMMYAcg5JO0TCJPJ.',
 	'654-457-3553', '64 Dummy Road', 'Oakville', 'ON', 'L3N8T2', 1, 'Owner');
 	
-INSERT INTO User (first_Name, last_Name, email, encrypted_Password, enabled, dtype)
-	VALUES('Omar', 'Kanawati', 'demo@gmail.com', '$2a$10$x8xav49SZ1G/Hhr0rsfmJuiaIz3VLRFwPbDUDda5qavaLJOpPDMG2',
-	1, 'Customer');
 	
 INSERT INTO user_roles (users_id, roles_id) VALUES (1, 2);
 INSERT INTO user_roles (users_id, roles_id) VALUES (2, 2);
-INSERT INTO user_roles (users_id, roles_id) VALUES (3, 1);
+
 
 INSERT INTO Brand(brand_Name) VALUES ('IPHONE');
 INSERT INTO Brand(brand_Name) VALUES ('SAMSUNG');

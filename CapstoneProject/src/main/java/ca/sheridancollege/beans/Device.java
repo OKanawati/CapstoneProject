@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 import lombok.*;
 
@@ -24,8 +25,10 @@ public class Device {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String model;
-	private String developer;
+	
+	@ManyToOne
+	private Brand brand;
+	
 	private String releaseDate;
 	private String osVersion;
 	

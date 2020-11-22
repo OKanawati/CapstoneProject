@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import lombok.*;
 
@@ -21,6 +22,9 @@ public class Brand {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String brandName;
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Device> devices;
 	
 	@ManyToMany(cascade=CascadeType.ALL, mappedBy="brands")
 	private List<Shop> shops;

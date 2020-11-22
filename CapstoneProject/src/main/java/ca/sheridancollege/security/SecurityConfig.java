@@ -23,8 +23,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/user/viewOwnerAccount").hasRole("OWNER")
 			.antMatchers("/user/registerShop").hasRole("OWNER")
-			.antMatchers("/user/viewCustomerAccount").hasRole("CUSTOMER")
-			.antMatchers("/user/createAppointment").hasRole("CUSTOMER")
 			.antMatchers("/", "/images/**", "/css/**", "/**").permitAll()
 			.antMatchers("/h2-console/**").permitAll()
 			.anyRequest().authenticated()

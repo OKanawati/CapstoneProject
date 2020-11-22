@@ -88,24 +88,27 @@
 		<input type=hidden th:value="${shop.id}" name="shopID">
 		<div class="page" data-page="0">
 				<div class="pure-g">
+				
+					<div class="pure-g">
+						<div class="pure-control-group pure-u-sm-1-2">
+							<label for="firstName">First Name</label>
+							<input type="text" class="" id="firstName" th:field="*{custFirstName}"required />
+						</div>
+						<div class="pure-control-group pure-u-sm-1-4">
+							<label for="lastName">Last Name</label>
+							<input type="text" class="" id="lastName" th:field="*{custLastName}" required />
+						</div>
+					<div class="pure-g">
+						<div class="pure-control-group pure-u-sm-1-2">
+							<label for="email">Email</label>
+							<input type="text" class="" id="email" th:field="*{custEmail}" required />
+						</div>
+					</div>
+					</div>
                     
                     <div class="pure-control-group pure-u-sm-1-4">
                         <label for="fphone">Contact Number</label>
                         <input type="tel" class="" id="fphone" />
-                    </div>
-                </div>
-                <div class="pure-g">
-                    <div class="pure-control-group pure-u-sm-1-2">
-                        <label for="faddress">Address</label>
-                        <input type="text" class="" id="faddress" required />
-                    </div>
-                    <div class="pure-control-group pure-u-sm-1-4">
-                        <label for="fcity">City</label>
-                        <input type="text" class="" id="fcity" required />
-                    </div>
-                    <div class="pure-control-group pure-u-sm-1-4">
-                        <label for="fpostal">Postal or ZIP</label>
-                        <input type="text" class="" id="fpostal" required />
                     </div>
                 </div>
                 <div class="pure-g">
@@ -135,48 +138,21 @@
                         <textarea class="" id="fdescription" th:field="*{serviceDetails}">
 
                         </textarea>
-                        <input type="button" class="pure-button btn proceed-btn" value="Proceed" />
+                        <input type="button" class="pure-button btn proceed-btn go-to-summary" value="Proceed" />
+
                      
                     </div>
                 </div>
 		</div>
-		<div class="page" data-page="1">
-			<div class="container">
-                <h2>Select Service</h2>
-                <div class="">
-               	    <label for="checkbox-option-one" class="pure-checkbox">
-       					<input type="checkbox" id="checkbox-option-one" class="service-checkbox" name="service" value="screen" th:field="*{services}"/> - Screen Repair
-       				</label>
-       				<label for="checkbox-option-two" class="pure-checkbox">
-       					<input type="checkbox" id="checkbox-option-two" class="service-checkbox" name="service" value="battery" th:field="*{services}"/> - Battery Repair
-       				</label>
-       				<label for="checkbox-option-three" class="pure-checkbox">
-       					<input type="checkbox" id="checkbox-option-three" class="service-checkbox" name="service" value="software" th:field="*{services}"/> - Software Repair
-       				</label>
-       				<label for="checkbox-option-four" class="pure-checkbox">
-       					<input type="checkbox" id="checkbox-option-four" class="service-checkbox" name="service" value="motherboard" th:field="*{services}"/> - Motherboard Repair
-       				</label>
-       				<label for="checkbox-option-five" class="pure-checkbox">
-       					<input type="checkbox" id="checkbox-option-five" class="service-checkbox" name="service" value="camera" th:field="*{services}"/> - Camera Repair
-       				</label>
-                </div>	
-                
-            	<input type="button" class="pure-button btn back-btn" value="Back" />
-				<input type="button" class="pure-button btn proceed-btn go-to-summary" value="Proceed" />
-            
-            </div>     
-		</div>
-		<div class="page summary" data-page="2">
+		<div class="page summary" data-page="1">
                 <div class="container">
                 	<h2>Summary</h2>
-                    <p>First Name: <span th:text="*{customer.firstName}"></span></p>
-                    <p>Last Name: <span th:text="*{customer.lastName}"></span></p>
-                    <p>Email: <span th:text="*{customer.email}"></span></p>
+                    <p>First Name: <span class="firstName"></span></p>
+                    <p>Last Name: <span class="lastName"></span></p>
+                    <p>Email: <span class="email"></span></p>
                     <p>Phone: <span class="fphone">not provided</span></p>
-                    <p>Address: <span class="faddress">required</span>, City: <span class="fcity">required</span>, Postal or ZIP: <span class="fpostal">required</span></p>
                     <p>Scheduled for: <span class="fdate">required</span> at Time: <span class="ftime">required</span></p>
                     <p>Device: <span class="model-select">required</span></p>
-                    <p>Services: <span class="service-checkbox-summary">not provided</span></p>
                     <p>Description: <span class="fdescription">required</span></p>
                     <input type="button" class="pure-button btn back-btn" value="Back" />
                     <input type="submit" class="pure-button btn book-btn" value="Book Appointment" />

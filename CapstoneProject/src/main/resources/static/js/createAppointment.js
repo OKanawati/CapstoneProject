@@ -29,26 +29,15 @@ function loadSummaryItem(identifier){
 }
 
 function loadAppointmentSummary(){
+	loadSummaryItem('firstName');
+	loadSummaryItem('lastName');
+	loadSummaryItem('email');
 	loadSummaryItem('fphone');
-	loadSummaryItem('faddress');
-	loadSummaryItem('fcity');
-	loadSummaryItem('fpostal');
 	loadSummaryItem('fdate');
 	loadSummaryItem('ftime');
 	loadSummaryItem('model-select');
 	loadSummaryItem('fdescription');
 	
-	// Sets the summary info for the services checkboxes
-	let from = document.querySelectorAll('.service-checkbox:checked');
-	let to = document.querySelector('.service-checkbox-summary');
-	if (from.length != 0){
-		to.innerHTML = '';
-		from.forEach((chkbox) => {
-			to.innerHTML += chkbox.value + ' ';
-		});
-	}else{
-		to.innerHTML = 'not specified';
-	}
 }
 
 // Add a click event to the 'go-to-summary' button to load appointment summary info
