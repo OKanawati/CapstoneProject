@@ -1,0 +1,69 @@
+#date-form {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+#datepicker {
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: 75%;
+    max-width: 400px;
+    min-width: 300px;
+    text-align: center;
+    padding: 5px;
+    margin-left: auto;
+}
+
+#datepicker-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#prev-y, #next-y, #prev-month, #next-month {
+    border-radius: 5px;
+    border: 1px solid grey;
+    background-color: transparent;
+    padding: 2px;
+    margin: 5px;
+}
+
+#dt-able {
+    margin: auto;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 1px 5px;
+}
+
+#dt-able td {
+    border-radius: 5px !important;
+    border: 1px solid grey;
+    margin: 5px;
+}
+
+td#dt-head {
+    border: none;
+    text-decoration: underline;
+}
+
+
+#dt-able input[type=button] {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+#dt-able input[type=button]:disabled {
+    cursor: no-drop;
+    color: darkgrey;
+}
+
+#timepicker-wrapper {
+	transition: all 2s ease;
+}
+
+
+
+

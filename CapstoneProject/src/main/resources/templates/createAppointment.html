@@ -10,6 +10,12 @@
     src="../static/js/jquery.js"
     th:src="@{/js/jquery.js}"
     ></script>
+    
+    <!-- External Style Sheet -->
+    <link rel="stylesheet" 
+    href="../static/css/datepicker.css"
+    th:href="@{/css/datepicker.css}" 
+    >
 
 	<style type="text/css">
 		:root {
@@ -24,8 +30,6 @@
 		}
 		
 		* {
-		    margin: 0;
-		    padding: 0;
 		    box-sizing: border-box;
 		}
 		
@@ -84,7 +88,7 @@
 		<h1>Appointment Registration</h1>
 		<h2>[[${shop.name}]]</h2>
 	</div>
-	<form id='PureForm' action="#" th:action="@{/saveAppointment}" th:object="${appointment}" method="post" class="pure-form pure-form-aligned">
+	<form action="#" th:action="@{/saveAppointment}" th:object="${appointment}" method="post" class="pure-form pure-form-aligned">
 		<input type=hidden th:value="${shop.id}" name="shopID">
 		<div class="page" data-page="0">
 				<div class="pure-g">
@@ -112,6 +116,8 @@
                     </div>
                 </div>
                 <div class="pure-g">
+                
+                <!-- 
                     <div class="pure-control-group pure-u-sm-1-2">
                         <label for="fdate">Date</label>
                         <input type="date" class="" id="fdate" th:field="*{date}" required />
@@ -120,7 +126,47 @@
                         <label for="ftime">Time</label>
                         <input type="time" class="" id="ftime" th:field="*{time}" required />
                     </div>
-                    
+                     -->
+                     <div id="date-form">
+	                     <div class="pure-control-group pure-u-sm-1-2">
+	                     	<label for="fdate">Date</label>
+	                     	<input type="text" id="fdate" th:field="*{date}" readonly required>
+	                     </div>
+						
+						<div id="datepicker" style="display:none">
+							<div id="datepicker-wrapper">
+							    <h4 id="month-title"></h4>
+							    <div>
+							        <input type="button" name="prev-y" value="Prev Year"  id="prev-y">
+							        <span id="year">2020</span>	
+							        <input type="button" name="next-y" value="Next Year"  id="next-y">
+							    </div>
+							    <table id="dt-able">
+							    	<tbody id="dt-able-body">
+								    	<tr>
+								        	<td class="day_val"> </td>
+								        </tr>
+							        </tbody>
+							    </table>
+							
+							    <div>
+							        <input type="button" name="prev" value="Prev Mo"  id="prev-month">
+							        <input type="button" name="next" value="Next Mo"  id="next-month">
+							    </div>
+							    
+						    </div>
+						</div>
+					
+					</div>
+					
+					
+					<div class="pure-control-group pure-u-sm-1-2" id="timepicker-wrapper" style="display: none;">
+                       	<label for="ftime">Time</label>
+				        <select id="ftime" th:field="*{time}" required></select>
+				    </div>
+				 
+				   
+                     
                 </div>
                 <div class="pure-g">   
                     <div class="pure-control-group pure-u-1">
@@ -161,6 +207,18 @@
           </div>
 		
 	</form>
+	
+	<div id="shop-info" style="display: none;">
+	    <span id="start-time">9:00</span>
+	    <span id="end-time">16:00</span>
+	    <span id="days-closed">Sun, Sat</span>
+	    <span class="appointment"><span class="date">1/24/2020</span><span class="time">9:00</span></span>
+	    <span class="appointment"><span class="date">1/24/2020</span><span class="time">13:00</span></span>
+	    <span class="appointment"><span class="date">1/24/2020</span><span class="time">17:00</span></span>
+	    <span class="appointment"><span class="date">11/24/2020</span><span class="time">13:00</span></span>
+	    <span class="appointment"><span class="date">11/24/2020</span><span class="time">16:00</span></span>
+	</div>
+	
 	<footer th:insert="index.html :: footer"></footer>
 	
     
@@ -168,6 +226,11 @@
     type="module"
     src="../static/js/createAppointment.js"
     th:src="@{/js/createAppointment.js}"
+    ></script>
+    
+    <script 
+    src="../static/js/datepicker.js"
+    th:src="@{/js/datepicker.js}"
     ></script>
 </body>
 </html>
