@@ -9,28 +9,32 @@
 	<script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
 	<link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
 	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.min.js'></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css' type='text/css' />
+	<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=Fira+Sans:wght@100&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="background: linear-gradient(90deg, white 25%, red 50%);">
 
 	<input type="hidden" id="geocoder" th:value="${geocoder}">
 	<input type="hidden" id="shopNames" th:value="${shopNames}">
 	<input type="hidden" id="shopIDs" th:value="${shopIDs}">
 	
 	
-	<div id="LayoutHeaders">
-		<h1>localFix</h1>	
-		<h2>Search for a Shop by entering your device</h2>
-		<form id='search' action="#" th:action="@{/search}">
-			Search: <input type="text" name="search">
+	<div id="LayoutHeaders" style="margin: auto;">
+		<h1 style="background-color: red; clip-path: inset(0% 0% 0% 25%); font-family: Anton;color: white; text-align: left; text-indent: 28%">localFix</h1>	
+		<h2 style="clip-path: inset(0% 0% 0% 25%); font-family: 'Fira Sans', sans-serif; color: white; font-weight: normal; letter-spacing: -1.7px; text-align: left; text-indent: 28%; background: linear-gradient(90deg, rgba(220,20,60,1) 0%, rgba(220,20,60,1) 20%, rgba(220,20,60,0) 75%);">Search your device</h2>
+		<form id="search" action="/search" style="text-align: left; text-indent: 28%;">
+			<input type="text" name="search">
 		</form>
 		<br>
 	</div>
 
 	<!-- Map Initialization and Control -->
 	<div class='sidebar'>
-		<div class='heading'>
-			<h1>Locations</h1>
+		<div class="heading" style="padding: 0px;">
+			<h1 style="background: linear-gradient(90deg, crimson 25%, red 75%); color: white; border: auto; padding-left: 20px; font-family: 'Dosis', sans-serif;">LOCATIONS</h1>
 		</div>
 		<div id='listings' class='listings'></div>
 	</div>

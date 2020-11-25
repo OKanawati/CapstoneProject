@@ -24,7 +24,7 @@
 				<span th:text="${shop.address.street}"></span><br>
 				<span th:text="${shop.address.city}"></span><br>
 				<span th:text="${shop.address.province}"></span><br>
-				<span th:text="${shop.address.postal}"></span><br>
+				<span th:text="${shop.address.postal}"></span><br><br>
 				Supported Brands: 
 				<div th:each="brand : ${shop.brands}">
 					<span th:text="${brand.brandName}"></span><br>

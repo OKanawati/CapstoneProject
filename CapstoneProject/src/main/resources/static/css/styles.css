@@ -31,12 +31,14 @@ a:hover {
 
 .sidebar {
   position: absolute;
-  width: 30%;
+  width: 25%;
   height: 100%;
   top: 0;
   left: 0;
   overflow: hidden;
   border-right: 1px solid rgba(0, 0, 0, 0.25);
+  background-image: linear-gradient(to bottom, rgba(255, 246, 252, .99), rgb(37 121 110 / 50%)), url(/images/areejNY.jpg);
+  background-size: cover;
 }
 
 .pad2 {
@@ -45,7 +47,7 @@ a:hover {
 
 .map {
   position: absolute;
-  left: 33.3333%;
+  left: 25%;
   width: 66.6666%;
   top: 0;
   bottom: 0;
@@ -201,6 +203,7 @@ footer{
     text-align: center;
     height: 5%;
     color: black;
+    padding-top: 15px;
 }
 
 input[type=submit]{
