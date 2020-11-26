@@ -7,12 +7,27 @@ if (!('remove' in Element.prototype)) {
     };
 }
 
+var latitude, longitude;
+
+function getLocation() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	}
+}
+
+function showPosition(position) {
+	  latitude = position.coords.latitude;
+	  longitude = position.coords.longitude;
+	}
+
+getLocation();
+
 mapboxgl.accessToken = 'pk.eyJ1Ijoib2thbmF3YXRpIiwiYSI6ImNrZzhsOXlueDBpZmYyeW8yZnFoaHplOGMifQ.oVTSOlNLzBcJN7EfekHy9g';
 
 var map = new mapboxgl.Map({
     container: document.getElementById('map').id,
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-79.644234, 43.590238],
+    center: [-79.740902, 43.561187],
     zoom: 14
 });
 
