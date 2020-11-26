@@ -1,17 +1,14 @@
 package ca.sheridancollege.beans;
 
 import java.nio.charset.Charset;
-import java.util.Date;
-import java.util.List;
 import java.util.Random;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.*;
 
@@ -38,6 +35,9 @@ public class Appointment {
 	
 	// random encrypted string as key for specific appointment
 	private String appointmentKey;
+	
+	@OneToOne
+	private Review review;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	Shop shop = new Shop();

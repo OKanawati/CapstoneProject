@@ -14,34 +14,60 @@
 	<br>
 	
 <!-- 	View the list of registered shops belonging to the owner logged in -->
-	<div id="shops">
+	<div>
 		<h3>Registered Shops</h3>
 			<div th:if="${not #lists.isEmpty(owner.shopList)}">
+				<table border=1 class="account">
+					<tr>
+						<th>Name</th>
+						<th>Phone</th>
+						<th>Address</th>
+						<th>Supported Brands</th>
+					</tr>
+					<tr th:each="shop : ${owner.shopList}">
+						<td th:text="${shop.name}"></td>
+						<td th:text="${shop.phoneNumber}"></td>
+						<td rowspan=4>
+							<span th:text="${shop.address.street}"></span><br>
+							<span th:text="${shop.address.city}"></span><br>
+							<span th:text="${shop.address.province}"></span><br>
+							<span th:text="${shop.address.postal}"></span>
+						</td>
+						<td>
+							<span th:each="brand : ${shop.brands}">
+								<span th:text="${brand.brandName}"></span><br>
+							</span>
+						</td>
+					</tr>
+				</table>
+				
+				<h3>Appointments</h3>
 				<div th:each="shop : ${owner.shopList}">
-				Name: <span th:text="${shop.name}"></span><br>
-				Phone: <span th:text="${shop.phoneNumber}"></span><br>
-				Address:<br>
-				<span th:text="${shop.address.street}"></span><br>
-				<span th:text="${shop.address.city}"></span><br>
-				<span th:text="${shop.address.province}"></span><br>
-				<span th:text="${shop.address.postal}"></span><br><br>
-				Supported Brands: 
-				<div th:each="brand : ${shop.brands}">
-					<span th:text="${brand.brandName}"></span><br>
-				</div>
-					
-				<br>
-				Appointments:<br>
 					<div th:if="${not #lists.isEmpty(shop.appointments)}">
-						<div th:each="appointment : ${shop.appointments}">
-							<span th:text="${appointment.custFirstName}"></span><br>
-							<span th:text="${appointment.custLastName}"></span><br>
-							<span th:text="${appointment.custEmail}"></span><br>
-							<span th:text="${appointment.date}"></span><br>
-							<span th:text="${appointment.time}"></span><br>
-							<span th:text="${appointment.deviceBrand}"></span><br>
-							<span th:text="${appointment.serviceDetails}"></span>
-						</div>
+						<table border=1 class="account">
+							<tr>
+								<th colspan=2>Name</th>
+								<th>Email</th>
+								<th>Date</th>
+								<th>Time</th>
+								<th>Device</th>
+								<th>Service Details</th>
+								<th>Status</th>
+								<th colspan=2>Action</th>
+							</tr>
+							<tr th:each="appointment : ${shop.appointments}">
+								<td th:text="${appointment.custFirstName}"></td>
+								<td th:text="${appointment.custLastName}"></td> 
+								<td th:text="${appointment.custEmail}"></td>
+								<td th:text="${appointment.date}"></td>
+								<td th:text="${appointment.time}"></td>
+								<td th:text="${appointment.deviceBrand}"></td>
+								<td th:text="${appointment.serviceDetails}"></td>
+								<td th:text="${appointment.status}"></td>
+								<td><button>CONFIRM</button></td>
+								<td><button>DENY</button>
+							</tr>
+						</table>
 					</div>
 					<div th:unless="${not #lists.isEmpty(shop.appointments)}">
 						<span>No appointments scheduled</span>

@@ -43,4 +43,12 @@ INSERT INTO shop_brands(shops_id, brands_id) VALUES (3, 3);
 INSERT INTO user_shop_list (owner_id, shop_list_id) VALUES (1, 1);
 INSERT INTO user_shop_list (owner_id, shop_list_id) VALUES (2, 2);
 INSERT INTO user_shop_list (owner_id, shop_list_id) VALUES (1, 3);
-	
+
+INSERT INTO Appointment (appointment_key, cust_email, cust_first_name, cust_last_name, date, time, device_brand, service_details,
+status, shop_id)
+	VALUES('USRHDAM0YH', 'west@gmail.com', 'Frank', 'West', '2020/11/3', '12:00', 'SAMSUNG', 
+	'Screen is cracked. Battery will not charge.', 'COMPLETED', 2),
+	('HY0MADHRSU', 'jhill@outlook.com', 'John', 'Hill', '2020/11/9', '9:00', 'LG',
+	'Does not turn on.', 'REQUESTED', 2);
+
+INSERT INTO shop_appointments (shop_id, appointments_id) VALUES (2, 1), (2, 2);

@@ -9,5 +9,6 @@ import ca.sheridancollege.beans.Appointment;
 public interface AppointmentRepository extends CrudRepository<Appointment, Integer> {
 
 	public Appointment findById(int id);
+	public Appointment findByAppointmentKey(String appointmentKey);
 	public List<Appointment> findAll();
 }

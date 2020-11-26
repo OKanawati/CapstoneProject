@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -16,11 +17,13 @@ import ca.sheridancollege.beans.Appointment;
 import ca.sheridancollege.beans.Brand;
 import ca.sheridancollege.beans.Customer;
 import ca.sheridancollege.beans.Owner;
+import ca.sheridancollege.beans.Review;
 import ca.sheridancollege.beans.Role;
 import ca.sheridancollege.beans.Shop;
 import ca.sheridancollege.beans.User;
 import ca.sheridancollege.repositories.AppointmentRepository;
 import ca.sheridancollege.repositories.BrandRepository;
+import ca.sheridancollege.repositories.ReviewRepository;
 import ca.sheridancollege.repositories.RoleRepository;
 import ca.sheridancollege.repositories.ShopRepository;
 import ca.sheridancollege.repositories.UserRepository;
@@ -42,6 +45,9 @@ public class HomeController {
 	
 	@Autowired
 	AppointmentRepository appointmentRepo;
+	
+	@Autowired
+	ReviewRepository reviewRepo;
 	
 	// displays index page with search bar
 	@GetMapping("/")
@@ -285,7 +291,11 @@ public class HomeController {
 
 		Shop shop = shopRepo.findById(shopID);
 		
+		Review review = new Review();
+		
 		appointment.setAppointmentKey(Appointment.keyGenerator());
+		appointment.setStatus("REQUESTED");
+		appointment.setReview(review);
 		appointment.setShop(shop);
 		
 		shop.getAppointments().add(appointment);
@@ -294,12 +304,27 @@ public class HomeController {
 		shopRepo.save(shop);
 		
 		//TODO: Create confirmation page to redirect to
-		return "index.html";
+		return "bookingConfirm.html";
 	}
 	
 	//TODO: Implement view and editing of appointments using appointment link
-	@PostMapping("/viewAppointment")
-	public String viewAppointment() {
+	@GetMapping("/viewAppointment/{id}")
+	public String viewAppointment(@PathVariable String id, Model model) {
+		
+		// find appointment using path variable
+		Appointment appointment = appointmentRepo.findByAppointmentKey(id);
+	
+		// find shop that appointment belongs to
+		int shopId = appointment.getShop().getId();
+		Shop shop = shopRepo.findById(shopId);
+		
+		// find review attached to appointment even if null
+		Review review = appointment.getReview();
+		
+		// attach appointment, shop, and review to model
+		model.addAttribute("appointment", appointment);
+		model.addAttribute("shop", shop);
+		model.addAttribute("review", review);
 		
 		return "viewAppointments.html";
 	}

@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeLeaf.org">
-<head th:include="index.html :: header (pageTitle='Accounts List')">
+<head th:include="index.html :: header (pageTitle='Appointment Review')">
 </head>
 <body>
 	<div id="LayoutHeaders">
-		<h1>APPOINTMENTS</h1>
+		<h1 style="background-color: red; color: white;">Appointment for [[${shop.name}]]</h1>
 	</div>
 	<div id="AccountInformation">
-	<h2>Welcome, [[${user.name}]]</h2>
-		<div th:each="appointment : ${appointmentList}">
-			Name: <span th:text="${appointment.name}"></span><br>
-			Email: <span th:text="${appointment.email}"></span><br>
-			Appointment Date: <span th:text="${appointment.date}"></span><br>
-			<br>
-		</div>
-	</div>
-	<br>
-
-		<form class="pure-form pure-form-aligned" action="#" th:action="@{/logout}" method="post">
-			<div class="pure-controls">
-				<input type="submit" value="Logout" class="pure-button pure-button-primary">
-			</div>
+		<h2>Welcome, [[${appointment.custFirstName}]]</h2>
+		<form action="#" th:action="@{/reviewShop}">
+			<table border=1 class="account">
+			<tr>
+				<th colspan=2>Name</th>
+				<th>Email</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Device</th>
+				<th>Service Details</th>
+				<th>Status</th>
+			</tr>
+			<tr>
+				<td th:text="${appointment.custFirstName}"></td>
+				<td th:text="${appointment.custLastName}"></td>
+				<td th:text="${appointment.custEmail}"></td>
+				<td th:text="${appointment.date}"></td>
+				<td th:text="${appointment.time}"></td>
+				<td th:text="${appointment.deviceBrand}"></td>
+				<td th:text="${appointment.serviceDetails}"></td>
+				<td th:text="${appointment.status}"></td>
+			</tr>
+			<tr th:if="${appointment.status} == 'COMPLETED'">
+				<th>Review</th>
+				<td><textarea name="review" rows="10" cols="30"></textarea></td>
+				<td><input type="submit" class="pure-button btn book-btn" value="Submit Review"></td>
+			</tr>
+		</table>
 		</form>
+	</div>
 	<footer th:insert="index.html :: footer"></footer>
 </body>
 </html>
