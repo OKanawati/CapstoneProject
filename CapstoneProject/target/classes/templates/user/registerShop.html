@@ -32,8 +32,10 @@
 			</div>
 			<div class="pure-control-group">
 				<label>Postal Code</label>
-				<input type="text" th:field="*{address.postal}" required>
+				<input type="text" th:field="*{address.postal}" required placeholder="A1B2C3, 12345, 12345-6789">
 			</div>
+			<br>
+			<div style="color:red; text-align:center;" th:each="error:${errorMessage}" th:text="${error}"></div>
 			<br>
 			<div class="pure-control-group">
 				<table class="pure-table">

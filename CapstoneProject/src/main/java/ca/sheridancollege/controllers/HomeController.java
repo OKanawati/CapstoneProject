@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
 import ca.sheridancollege.beans.Appointment;
 import ca.sheridancollege.beans.Brand;
@@ -56,6 +61,24 @@ public class HomeController {
 		return "index.html";
 	}
 	
+	private <T> boolean getValidationMessages(T object, Model model) {
+		Validator validator = Validation
+				.buildDefaultValidatorFactory().getValidator();
+		Set<ConstraintViolation<T>> validationErrors = 
+				validator.validate(object);
+		
+		if(!validationErrors.isEmpty()){
+			List<String> errors = new ArrayList<String>();
+			for(ConstraintViolation<T> error : validationErrors){
+				//errors.add(error.getPropertyPath() + "::" + error.getMessage());
+				errors.add(error.getMessage());
+			}
+			model.addAttribute("errorMessage", errors);
+			return true;
+		}
+
+		return false;
+	}
 	// -------------------------REGISTRATION--------------------------------------//
 	
 	// directs to shop Owner registration page
@@ -71,6 +94,11 @@ public class HomeController {
 		// registers a new shop Owner to the website
 		@PostMapping("/registerOwner")
 		public String registerOwner(@ModelAttribute Owner owner, Model model) {
+			
+			if (getValidationMessages(owner, model)) {
+				model.addAttribute("owner", owner);
+				return "registerOwner.html";
+			}
 			
 			// create a new Owner using specific class constructor
 			Owner registeredOwner = new Owner(owner.getFirstName(),
@@ -107,6 +135,23 @@ public class HomeController {
 		// registers new shop to currently authenticated owner
 		@PostMapping("/registerShop")
 		public String registerShop(@ModelAttribute Shop shop, Model model, Authentication auth) {
+			if (getValidationMessages(shop, model)) {
+				model.addAttribute("shop", shop);
+				
+				List<Brand> brands = brandRepo.findAll();
+				// IMPORTANT: (Josh)
+				// The 3 lines below prevent a stack overflow error
+				// when performing validation
+				// as it recursively calls brand.toSring() -> shop.toString()
+				// (occurs only if there is a validation error with any of the shop fields
+				// but not the brand field)
+				for(Brand b : brands) {
+					b.setShops(null);
+				}
+				model.addAttribute("brands", brands);
+				
+				return "user/registerShop.html";
+			}
 			
 			// create Owner from authentication
 			Owner owner = new Owner();
@@ -285,9 +330,22 @@ public class HomeController {
 	}
 	
 	@PostMapping("/saveAppointment")
-	public String saveAppointment(@ModelAttribute Appointment appointment, Authentication auth,
+	public String saveAppointment(@ModelAttribute Appointment appointment, Model model, Authentication auth,
 			@RequestParam int shopID) {
 		
+		if (getValidationMessages(appointment, model)) {
+
+			List<String> modelList = new ArrayList<String>();
+			Shop shop = shopRepo.findById(shopID);
+			for (Brand brand : shop.getBrands()) {
+				modelList.add(brand.getBrandName());
+			}
+			model.addAttribute("shop", shop);
+			model.addAttribute("modelList", modelList);
+			model.addAttribute("appointment", appointment);
+			
+			return "createAppointment.html";
+		}
 
 		Shop shop = shopRepo.findById(shopID);
 		

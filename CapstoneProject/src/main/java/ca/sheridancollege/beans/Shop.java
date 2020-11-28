@@ -15,6 +15,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.*;
 
@@ -27,14 +32,22 @@ public class Shop {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	@NotBlank(message="Name cannot be blank")	
+	@Size(min = 2, max = 40, message="Name must be between 2 and 40 characters")
 	private String name;
+	@Pattern(regexp="^(\\+\\d{1,3}( )?)?((\\(\\d{3}\\))|\\d{3})[- .]?\\d{3}[- .]?\\d{4}$" 
+		      + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?){2}\\d{3}$" 
+		      + "|^(\\+\\d{1,3}( )?)?(\\d{3}[ ]?)(\\d{2}[ ]?){2}\\d{2}$", 
+		      message="Wrong phone number")
 	private String phoneNumber;
 	
 	@Embedded
+	@Valid
 	private Address address;
 	
 	// List of device brands
 	@ManyToMany(cascade=CascadeType.ALL)
+	@Size(min=1, message="Must select at least one brand")
 	private List<Brand> brands;
 	
 

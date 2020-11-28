@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.*;
 
@@ -24,12 +27,20 @@ public class Appointment {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
+	@NotBlank(message="First name cannot be blank")	
+	@Size(min = 2, max = 40, message="First name must be between 2 and 40 characters")
 	private String custFirstName; // customer first name
+	@NotBlank(message="Last name cannot be blank")	
+	@Size(min = 2, max = 40, message="Last name must be between 2 and 40 characters")
 	private String custLastName; // customer last name
+	@Email(message = "Please enter a valid e-mail address")
 	private String custEmail; // customer email
+	@NotBlank(message="Must specify at least one brand")
 	private String deviceBrand; // the brand of the device being serviced
 	private String serviceDetails; // details inputed by the customer about what is wrong with the device
+	@NotBlank(message="Must specify a Date")
 	private String date; // date of the appointment
+	@NotBlank(message="Must specify a Time")
 	private String time; // booking time
 	private String status; // current status of the appointment (i.e., Requested, Confirmed, Cancelled, Complete)
 	
