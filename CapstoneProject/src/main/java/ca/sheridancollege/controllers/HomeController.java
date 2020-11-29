@@ -26,6 +26,7 @@ import ca.sheridancollege.beans.Review;
 import ca.sheridancollege.beans.Role;
 import ca.sheridancollege.beans.Shop;
 import ca.sheridancollege.beans.User;
+import ca.sheridancollege.email.EmailServiceImpl;
 import ca.sheridancollege.repositories.AppointmentRepository;
 import ca.sheridancollege.repositories.BrandRepository;
 import ca.sheridancollege.repositories.ReviewRepository;
@@ -54,6 +55,9 @@ public class HomeController {
 	@Autowired
 	ReviewRepository reviewRepo;
 	
+	@Autowired
+	EmailServiceImpl esi;
+
 	// displays index page with search bar
 	@GetMapping("/")
 	public String goHome() {
@@ -204,9 +208,19 @@ public class HomeController {
 			if (role.getRolename().equals("ROLE_OWNER")) {
 				
 				// creates Owner and adds it to the model
-				User owner = new Owner();
-				owner = userRepo.findByEmail(auth.getName());
+				Owner owner = new Owner();
+				owner = (Owner) userRepo.findByEmail(auth.getName());
 				model.addAttribute("owner", owner);
+				
+				
+				List<Appointment> appointments = new ArrayList<Appointment>();
+				
+				for (Shop shop : owner.getShopList()) {
+					for (Appointment appointment : shop.getAppointments()) {
+						appointments.add(appointment);
+					}
+				}
+				model.addAttribute("appointments", appointments);
 				
 				// send Owner user to Owner account page
 				return "user/viewOwnerAccount.html";
@@ -216,6 +230,33 @@ public class HomeController {
 		
 		return "index.html";
 		
+	}
+	
+	@GetMapping("/filterAppointments")
+	public String filterAppointments(@RequestParam String status, @RequestParam int ownerId, Model model) {
+		
+		Owner owner = new Owner();
+		owner = (Owner) userRepo.findById(ownerId);
+		
+		List<Appointment> appointments = new ArrayList<Appointment>();
+		
+		for (Shop shop : owner.getShopList()) {
+			for (Appointment appointment : shop.getAppointments()) {
+				
+				if (status.contains("NONE")) {
+					appointments.add(appointment);
+				}
+				
+				else if (appointment.getStatus().contains(status)) {
+					appointments.add(appointment);
+				}
+			}
+		}
+		
+		model.addAttribute("owner", owner);
+		model.addAttribute("appointments", appointments);
+				
+		return "user/viewOwnerAccount.html";
 	}
 	
 	
@@ -349,11 +390,8 @@ public class HomeController {
 
 		Shop shop = shopRepo.findById(shopID);
 		
-		Review review = new Review();
-		
 		appointment.setAppointmentKey(Appointment.keyGenerator());
 		appointment.setStatus("REQUESTED");
-		appointment.setReview(review);
 		appointment.setShop(shop);
 		
 		shop.getAppointments().add(appointment);
@@ -363,6 +401,19 @@ public class HomeController {
 		
 		//TODO: Create confirmation page to redirect to
 		return "bookingConfirm.html";
+	}
+	
+	@GetMapping("/updateStatus/{id}/{status}")
+	public String updateStatus(@PathVariable int id, @PathVariable String status, Model model) {
+		
+		Appointment appointment = appointmentRepo.findById(id);
+		
+		appointment.setStatus(status);
+		
+		appointmentRepo.save(appointment);
+				
+		return "redirect:/viewAccount";
+		
 	}
 	
 	//TODO: Implement view and editing of appointments using appointment link
@@ -385,6 +436,23 @@ public class HomeController {
 		model.addAttribute("review", review);
 		
 		return "viewAppointments.html";
+	}
+	
+	@GetMapping("/reviewShop")
+	public String reviewShop(@RequestParam String reviewBody, @RequestParam String appointmentKey, Model model) {
+		
+		Review review = new Review();
+		Appointment appointment = appointmentRepo.findByAppointmentKey(appointmentKey);
+		
+		review.setAppointment(appointment);
+		review.setReviewBody(reviewBody);
+		reviewRepo.save(review);
+		
+		appointment.setReview(review);
+		appointmentRepo.save(appointment);
+	
+		return "redirect:/viewAppointment/" + appointmentKey;
+		
 	}
 	
 }

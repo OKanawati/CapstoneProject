@@ -9,6 +9,7 @@
 	<div id="AccountInformation">
 		<h2>Welcome, [[${appointment.custFirstName}]]</h2>
 		<form action="#" th:action="@{/reviewShop}">
+			<input type=hidden name=appointmentKey th:value="${appointment.appointmentKey}">
 			<table border=1 class="account">
 			<tr>
 				<th colspan=2>Name</th>
@@ -29,10 +30,14 @@
 				<td th:text="${appointment.serviceDetails}"></td>
 				<td th:text="${appointment.status}"></td>
 			</tr>
-			<tr th:if="${appointment.status} == 'COMPLETED'">
+			<tr th:if="${appointment.status} == 'COMPLETED' AND ${appointment.review} == null">
 				<th>Review</th>
-				<td><textarea name="review" rows="10" cols="30"></textarea></td>
+				<td><textarea name="reviewBody" rows="10" cols="30"></textarea></td>
 				<td><input type="submit" class="pure-button btn book-btn" value="Submit Review"></td>
+			</tr>
+			<tr th:if="${appointment.status} == 'COMPLETED' AND ${appointment.review}">
+				<th>Review</th>
+				<td th:text=${appointment.review.reviewBody}></td>
 			</tr>
 		</table>
 		</form>

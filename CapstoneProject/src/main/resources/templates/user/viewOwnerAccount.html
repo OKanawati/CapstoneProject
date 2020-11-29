@@ -43,8 +43,20 @@
 				
 				<h3>Appointments</h3>
 				<div th:each="shop : ${owner.shopList}">
-					<div th:if="${not #lists.isEmpty(shop.appointments)}">
-						<table border=1 class="account">
+				<form action="#" th:action="@{/filterAppointments}">
+					<input type=hidden name=ownerId th:value="${owner.id}"> <label
+						for="status">Filter Results:</label> <select id="status"
+						name="status">
+						<option value="NONE">No Filter</option>
+						<option value="REQUESTED">Requested</option>
+						<option value="CONFIRMED">Confirmed</option>
+						<option value="COMPLETED">Completed</option>
+						<option value="DENIED">Denied</option>
+						<option value="CANCELLED">Cancelled</option>
+					</select> <input type=submit value="Filter">
+				</form>
+				<div th:if="${not #lists.isEmpty(appointments)}">
+					<table border=1 class="account">
 							<tr>
 								<th colspan=2>Name</th>
 								<th>Email</th>
@@ -55,7 +67,7 @@
 								<th>Status</th>
 								<th colspan=2>Action</th>
 							</tr>
-							<tr th:each="appointment : ${shop.appointments}">
+							<tr th:each="appointment : ${appointments}">
 								<td th:text="${appointment.custFirstName}"></td>
 								<td th:text="${appointment.custLastName}"></td> 
 								<td th:text="${appointment.custEmail}"></td>
@@ -64,8 +76,21 @@
 								<td th:text="${appointment.deviceBrand}"></td>
 								<td th:text="${appointment.serviceDetails}"></td>
 								<td th:text="${appointment.status}"></td>
-								<td><button>CONFIRM</button></td>
-								<td><button>DENY</button>
+								<td th:if="${appointment.status} == 'REQUESTED'">
+									<a href="" th:href="@{/updateStatus/{id}/{status}(id=${appointment.id}, status='CONFIRMED')}"><button>CONFIRM</button></a>
+								</td>
+								<td th:if="${appointment.status} == 'CONFIRMED'">
+									<a href="" th:href="@{/updateStatus/{id}/{status}(id=${appointment.id}, status='COMPLETED')}"><button>COMPLETE</button></a>
+								</td>
+								<td th:if="${appointment.status} == 'COMPLETED' AND ${appointment.review} != null">
+									<a href="" th:href="@{/viewAppointment/{id}(id=${appointment.appointmentKey})}"><button>SEE REVIEW</button></a>
+								</td>
+								<td th:if="${appointment.status} == 'REQUESTED'">
+									<a href="" th:href="@{/updateStatus/{id}/{status}(id=${appointment.id}, status='DENIED')}"><button>DENY</button></a>
+								</td>
+								<td th:if="${appointment.status} == 'CONFIRMED'">
+									<a href="" th:href="@{/updateStatus/{id}/{status}(id=${appointment.id}, status='CANCELLED')}"><button>CANCEL</button></a>
+								</td>
 							</tr>
 						</table>
 					</div>
