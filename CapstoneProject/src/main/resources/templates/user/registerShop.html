@@ -2,59 +2,66 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="index.html :: header (pageTitle='Register Shop')">
 </head>
-<body>
+<body style="background: red;">
 
 	<div id="LayoutHeaders">
-		<h1 style="background-color: red; color: white;">SHOP REGISTRATION</h1>
+		<h1 style="background-color: red; color: white;">SHOP REGISTRATION<hr></h1>
 	</div>
-	
-	<form id='PureForm' class="pure-form pure-form-aligned" action="#" th:action="@{/registerShop}" th:object="${shop}" method="post">
+	<form class="pure-form pure-form-aligned" action="#" th:action="@{/registerShop}" th:object="${shop}" method="post">
 		<fieldset>
-			<div class="pure-control-group">
-				<label>Shop Name:</label>
-				<input type="text" th:field="*{name}" required>
+			<div style="margin: auto; text-align: center; transform: translateX(-4%);">
+				<div class="pure-control-group">
+					<label style="color: white;">Shop Name:</label>
+					<input type="text" th:field="*{name}" required>
+				</div>
+				<div class="pure-control-group">
+					<label style="color: white;">Phone Number:</label>
+					<input type="text" th:field="*{phoneNumber}" required>
+				</div>
+				<div class="pure-control-group">
+					<label style="color: white;">Street Name:</label>
+					<input type="text" th:field="*{address.street}" required>
+				</div>
+				<div class="pure-control-group">
+					<label style="color: white;">City</label>
+					<input type="text" th:field="*{address.city}" required>
+				</div>
+				<div class="pure-control-group">
+					<label style="color: white;">Province</label>
+					<input type="text" th:field="*{address.province}" required>
+				</div>
+				<div class="pure-control-group">
+					<label style="color: white;">Postal Code</label>
+					<input type="text" th:field="*{address.postal}" required placeholder="A1B2C3, 12345, 12345-6789">
+				</div>
+				<br>
+				<div style="color: white; text-align:center;" th:each="error:${errorMessage}" th:text="${error}"></div>
+				<br>
 			</div>
-			<div class="pure-control-group">
-				<label>Phone Number:</label>
-				<input type="text" th:field="*{phoneNumber}" required>
+			<div class="limiter">
+				<div class="container-table100" style="padding: inherit;">
+					<div class="wrap-table100" style="width: 20%">
+						<div class="table100">
+							<table>
+								<thead>
+							        <tr class="table100-head">
+							            <th class="column1" style="text-align: center;">Brand</th>
+							            <th class="column2" style="text-align: center;">Supported</th>
+							        </tr>
+							    </thead>
+							    <tbody>
+							    <!-- Connect the SQL brand list values to these -->
+							        <tr th:each="brand : ${brands}">
+								    	<td class="column1" style="text-align: center;"><span th:text="${brand.brandName}"></span></td>
+								        <td class="column2" style="text-align: center;"><input type="checkbox" th:value="${brand.id}" th:field="*{brands}"/></td>
+								    </tr>
+							    </tbody>
+							</table>
 			</div>
-			<div class="pure-control-group">
-				<label>Street Name:</label>
-				<input type="text" th:field="*{address.street}" required>
 			</div>
-			<div class="pure-control-group">
-				<label>City</label>
-				<input type="text" th:field="*{address.city}" required>
 			</div>
-			<div class="pure-control-group">
-				<label>Province</label>
-				<input type="text" th:field="*{address.province}" required>
 			</div>
-			<div class="pure-control-group">
-				<label>Postal Code</label>
-				<input type="text" th:field="*{address.postal}" required placeholder="A1B2C3, 12345, 12345-6789">
-			</div>
-			<br>
-			<div style="color:red; text-align:center;" th:each="error:${errorMessage}" th:text="${error}"></div>
-			<br>
-			<div class="pure-control-group">
-				<table class="pure-table">
-					<thead>
-				        <tr>
-				            <th>Brand</th>
-				            <th>Supported</th>
-				        </tr>
-				    </thead>
-				    <tbody>
-				    <!-- Connect the SQL brand list values to these -->
-				        <tr class="pure-table-odd" th:each="brand : ${brands}">
-					    	<td><span th:text="${brand.brandName}"></span></td>
-					        <td><input type="checkbox" th:value="${brand.id}" th:field="*{brands}"/></td>
-					    </tr>
-				    </tbody>
-				</table>
-			</div>
-			<div class="pure-controls">
+			<div class="pure-controls" style="text-align: center; margin: 20px;">
 				<input type="submit" value="Submit" class="pure-button pure-button-primary">
 			</div>
 		</fieldset>
