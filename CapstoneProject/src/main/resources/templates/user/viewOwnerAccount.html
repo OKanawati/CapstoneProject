@@ -2,12 +2,12 @@
 <html xmlns:th="https://www.thymeLeaf.org">
 <head th:include="index.html :: header (pageTitle='Account Information')">
 </head>
-<body style="background: #ff0000;">
+<body>
 	<div id="LayoutHeaders">
-		<h1 style="background-color: ##713e3e; color: white;">ACCOUNT INFORMATION<hr></h1>
+		<h1 style="background-color: red; color: white;">ACCOUNT INFORMATION</h1>
 	</div>
-	<div id="AccountInformation" style="color: white;">
-		<h2 >Welcome, [[${owner.firstName}]]</h2>
+	<div id="AccountInformation">
+		<h2>Welcome, [[${owner.firstName}]]</h2>
 			Name: <span>[[${owner.firstName}]] [[${owner.lastName}]]</span><br>
 			Email: <span th:text="${owner.email}"></span><br>
 	</div>
@@ -15,48 +15,37 @@
 	
 <!-- 	View the list of registered shops belonging to the owner logged in -->
 	<div>
-		<h3 style="text-align: center; color: white; text-decoration: overline;">Registered Shops</h3>
+		<h3>Registered Shops</h3>
 			<div th:if="${not #lists.isEmpty(owner.shopList)}">
-				<div class="limiter">
-					<div class="container-table100">
-						<div class="wrap-table100"  style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-							<div class="table100">
-								<table class="account">
-									<thead>
-										<tr class="table100-head">
-											<th class="column1" style="text-align: center;">Name</th>
-											<th class="column2" style="text-align: center;">Phone</th>
-											<th class="column3" style="text-align: center;">Address</th>
-											<th class="column4" style="text-align: left;">Supported Brands</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr th:each="shop : ${owner.shopList}">
-											<td class="column1" style="text-align: center;" th:text="${shop.name}"></td>
-											<td class="column2" th:text="${shop.phoneNumber}" style="text-align: center;"></td>
-											<td class="column3" style="text-align: center;">
-												<span th:text="${shop.address.street}"></span><br>
-												<span th:text="${shop.address.city}"></span><br>
-												<span th:text="${shop.address.province}"></span><br>
-												<span th:text="${shop.address.postal}"></span>
-											</td>
-											<td class="column4">
-												<span th:each="brand : ${shop.brands}">
-													<span th:text="${brand.brandName}"></span><br>
-												</span>
-											</td>
-										</tr>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
+				<table border=1 class="account">
+					<tr>
+						<th>Name</th>
+						<th>Phone</th>
+						<th>Address</th>
+						<th>Supported Brands</th>
+					</tr>
+					<tr th:each="shop : ${owner.shopList}">
+						<td th:text="${shop.name}"></td>
+						<td th:text="${shop.phoneNumber}"></td>
+						<td rowspan=4>
+							<span th:text="${shop.address.street}"></span><br>
+							<span th:text="${shop.address.city}"></span><br>
+							<span th:text="${shop.address.province}"></span><br>
+							<span th:text="${shop.address.postal}"></span>
+						</td>
+						<td>
+							<span th:each="brand : ${shop.brands}">
+								<span th:text="${brand.brandName}"></span><br>
+							</span>
+						</td>
+					</tr>
+				</table>
 				
-				<h3 style="text-align: center; color: white;">Appointments<hr style="width: 50%;"></h3>
+				<h3>Appointments</h3>
 				<div th:each="shop : ${owner.shopList}">
-				<form action="#" th:action="@{/filterAppointments}" style="text-align: center;">
+				<form action="#" th:action="@{/filterAppointments}">
 					<input type=hidden name=ownerId th:value="${owner.id}"> <label
-						for="status" style="color: white;">Filter Results:</label> <select id="status"
+						for="status">Filter Results:</label> <select id="status"
 						name="status">
 						<option value="NONE">No Filter</option>
 						<option value="REQUESTED">Requested</option>
@@ -64,11 +53,10 @@
 						<option value="COMPLETED">Completed</option>
 						<option value="DENIED">Denied</option>
 						<option value="CANCELLED">Cancelled</option>
-					</select> <input type=submit value="Filter" style="color: white;">
+					</select> <input type=submit value="Filter">
 				</form>
-				<br>
 				<div th:if="${not #lists.isEmpty(appointments)}">
-					<table border=1 class="account" style="width: 95%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+					<table border=1 class="account">
 							<tr>
 								<th colspan=2>Name</th>
 								<th>Email</th>
@@ -116,13 +104,10 @@
 				<span>No shops registered</span>			
 			</div>
 			<br>
-			<br>
-			<br>
-				<div style="text-align: center; background: radial-gradient(white, transparent);">
-					<a href="/goRegisterShop">Add Shop<hr style="width: 25%; color: white;"></a></div>
+			<a href="/goRegisterShop" th:href="@{/goRegisterShop}">Add Shop</a>
 			<br>
 			<br>	
-			<form action="#" th:action="@{/logout}" method="post" style="text-align: center;">
+			<form action="#" th:action="@{/logout}" method="post">
 				<div class='logout'>
 					<input type="submit" value="Logout" class="pure-button pure-button-primary">
 				</div>

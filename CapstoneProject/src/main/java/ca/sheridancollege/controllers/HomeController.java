@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.mail.MessagingException;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -399,6 +402,8 @@ public class HomeController {
 		appointmentRepo.save(appointment);
 		shopRepo.save(shop);
 		
+		sendConfirmationEmail(shop, appointment);
+		
 		//TODO: Create confirmation page to redirect to
 		return "bookingConfirm.html";
 	}
@@ -452,6 +457,35 @@ public class HomeController {
 		appointmentRepo.save(appointment);
 	
 		return "redirect:/viewAppointment/" + appointmentKey;
+		
+	}
+	
+	// -----------------------------SENDING EMAILS---------------------------//
+	
+	public void sendConfirmationEmail(Shop shop, Appointment appointment)  {
+		
+		// url and anchor tag for appointment link
+		String appUrl = "http://localhost:8080/viewAppointment/" + appointment.getAppointmentKey();
+		String link = "<a href='" + appUrl + "'>this link</a>";
+		
+		// email requires title, header, messageBody, footer, subject, and to
+		String message = "Hello, " + appointment.getCustFirstName() + "<br>"
+				+ "Thank you for using localFix. "
+				+ "Your request for service at " + shop.getName() + " has been sent. "
+				+ "You can view details about your appointment, "
+				+ "as well as check its status, at " + link;
+		
+			
+		try {
+			esi.sendMailWithInline("Appointment Requested", 
+					"Request sent to " + shop.getName(), 
+					message, 
+					"localFix",
+					appointment.getCustEmail(),
+					"Service request at " + shop.getName());
+		} catch (MessagingException e) {
+			System.out.println(e);
+		}
 		
 	}
 	
