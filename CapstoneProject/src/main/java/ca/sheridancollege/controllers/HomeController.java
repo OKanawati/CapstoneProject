@@ -267,12 +267,12 @@ public class HomeController {
 	
 	@GetMapping("/search")
 	public String search(@RequestParam String search, Model model) {
-	
-		// retrieve all registered shops
-		List<Shop> shopList = shopRepo.findAll();
 		
-		// list for shops that match search string
-		List<Shop> results = new ArrayList<Shop>();
+		// find the brand that matches the search
+		Brand brand = brandRepo.findByBrandName(search.toUpperCase());
+	
+		// retrieve shops with retrieved brand
+		List<Shop> results = brand.getShops();
 		
 		// list of shop names
 		List<String> shopNames = new ArrayList<String>();
@@ -285,25 +285,14 @@ public class HomeController {
 				("https://api.mapbox.com/geocoding/v5/mapbox.places-permanent/");
 		
 		// iterates through shop list
-		for (Shop shop : shopList) {
-			
-			// iterates through each brand supported by shop
-			for (Brand brand : shop.getBrands()) {
-				
-				// checks if brand name matches the search string
-				if (brand.getBrandName().contains(search.toUpperCase())) {
-					
-					// adds shop if matches
-					results.add(shop);
-					
-					// adds name to separate list
-					shopNames.add(shop.getName());
-					
-					// adds ids to a separate lsit
-					shopIDs.add(shop.getId());
-				}
-			
-			}
+		for (Shop shop : results) {
+
+			// adds name to separate list
+			shopNames.add(shop.getName());
+
+			// adds ids to a separate lsit
+			shopIDs.add(shop.getId());
+
 		}
 		
 		// iterates through results and appends address parameter to geocoder

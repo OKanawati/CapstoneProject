@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
+import ca.sheridancollege.beans.Brand;
 import ca.sheridancollege.beans.Shop;
 
 public interface ShopRepository extends CrudRepository<Shop, Integer> {
