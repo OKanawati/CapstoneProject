@@ -20,7 +20,8 @@ var geolocate = new mapboxgl.GeolocateControl({
 	positionOptions: {
 		enableHighAccuracy: true
 	},
-	trackUserLocation: true
+	trackUserLocation: true,
+	showAccuracyCircle: false
 });
 
 map.addControl(geolocate);
