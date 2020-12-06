@@ -41,6 +41,12 @@ public class Shop {
 		      message="Wrong phone number")
 	private String phoneNumber;
 	
+	@NotBlank(message="Must provide a start time")
+	private String startTime;
+	@NotBlank(message="Must provide a end time")
+	private String endTime;
+	private String daysClosed;
+	
 	@Embedded
 	@Valid
 	private Address address;

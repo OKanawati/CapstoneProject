@@ -209,14 +209,13 @@
 	</form>
 	
 	<div id="shop-info" style="display: none;">
-	    <span id="start-time">9:00</span>
-	    <span id="end-time">16:00</span>
-	    <span id="days-closed">Sun, Sat</span>
-	    <span class="appointment"><span class="date">1/24/2020</span><span class="time">9:00</span></span>
-	    <span class="appointment"><span class="date">1/24/2020</span><span class="time">13:00</span></span>
-	    <span class="appointment"><span class="date">1/24/2020</span><span class="time">17:00</span></span>
-	    <span class="appointment"><span class="date">11/24/2020</span><span class="time">13:00</span></span>
-	    <span class="appointment"><span class="date">11/24/2020</span><span class="time">16:00</span></span>
+	    <span id="start-time" th:text="${shop.startTime}">9:00</span>
+	    <span id="end-time" th:text="${shop.endTime}">17:00</span>
+	    <span id="days-closed" th:text="${shop.daysClosed}">Sun, Sat</span>
+	    <span class="appointment" th:each="app : ${shop.appointments}">
+	    	<span class="date" th:text="${app.date}"></span>
+	    	<span class="time" th:text="${app.time}"></span>
+	    </span>
 	</div>
 	
 	<footer th:insert="index.html :: footer"></footer>

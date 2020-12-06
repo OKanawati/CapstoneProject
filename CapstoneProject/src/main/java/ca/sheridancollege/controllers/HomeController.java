@@ -167,6 +167,9 @@ public class HomeController {
 			// create a new Shop
 			Shop registeredShop = new Shop(null, shop.getName(),
 					shop.getPhoneNumber(),
+					shop.getStartTime(),
+					shop.getEndTime(),
+					shop.getDaysClosed(),
 					shop.getAddress(),
 					shop.getBrands(),
 					owner, null, null, null, null);
