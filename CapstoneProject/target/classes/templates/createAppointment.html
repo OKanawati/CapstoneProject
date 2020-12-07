@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="https://www.thymeLeaf.org">
+<html xmlns:th="https://www.thymeLeaf.org" style="background-image: radial-gradient(circle, #190000, #420f1d, #820327, #c20023, #ff0000);min-height: -webkit-fill-available;">
 <head th:replace="index.html :: header (pageTitle='Schedule Appointment')">
 
 </head>
@@ -83,39 +83,39 @@
 		}
 	</style>
 </head>
-<body>
+<body >
 	<div id="LayoutHeaders">
-		<h1 style="background-color: red; color: white;">Appointment Registration</h1>
-		<h2>[[${shop.name}]]</h2>
+		<h1 style="background-image: linear-gradient(to right, #ff0000, #f30000, #e80000, #dc0000, #d10000, #d10000, #d10000, #d10000, #dc0000, #e80000, #f30000, #ff0000); color: white;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">Appointment Registration</h1>
+		<h2 style="color: navajowhite;">[[${shop.name}]]</h2>
 	</div>
 	<form action="#" th:action="@{/saveAppointment}" th:object="${appointment}" method="post" class="pure-form pure-form-aligned">
 		<input type=hidden th:value="${shop.id}" name="shopID">
-		<div class="page" data-page="0">
-				<div class="pure-g">
+		<div class="page" data-page="0" style="text-align: center; text-indent: -10%;">
+				<div class="pure-control-group">
 				
-					<div class="pure-g">
-						<div class="pure-control-group pure-u-sm-1-2">
-							<label for="firstName">First Name</label>
+					<div class="pure-control-group">
+						<div class="pure-control-group">
+							<label style="color: navajowhite;" for="firstName">First Name</label>
 							<input type="text" class="" id="firstName" th:field="*{custFirstName}"required />
 						</div>
-						<div class="pure-control-group pure-u-sm-1-4">
-							<label for="lastName">Last Name</label>
+						<div class="pure-control-group">
+							<label style="color: navajowhite;" for="lastName">Last Name</label>
 							<input type="text" class="" id="lastName" th:field="*{custLastName}" required />
 						</div>
-					<div class="pure-g">
-						<div class="pure-control-group pure-u-sm-1-2">
-							<label for="email">Email</label>
+					<div class="pure-control-group">
+						<div class="pure-control-group">
+							<label style="color: navajowhite;" for="email">Email</label>
 							<input type="text" class="" id="email" th:field="*{custEmail}" required />
 						</div>
 					</div>
 					</div>
                     
-                    <div class="pure-control-group pure-u-sm-1-4">
-                        <label for="fphone">Contact Number</label>
+                    <div class="pure-control-group">
+                        <label style="color: navajowhite;" for="fphone">Contact Number</label>
                         <input type="tel" class="" id="fphone" />
                     </div>
                 </div>
-                <div class="pure-g">
+                <div class="pure-control-group">
                 
                 <!-- 
                     <div class="pure-control-group pure-u-sm-1-2">
@@ -128,18 +128,18 @@
                     </div>
                      -->
                      <div id="date-form">
-	                     <div class="pure-control-group pure-u-sm-1-2">
-	                     	<label for="fdate">Date</label>
+	                     <div class="pure-control-group">
+	                     	<label style="color: navajowhite;" for="fdate">Date</label>
 	                     	<input type="text" id="fdate" th:field="*{date}" readonly required>
 	                     </div>
 						
 						<div id="datepicker" style="display:none">
 							<div id="datepicker-wrapper">
-							    <h4 id="month-title"></h4>
+							    <h4 style="color: navajowhite;" id="month-title"></h4>
 							    <div>
-							        <input type="button" name="prev-y" value="Prev Year"  id="prev-y">
-							        <span id="year">2020</span>	
-							        <input type="button" name="next-y" value="Next Year"  id="next-y">
+							        <input style="color: navajowhite;" type="button" name="prev-y" value="Prev Year"  id="prev-y">
+							        <span style="color: navajowhite;" id="year">2020</span>	
+							        <input style="color: navajowhite;" type="button" name="next-y" value="Next Year"  id="next-y">
 							    </div>
 							    <table id="dt-able">
 							    	<tbody id="dt-able-body">
@@ -150,8 +150,8 @@
 							    </table>
 							
 							    <div>
-							        <input type="button" name="prev" value="Prev Mo"  id="prev-month">
-							        <input type="button" name="next" value="Next Mo"  id="next-month">
+							        <input style="color: navajowhite;" type="button" name="prev" value="Prev Mo"  id="prev-month">
+							        <input style="color: navajowhite;" type="button" name="next" value="Next Mo"  id="next-month">
 							    </div>
 							    
 						    </div>
@@ -160,17 +160,17 @@
 					</div>
 					
 					
-					<div class="pure-control-group pure-u-sm-1-2" id="timepicker-wrapper" style="display: none;">
-                       	<label for="ftime">Time</label>
+					<div class="pure-control-group" id="timepicker-wrapper" style="display: none;">
+                       	<label style="color: navajowhite;" for="ftime">Time</label>
 				        <select id="ftime" th:field="*{time}" required></select>
 				    </div>
 				 
 				   
                      
                 </div>
-                <div class="pure-g">   
-                    <div class="pure-control-group pure-u-1">
-                        <label for="model-select" class="">Model:</label>
+                <div class="pure-control-group">   
+                    <div class="pure-control-group">
+                        <label style="color: navajowhite;" for="model-select" class="">Model:</label>
                     
 	                    <select id="model-select" class="" name="model" size="4" th:field="*{deviceBrand}" required>
 	                        <option value="" disabled selected>Select your option</option>
@@ -178,19 +178,24 @@
 	                    </select>
                     </div>
                 </div>
-                <div class="pure-g">
-                    <div class="pure-control-group pure-u-1">
-                        <label for="fdescription">Description</label>
+                <div class="pure-control-group">
+                    <div class="pure-control-group">
+                        <label style="color: navajowhite;" for="fdescription">Description</label>
                         <textarea class="" id="fdescription" th:field="*{serviceDetails}">
 
                         </textarea>
+                        <br>
+                        <br>
                         <input type="button" class="pure-button btn proceed-btn go-to-summary" value="Proceed" />
-
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                      
                     </div>
                 </div>
 		</div>
-		<div class="page summary" data-page="1">
+		<div class="page summary" data-page="1" style="text-align:center" style="color: navajowhite;">
                 <div class="container">
                 	<h2>Summary</h2>
                     <p>First Name: <span class="firstName"></span></p>
@@ -209,13 +214,14 @@
 	</form>
 	
 	<div id="shop-info" style="display: none;">
-	    <span id="start-time" th:text="${shop.startTime}">9:00</span>
-	    <span id="end-time" th:text="${shop.endTime}">17:00</span>
-	    <span id="days-closed" th:text="${shop.daysClosed}">Sun, Sat</span>
-	    <span class="appointment" th:each="app : ${shop.appointments}">
-	    	<span class="date" th:text="${app.date}"></span>
-	    	<span class="time" th:text="${app.time}"></span>
-	    </span>
+	    <span id="start-time">9:00</span>
+	    <span id="end-time">16:00</span>
+	    <span id="days-closed">Sun, Sat</span>
+	    <span class="appointment"><span class="date">1/24/2020</span><span class="time">9:00</span></span>
+	    <span class="appointment"><span class="date">1/24/2020</span><span class="time">13:00</span></span>
+	    <span class="appointment"><span class="date">1/24/2020</span><span class="time">17:00</span></span>
+	    <span class="appointment"><span class="date">11/24/2020</span><span class="time">13:00</span></span>
+	    <span class="appointment"><span class="date">11/24/2020</span><span class="time">16:00</span></span>
 	</div>
 	
 	<footer th:insert="index.html :: footer"></footer>

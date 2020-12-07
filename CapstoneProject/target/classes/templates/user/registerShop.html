@@ -2,10 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="index.html :: header (pageTitle='Register Shop')">
 </head>
-<body style="background: red;">
+<body style="background-image: linear-gradient(to bottom, #ff0000, #c20023, #820327, #420f1d, #000000);">
 
 	<div id="LayoutHeaders">
-		<h1 style="background-color: red; color: white;">SHOP REGISTRATION<hr></h1>
+		<h1 style="background-image: linear-gradient(to right, #ff0000, #f30000, #e80000, #dc0000, #d10000, #d10000, #d10000, #d10000, #dc0000, #e80000, #f30000, #ff0000); color: white;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">SHOP REGISTRATION<hr></h1>
 	</div>
 	<form class="pure-form pure-form-aligned" action="#" th:action="@{/registerShop}" th:object="${shop}" method="post">
 		<fieldset>
@@ -42,11 +42,16 @@
 					<label style="color: white;">End Time</label>
 					<input type="time" th:field="*{endTime}" required>
 				</div>
-				<div class="pure-control-group">
-					<span style="color: white;">Days Closed</span>
-					<table style="width: 50%;">
+			</div>
+				<br>
+				<br>
+				<div style="text-align: center;">
+					<label style="color: white; text-align: center;">Days Closed</label>
+					<hr style="width: 50%;">
+					<br>
+					<table style="width: 50%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 						<thead>
-							<tr>
+							<tr style="color: white;">
 								<th>Sun</th>
 								<th>Mon</th>
 								<th>Tue</th>
@@ -72,12 +77,11 @@
 				<br>
 				<div style="color: white; text-align:center;" th:each="error:${errorMessage}" th:text="${error}"></div>
 				<br>
-			</div>
 			<div class="limiter">
-				<div class="container-table100" style="padding: inherit;">
+				<div class="container-table100" style="padding: inherit; background: none;">
 					<div class="wrap-table100" style="width: 20%">
 						<div class="table100">
-							<table>
+							<table style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 								<thead>
 							        <tr class="table100-head">
 							            <th class="column1" style="text-align: center;">Brand</th>
@@ -96,12 +100,16 @@
 			</div>
 			</div>
 			</div>
+			<br>
 			<div class="pure-controls" style="text-align: center; margin: 20px;">
 				<input type="submit" value="Submit" class="pure-button pure-button-primary">
 			</div>
 		</fieldset>
 	</form>
-	
+	<br>
+	<br>
+	<br>
+	<br>
 	<footer th:insert="index.html :: footer"></footer>
 	
 </body>

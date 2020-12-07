@@ -1,49 +1,50 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" style="background-image: radial-gradient(circle, #190000, #420f1d, #820327, #c20023, #ff0000);min-height: -webkit-fill-available;">
 <head th:include="index.html :: header (pageTitle='Register Owner')">
 </head>
-<body>
+<body style="background-image: linear-gradient(to bottom, rgba(255, 246, 252, .99), rgb(37 121 110 / 1%)), url(https://ribbon.co/wp-content/uploads/2018/06/computer-repair.jpg);background-repeat: no-repeat, repeat;">
 
 	<div id="LayoutHeaders">
-		<h1 style="background-color: red; color: white;">SHOP-OWNER REGISTRATION</h1>
+		<h1 style="background-image: linear-gradient(to right, #ff0000, #f30000, #e80000, #dc0000, #d10000, #d10000, #d10000, #d10000, #dc0000, #e80000, #f30000, #ff0000); color: white;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+		SHOP-OWNER REGISTRATION</h1>
 	</div>
 	
 	<form id='PureForm' class="pure-form pure-form-aligned" action="#" th:action="@{/registerOwner}" th:object="${owner}" method="post">
 		<fieldset>
 			<div class="pure-control-group">
-				<label>First Name:</label>
+				<label style="color: navajowhite;">First Name:</label>
 				<input type="text" th:field="*{firstName}" required>
 			</div>
 			<div class="pure-control-group">
-				<label>Last Name:</label>
+				<label style="color: navajowhite;">Last Name:</label>
 				<input type="text" th:field="*{lastName}" required>
 			</div>
 			<div class="pure-control-group">
-				<label>Email:</label>
+				<label style="color: navajowhite;">Email:</label>
 				<input type="text" th:field="*{email}" required>
 			</div>
 			<div class="pure-control-group">
-				<label>Password:</label>
+				<label style="color: navajowhite;">Password:</label>
 				<input type="password" th:field="*{encryptedPassword}" required>
 			</div>
 			<div class="pure-control-group">
-				<label>Phone Number:</label>
+				<label style="color: navajowhite;">Phone Number:</label>
 				<input type="text" th:field="*{phoneNumber}" required>
 			</div>
 			<div class="pure-control-group">
-				<label>Street:</label>
+				<label style="color: navajowhite;">Street:</label>
 				<input type="text" th:field="*{address.street}" required>
 			</div>
 			<div class="pure-control-group">
-				<label>City:</label>
+				<label style="color: navajowhite;">City:</label>
 				<input type="text" th:field="*{address.city}" required>
 			</div>
 			<div class="pure-control-group">
-				<label>Province:</label>
+				<label style="color: navajowhite;">Province:</label>
 				<input type="text" th:field="*{address.province}" required>
 			</div>
 			<div class="pure-control-group">
-				<label>Postal Code:</label>
+				<label style="color: navajowhite;">Postal Code:</label>
 				<input type="text" th:field="*{address.postal}" required placeholder="A1B2C3, 12345, 12345-6789">
 			</div>
 			<div style="color:red; text-align:center;" th:each="error:${errorMessage}" th:text="${error}"></div>

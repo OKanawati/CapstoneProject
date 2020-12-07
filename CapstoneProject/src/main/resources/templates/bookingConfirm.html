@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeLeaf.org">
-<head th:include="index.html :: header (pageTitle='Account Information')">
+<head th:include="index.html :: header (pageTitle='Appointment Request Sent')">
 <meta charset="UTF-8">
 <title>Appointment Request Sent</title>
 </head>
 <body>
 	<div id="LayoutHeaders">
-		<h1 style="background-color: red; color: white;">ACCOUNT INFORMATION</h1>
+		<h1 style="background-image: linear-gradient(to right, #ff0000, #f30000, #e80000, #dc0000, #d10000, #d10000, #d10000, #d10000, #dc0000, #e80000, #f30000, #ff0000); color: white;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">ACCOUNT INFORMATION</h1>
 	</div>
-	<h1>Appointment Request Sent</h1>
-		<div>
+	<h1 style="text-align: center;">Appointment Request Sent</h1>
+		<div style="text-align: center;">
 			You have successfully requested an appointment! You can check your appointment status through the link sent to your email.
 		</div>
 		<br>
-		<a href="/" th:href="@{/}">Return Home</a>
-<footer th:insert="index.html :: footer"></footer>
+		<div style="text-align: center;">
+			<a href="/" th:href="@{/}">Return Home</a>
+		</div>
+	<footer th:insert="index.html :: footer"></footer>
 </body>
 </html>

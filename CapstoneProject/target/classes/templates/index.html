@@ -18,7 +18,7 @@
 	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 	
 </head>
-<body style="background: linear-gradient(90deg, white 25%, red 50%);">
+<body style="background: linear-gradient(to right, black, red, black);">
 
 	<input type="hidden" id="geocoder" th:value="${geocoder}">
 	<input type="hidden" id="shopNames" th:value="${shopNames}">
@@ -26,10 +26,10 @@
 	
 	
 	<div id="LayoutHeaders" style="margin: auto;">
-		<h1 style="background-color: red; clip-path: inset(0% 0% 0% 25%); font-family: Anton;color: white; text-align: left; text-indent: 28%">localFix</h1>	
-		<h2 style="clip-path: inset(0% 0% 0% 25%); font-family: 'Fira Sans', sans-serif; color: white; font-weight: normal; letter-spacing: -1.7px; text-align: left; text-indent: 28%; background: linear-gradient(90deg, rgba(220,20,60,1) 0%, rgba(220,20,60,1) 20%, rgba(220,20,60,0) 75%);">Search your device</h2>
-		<form id="search" action="/search" style="text-align: left; text-indent: 28%;">
-			<input type="text" name="search">
+		<h1 style="background-color: red; clip-path: inset(0% 0% 0% 25%); font-family: Anton;color: white; text-align: center;">localFix</h1>
+		<h2 style="font-family: 'Fira Sans', sans-serif; color: white; font-weight: normal; letter-spacing: -1.7px; text-align: center;">Search your device<hr style="width: 33%;"></h2>
+		<form id="search" action="/search" style="text-align: center;">
+			<input type="text" name="search" style="box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.2), -10px 5px 12px 0 rgba(0, 0, 0, 0.19);">
 		</form>
 		<br>
 	</div>
@@ -37,12 +37,17 @@
 	<!-- Map Initialization and Control -->
 	<div class='sidebar'>
 		<div class="heading" style="padding: 0px;">
-			<h1 style="background: linear-gradient(90deg, crimson 25%, red 75%); color: white; border: auto; padding-left: 20px; font-family: 'Dosis', sans-serif;">LOCATIONS</h1>
+			<h1 style="background: linear-gradient(90deg, crimson 25%, red 75%); color: white; border: auto; padding-left: 20px; font-family: 'Dosis', sans-serif; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">LOCATIONS</h1>
 		</div>
 		<div id='listings' class='listings'></div>
 	</div>
+	<div class='sidebarRight'>
+		<div class="heading" style="padding: 0px;">
+			<h1 style="background: linear-gradient(90deg, red 25%, crimson 75%); text-align: right; color: white; border: auto; padding-right: 20px; font-family: 'Dosis', sans-serif; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">REGISTER NOW</h1>
+		</div>
+	</div>
 	
-	<div id='map' class='map pad2' style='width: 1000px; height: 600px;'>Map</div>
+	<div id='map' class='map pad2' style='width: 1000px; height: 600px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); max-width: 52.2%'>Map</div>
 	
 	
 	

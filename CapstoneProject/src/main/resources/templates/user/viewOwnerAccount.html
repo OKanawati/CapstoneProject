@@ -3,9 +3,9 @@
 <head
 	th:include="index.html :: header (pageTitle='Account Information')">
 </head>
-<body style="background: #ff0000;">
+<body style="background-image: linear-gradient(to bottom, #ff0000, #c20023, #820327, #420f1d, #000000);">
 	<div id="LayoutHeaders">
-		<h1 style="background-color: ##713e3e; color: white;">
+		<h1 style="background-image: linear-gradient(to right, #ff0000, #f30000, #e80000, #dc0000, #d10000, #d10000, #d10000, #d10000, #dc0000, #e80000, #f30000, #ff0000); color: white;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 			ACCOUNT INFORMATION
 			<hr>
 		</h1>
@@ -24,7 +24,7 @@
 			Shops</h3>
 		<div th:if="${not #lists.isEmpty(owner.shopList)}">
 			<div class="limiter">
-				<div class="container-table100">
+				<div class="container-table100" style="background: none;">
 					<div class="wrap-table100"
 						style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 						<div class="table100">
@@ -123,24 +123,26 @@
 					</tr>
 				</table>
 			</div>
-			<div th:unless="${not #lists.isEmpty(appointments)}">
+			<div th:unless="${not #lists.isEmpty(appointments)}" style="text-align: center;">
+				<br>
 				<span>No appointments scheduled</span>
 			</div>
 			<br>
 		</div>
-		<div th:unless="${not #lists.isEmpty(owner.shopList)}">
+		<div th:unless="${not #lists.isEmpty(owner.shopList)}" style="text-align: center;">
+			<br>
 			<span>No shops registered</span>
 		</div>
 		<br> <br> <br>
-		<div
-			style="text-align: center; background: radial-gradient(white, transparent);">
-			<a href="/goRegisterShop">Add Shop
+		<div style="text-align: center; background: radial-gradient(white, transparent 80%);">
+			<a href="/goRegisterShop" style="POSITION: relative; top: 6px;">
+				Add Shop
 				<hr style="width: 25%; color: white;">
 			</a>
 		</div>
-		<br> <br>
-		<form action="#" th:action="@{/logout}" method="post"
-			style="text-align: center;">
+		<br>
+		<br>
+		<form action="#" th:action="@{/logout}" method="post" style="text-align: center;">
 			<div class='logout'>
 				<input type="submit" value="Logout"
 					class="pure-button pure-button-primary">

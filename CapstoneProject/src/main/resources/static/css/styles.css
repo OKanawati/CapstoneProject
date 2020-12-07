@@ -36,8 +36,18 @@ a:hover {
   top: 0;
   left: 0;
   overflow: hidden;
-  border-right: 1px solid rgba(0, 0, 0, 0.25);
   background-image: linear-gradient(to bottom, rgba(255, 246, 252, .99), rgb(37 121 110 / 50%)), url(/images/areejNY.jpg);
+  background-size: cover;
+}
+
+.sidebarRight {
+  position: absolute;
+  width: 22.9%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+  background-image: linear-gradient(to bottom, rgba(255, 246, 252, .99), rgb(37 121 110 / 50%)), url(/images/smartphones.png);
   background-size: cover;
 }
 
@@ -309,7 +319,7 @@ table tbody tr:last-child {
   border: 0;
 }
 table td, table th {
-  text-align: left;
+  text-align: center;
 }
 table td.l, table th.l {
   text-align: right;
