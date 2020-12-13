@@ -1,3 +1,5 @@
+--Omar Kanawati and Thomas Forber
+
 INSERT INTO Role (rolename) VALUES ('ROLE_CUSTOMER');
 INSERT INTO Role (rolename) VALUES ('ROLE_OWNER');
 

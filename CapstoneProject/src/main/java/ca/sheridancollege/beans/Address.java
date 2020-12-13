@@ -1,3 +1,5 @@
+// Written by Omar Kanawati
+// Validation by Josh Adeyemo
 package ca.sheridancollege.beans;
 
 import javax.persistence.Embeddable;

@@ -1,3 +1,6 @@
+// Omar Kanawati
+// Modified tutorial from https://docs.mapbox.com/help/tutorials/building-a-store-locator/
+
 /* This will let you use the .remove() function later on */
 if (!('remove' in Element.prototype)) {
 	Element.prototype.remove = function() {

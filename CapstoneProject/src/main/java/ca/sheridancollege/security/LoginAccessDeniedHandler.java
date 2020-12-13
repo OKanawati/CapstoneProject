@@ -1,3 +1,4 @@
+// Omar Kanawati
 package ca.sheridancollege.security;
 
 import java.io.IOException;

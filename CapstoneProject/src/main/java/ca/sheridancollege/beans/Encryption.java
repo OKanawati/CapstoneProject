@@ -1,3 +1,4 @@
+// Omar Kanawati
 package ca.sheridancollege.beans;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

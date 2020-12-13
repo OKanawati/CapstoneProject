@@ -59,12 +59,14 @@ public class HomeController {
 	EmailServiceImpl esi;
 
 	// displays index page with search bar
+	// Omar Kanawati
 	@GetMapping("/")
 	public String goHome() {
 		
 		return "index.html";
 	}
 	
+	// Josh Adeyemo
 	private <T> boolean getValidationMessages(T object, Model model) {
 		Validator validator = Validation
 				.buildDefaultValidatorFactory().getValidator();
@@ -86,6 +88,7 @@ public class HomeController {
 	// -------------------------REGISTRATION--------------------------------------//
 	
 	// directs to shop Owner registration page
+	// Omar Kanawati
 		@GetMapping("/goRegisterOwner")
 		public String goRegisterOwner(Model model) {
 		
@@ -95,10 +98,23 @@ public class HomeController {
 			return "registerOwner.html";
 		}
 		
-		// registers a new shop Owner to the website
+		
+		// Omar Kanawati
+		/**
+		 * Registers a new shop Owner to the website.
+		 * Accessed from the "Register Shop Owner" link on the site's footer.
+		 * It creates an new Owner object using information inputed in the Owner registration form.
+		 * Once created, it assigns it the role of ROLE_OWNER.
+		 * The owner is then saved to the User Repository.
+		 * 
+		 * @param owner	contains the model attributes of Owner collected from registerOwner.html.
+		 * @param model 
+		 * @return the index page.
+		 */
 		@PostMapping("/registerOwner")
 		public String registerOwner(@ModelAttribute Owner owner, Model model) {
 			
+			// Josh Adeyemo
 			if (getValidationMessages(owner, model)) {
 				model.addAttribute("owner", owner);
 				return "registerOwner.html";
@@ -122,6 +138,7 @@ public class HomeController {
 			return "index.html";
 		}
 		
+		// Omar Kanawati
 		// directs to shop registration page
 		@GetMapping("/goRegisterShop")
 		public String goRegisterShop(Model model) {
@@ -136,12 +153,30 @@ public class HomeController {
 			return "user/registerShop.html";
 		}
 		
-		// registers new shop to currently authenticated owner
+		// Omar Kanawati
+		/**
+		 * Registers new shop to currently authenticated owner.
+		 * The owner of the shop is retrieved from the User Repository by using the email found
+		 * inside the Authentication object.
+		 * 
+		 * A new shop is created using the information inputed by the user in the form found on registerShop.html.
+		 * List of appointments is null because it doesn't have any appointments booked.
+		 * The fields "description", "joinDate", and "active" are null
+		 * because there is currently no front-end implementation for these fields.
+		 * 
+		 * The new shop is saved to the Shop Repository and the Owner's Shop List is updated.
+		 * @param shop contains the model attributes of a Shop collected from registerShop.html
+		 * @param model
+		 * @param auth contains credentials of user after successfully being authenticated
+		 * @return
+		 */
 		@PostMapping("/registerShop")
 		public String registerShop(@ModelAttribute Shop shop, Model model, Authentication auth) {
+			
+			// Josh Adeyemo
 			if (getValidationMessages(shop, model)) {
 				model.addAttribute("shop", shop);
-				
+		
 				List<Brand> brands = brandRepo.findAll();
 				// IMPORTANT: (Josh)
 				// The 3 lines below prevent a stack overflow error
@@ -162,6 +197,9 @@ public class HomeController {
 			owner = (Owner)userRepo.findByEmail(auth.getName());
 			
 			// create a new Shop
+			// List of appointments is null because it doesn't have any appointments booked.
+			// "description", "joinDate", and "active" are null.
+			// There is currently no front-end implementation for these fields.
 			Shop registeredShop = new Shop(null, shop.getName(),
 					shop.getPhoneNumber(),
 					shop.getStartTime(),
@@ -185,14 +223,32 @@ public class HomeController {
 			
 	// -----------------------LOGIN AND ACCOUNT INFO------------------------------//
 	
-	// directs to login page
+		// directs to login page
+		// Omar Kanawati
 		@GetMapping("/login")
 		public String login() {
 			return "login.html";
 		}
 	
 	
-	// allows users to view account information
+	// Omar Kanawati
+	/**
+	 * Allows users to view account information such as shops owned and appointments booked.
+	 * If the user isn't currently logged in, they are redirected to login to be authenticated.
+	 * Once authenticated, a list of of roles is created after retrieving them from the user.
+	 * The role list is checked to see if one of the roles contains ROLE_OWNER.
+	 * If it passes the check, an Owner object is created by fetching the user from the User Repository
+	 * using the email address inside the Authentication object.
+	 * 
+	 * A list of appointments is created by iterating through every shop that belongs to the Owner
+	 * and retrieving the appointments booked for each Shop.
+	 * 
+	 * Both the owner and the appointments list is added to the model.
+	 * 
+	 * @param auth contains credentials of user after successfully being authenticated
+	 * @param model holds the attributes of the created Owner to be displayed in viewOwnerAccount.html
+	 * @return owner account page viewOwnerAccount.html
+	 */
 	@GetMapping("/viewAccount")
 	public String viewAccount(Authentication auth, Model model) {
 				
@@ -235,27 +291,45 @@ public class HomeController {
 		
 	}
 	
+	// Omar Kanawati
+	/**
+	 * Filters the list of appointments displayed in the appointments table at viewOwnerAccount.html.
+	 * The Owner is retrieved from the User Repository that matches the id found in the Request Parameter.
+	 * An empty list of appointments is created, and every appointment found inside each Shop belonging to the Owner
+	 * that matches the status parameter is added to the list.
+	 * Both the appointment list and owner are added to the model and viewOwnerAccount.html is returned.
+	 * @param status Request Parameter selected from filter drop down box.
+	 * @param ownerId integer used to find current Owner from User Repository
+	 * @param model holds attributes of Owner and new appointment list to be displayed at viewOwnerAccount.html
+	 * @return owner account page in viewOwnerAccount.html
+	 */
 	@GetMapping("/filterAppointments")
 	public String filterAppointments(@RequestParam String status, @RequestParam int ownerId, Model model) {
 		
+		// Find an Owner in the User Repository using the ownerId request parameter
 		Owner owner = new Owner();
 		owner = (Owner) userRepo.findById(ownerId);
 		
+		// create an empty list of appointments
 		List<Appointment> appointments = new ArrayList<Appointment>();
 		
+		// retrieve every appointment from every Shop belonging to the Owner and add it to the appointment list
 		for (Shop shop : owner.getShopList()) {
 			for (Appointment appointment : shop.getAppointments()) {
 				
+				// if the status selected in drop down menu is "NONE", add all appointments to the list
 				if (status.contains("NONE")) {
 					appointments.add(appointment);
 				}
 				
+				// checks the selected status from the drop down menu and only displays appointments with that status
 				else if (appointment.getStatus().contains(status)) {
 					appointments.add(appointment);
 				}
 			}
 		}
 		
+		// owner and new list of appointments is added to the model
 		model.addAttribute("owner", owner);
 		model.addAttribute("appointments", appointments);
 				
@@ -265,6 +339,26 @@ public class HomeController {
 	
 	// -------------------------SEARCH AND DISPLAY RESULTS------------------------//
 	
+	
+	// Omar Kanawati
+	/**
+	 * Searches for every registered Shop that supports the device Brand searched by the User.
+	 * A list of Brands is created by searching the Brand Repository of all Brands that contain
+	 * the search String.
+	 * 
+	 * A Set of Shops that match the Brands in the Brands List is created, with duplicates not included
+	 * if a Shop supports more than one Brand found in the list.
+	 * 
+	 * A geocoder parameter String is built using the address information found in each Shop,
+	 * and is combined with the MapBox Geocoder API call to perform Batch Geocoding on the list of Shops.
+	 * 
+	 * The Shop List, Shop Names, Shop IDs, and the full API call String are added to the model where they
+	 * will be used in initializing the Map and creating an intractable list of Shops at the index page.
+	 * @param search a String inputed by the User containing the brand name of the device they need serviced.
+	 * @param model holds attributes of search results, shop names and IDs, 
+	 * 		  		and a Mapbox Geocoder API call used at the index page.
+	 * @return 	the index page
+	 */
 	@GetMapping("/search")
 	public String search(@RequestParam String search, Model model) {
 		
@@ -343,7 +437,7 @@ public class HomeController {
 	
 	// -----------------------------APPOINTMENT BOOKING---------------------------//
 	
-	// TODO: Appointment booking
+	// Omar Kanawati and Josh Adeyemo
 	@GetMapping("/createAppointment")
 	public String goCreateAppointment(Model model, @RequestParam int shopID) {
 		
@@ -368,10 +462,25 @@ public class HomeController {
 		return "createAppointment.html";
 	}
 	
+	// Omar Kanawati
+	/**
+	 * Saves the Appointment made by the customer and sends a confirmation email with a link to the Appointment.
+	 * Uses the Request Parameter shopID to find the current Shop the customer is booking with.
+	 * A key string is randomly generated and assigned to the appointment, and its status is set to "Requested".
+	 * The appointment is assigned to the Shop, and the Shop adds the appointment to its appointment list.
+	 * A confirmation email with the link to the appointment is sent to the customer, and the user is
+	 * redirected to a confirmation page.
+	 * @param appointment created using the Appointment information inputed by the customer at createAppointment.html
+	 * @param model holds the attributes for the Shop, list of brands, and appointment
+	 * @param auth contains the credentials of the authorized User
+	 * @param shopID Integer id of the Shop the customer is booking an appointment with
+	 * @return the booking confirmation page
+	 */
 	@PostMapping("/saveAppointment")
 	public String saveAppointment(@ModelAttribute Appointment appointment, Model model, Authentication auth,
 			@RequestParam int shopID) {
 		
+		// Josh Adeyemo
 		if (getValidationMessages(appointment, model)) {
 
 			List<String> modelList = new ArrayList<String>();
@@ -386,23 +495,31 @@ public class HomeController {
 			return "createAppointment.html";
 		}
 
+		// retrieves Shop using ID after Book Appointment button is clicked
 		Shop shop = shopRepo.findById(shopID);
 		
+		// Generates a unique appointment key for the appointment
+		// Sets appointment status to "Requested"
 		appointment.setAppointmentKey(Appointment.keyGenerator());
 		appointment.setStatus("REQUESTED");
 		appointment.setShop(shop);
 		
+		// adds the new appointment to the Shop
 		shop.getAppointments().add(appointment);
 		
+		// Appointment is saved to Appointment Repository
+		// Shop is saved after updated with new Appointment
 		appointmentRepo.save(appointment);
 		shopRepo.save(shop);
 		
+		// sends a confirmation email to customer with link to Appointment
 		sendConfirmationEmail(shop, appointment);
 		
-		//TODO: Create confirmation page to redirect to
+		// directs user to confirmation page telling customer to check email
 		return "bookingConfirm.html";
 	}
 	
+	// Omar Kanawati
 	@GetMapping("/updateStatus/{id}/{status}")
 	public String updateStatus(@PathVariable int id, @PathVariable String status, Model model) {
 		
@@ -416,7 +533,17 @@ public class HomeController {
 		
 	}
 	
-	//TODO: Implement view and editing of appointments using appointment link
+	// Omar Kanawati
+	/**
+	 * Implement view and editing of appointments using appointment link.
+	 * Finds an Appointment using the appointment key path variable in the URL path.
+	 * Finds the shop the appointment belongs to by retrieving the shop ID inside the appointment.
+	 * Retrieves a Review assigned to the appointment even if the value is null
+	 * Attaches the Appointment, Shop, and Review to the model.
+	 * @param id the generated key String for the appointment.
+	 * @param model holds the attributes for the Appointment, Shop, and Review which are displayed at ViewAppointments
+	 * @return viewAppointments page where customer can review the appointment they made
+	 */
 	@GetMapping("/viewAppointment/{id}")
 	public String viewAppointment(@PathVariable String id, Model model) {
 		
@@ -438,25 +565,54 @@ public class HomeController {
 		return "viewAppointments.html";
 	}
 	
+	// Omar Kanawati
+	/**
+	 * Creates a new review using the review body text written by the customer, and adds it to the appointment.
+	 * The requested appointment is retrieved using the appointment key found in the URL path
+	 * A new Review is created and its reviewBody is set as the customer's written review.
+	 * The Review is set to the Appointment, and is saved in the Review Repository.
+	 * The Appointment is set with the saved Review, 
+	 * and the updated Appointment is saved to the Appointment Repository.
+	 * The customer is redirected to the appointment they requested with the new review added.
+	 * @param reviewBody review text written by the customer
+	 * @param appointmentKey randomly generated key string for the appointment.
+	 * @param model
+	 * @return URL for viewAppointment page with the appointmentKey as a Path Variable
+	 */
 	@GetMapping("/reviewShop")
 	public String reviewShop(@RequestParam String reviewBody, @RequestParam String appointmentKey, Model model) {
 		
+		// Creates a new Review and finds an Appointment using the appointment key
 		Review review = new Review();
 		Appointment appointment = appointmentRepo.findByAppointmentKey(appointmentKey);
 		
+		// Sets the appointment to the new review
+		// Adds the review body that the customer wrote into the Review object
+		// Saves review to Review Repository
 		review.setAppointment(appointment);
 		review.setReviewBody(reviewBody);
 		reviewRepo.save(review);
 		
+		// Sets the review to the correct Appointment
+		// Saves the updated Appointment to the Appointment Repository
 		appointment.setReview(review);
 		appointmentRepo.save(appointment);
 	
+		// redirects to the requested appointment page
 		return "redirect:/viewAppointment/" + appointmentKey;
 		
 	}
 	
 	// -----------------------------SENDING EMAILS---------------------------//
 	
+	// Omar Kanawati
+	/**
+	 * Sends a confirmation email with a message containing a link to the Appointment booked by the Customer
+	 * The URL to the viewAppointment page is appended with the appointment key found in the Appointment
+	 * The email requires a title, header, messageBody, footer, subject, and to parameter.
+	 * @param shop the Shop the customer booked an appointment with
+	 * @param appointment the Appointment the customer created that contains the appointment key
+	 */
 	public void sendConfirmationEmail(Shop shop, Appointment appointment)  {
 		
 		// url and anchor tag for appointment link

@@ -1,3 +1,4 @@
+// Omar Kanawati
 package ca.sheridancollege.beans;
 
 import java.util.List;

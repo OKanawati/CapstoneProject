@@ -1,3 +1,4 @@
+// Omar Kanawati
 package ca.sheridancollege.security;
 
 import org.springframework.beans.factory.annotation.Autowired;

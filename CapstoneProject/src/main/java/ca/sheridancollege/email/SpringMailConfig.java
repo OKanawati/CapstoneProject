@@ -1,3 +1,4 @@
+// Omar Kanawati
 package ca.sheridancollege.email;
 
 import java.util.Properties;

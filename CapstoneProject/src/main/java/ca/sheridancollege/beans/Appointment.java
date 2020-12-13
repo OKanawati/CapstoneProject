@@ -1,3 +1,5 @@
+// Written by Omar Kanawati
+// Validation by Josh Adeyemo
 package ca.sheridancollege.beans;
 
 import java.nio.charset.Charset;
@@ -54,10 +56,18 @@ public class Appointment {
 	Shop shop = new Shop();
 	
 	
-	
+	// Omar Kanawati
+	/**
+	 * Creates a randomly generated String used as the appointmentKey appended to the Appointment URL
+	 * The key length is ten characters randomly generated with special characters removed and converted
+	 * to upper case.
+	 * A StrinbBuffer is used to store the result.
+	 * Appends the first 10 alphanumeric characters into a String.
+	 * @return the randomly generated String result within the StringBuffer r.
+	 */
 	public static String keyGenerator() {
 			
-			// size of product key
+			// size of appointment key
 			int n = 10;
 			
 			// length is bounded by 256 Character
