@@ -1,3 +1,4 @@
+<!-- Josh Adeyemo, DTangri -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="index.html :: header (pageTitle='Register Shop')">
@@ -89,7 +90,7 @@
 							        </tr>
 							    </thead>
 							    <tbody>
-							    <!-- Connect the SQL brand list values to these -->
+							    <!-- Connect the SQL brand list values to these --> <!-- DTangri -->
 							        <tr th:each="brand : ${brands}">
 								    	<td class="column1" style="text-align: center;"><span th:text="${brand.brandName}"></span></td>
 								        <td class="column2" style="text-align: center;"><input type="checkbox" th:value="${brand.id}" th:field="*{brands}"/></td>
