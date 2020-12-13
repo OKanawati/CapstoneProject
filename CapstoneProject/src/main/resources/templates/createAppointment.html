@@ -1,3 +1,4 @@
+<!-- Josh Adeyemo, Omar Kanawati & DTangri-->
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeLeaf.org" style="background-image: radial-gradient(circle, #190000, #420f1d, #820327, #c20023, #ff0000);min-height: -webkit-fill-available;">
 <head th:replace="index.html :: header (pageTitle='Schedule Appointment')">
@@ -88,6 +89,9 @@
 		<h1 style="background-image: linear-gradient(to right, #ff0000, #f30000, #e80000, #dc0000, #d10000, #d10000, #d10000, #d10000, #dc0000, #e80000, #f30000, #ff0000); color: white;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">Appointment Registration</h1>
 		<h2 style="color: navajowhite;">[[${shop.name}]]</h2>
 	</div>
+	
+	<!-- Appointment Registration -->
+	
 	<form action="#" th:action="@{/saveAppointment}" th:object="${appointment}" method="post" class="pure-form pure-form-aligned">
 		<input type=hidden th:value="${shop.id}" name="shopID">
 		<div class="page" data-page="0" style="text-align: center; text-indent: -10%;">
