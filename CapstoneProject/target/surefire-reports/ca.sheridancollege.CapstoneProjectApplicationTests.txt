@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: ca.sheridancollege.CapstoneProjectApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.287 s - in ca.sheridancollege.CapstoneProjectApplicationTests

@@ -1,0 +1,93 @@
+# Created at 2020-12-06T23:34:01.637
+TestSet has not finished before stream error has appeared >> initializing exit by non-null configuration: null
+java.io.EOFException
+	at java.base/java.io.DataInputStream.readInt(DataInputStream.java:397)
+	at org.apache.maven.surefire.booter.MasterProcessCommand.decode(MasterProcessCommand.java:115)
+	at org.apache.maven.surefire.booter.CommandReader$CommandRunnable.run(CommandReader.java:391)
+	at java.base/java.lang.Thread.run(Thread.java:830)
+
+
+# Created at 2020-12-06T23:34:02.178
+Unexpected IOException with stream: 2020-12-06 23:34:02.176  INFO 22216 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+
+
+# Created at 2020-12-06T23:34:02.251
+Unexpected IOException with stream: 2020-12-06 23:34:02.250  INFO 22216 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 65ms. Found 6 JPA repository interfaces.
+
+
+# Created at 2020-12-06T23:34:02.662
+Unexpected IOException with stream: 2020-12-06 23:34:02.662  INFO 22216 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+
+
+# Created at 2020-12-06T23:34:02.676
+Unexpected IOException with stream: 2020-12-06 23:34:02.675  INFO 22216 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+
+
+# Created at 2020-12-06T23:34:02.817
+Unexpected IOException with stream: 2020-12-06 23:34:02.817  INFO 22216 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+
+
+# Created at 2020-12-06T23:34:02.876
+Unexpected IOException with stream: 2020-12-06 23:34:02.875  INFO 22216 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+
+
+# Created at 2020-12-06T23:34:02.951
+Unexpected IOException with stream: 2020-12-06 23:34:02.950  INFO 22216 --- [         task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.21.Final
+
+
+# Created at 2020-12-06T23:34:03.046
+Unexpected IOException with stream: 2020-12-06 23:34:03.046  WARN 22216 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+
+
+# Created at 2020-12-06T23:34:03.081
+Unexpected IOException with stream: 2020-12-06 23:34:03.081  INFO 22216 --- [         task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+
+
+# Created at 2020-12-06T23:34:03.302
+Unexpected IOException with stream: 2020-12-06 23:34:03.302  INFO 22216 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@724bf25f, org.springframework.security.web.context.SecurityContextPersistenceFilter@73e776b7, org.springframework.security.web.header.HeaderWriterFilter@59d0cdb6, org.springframework.security.web.authentication.logout.LogoutFilter@7c96c85, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1213ffbc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@43da0955, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@c3719e5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2abafa97, org.springframework.security.web.session.SessionManagementFilter@498c535d, org.springframework.security.web.access.ExceptionTranslationFilter@7f3fc42f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3e26482]
+
+
+# Created at 2020-12-06T23:34:03.324
+Unexpected IOException with stream: 2020-12-06 23:34:03.324  INFO 22216 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+
+
+# Created at 2020-12-06T23:34:03.671
+Unexpected IOException with stream: 2020-12-06 23:34:03.671  INFO 22216 --- [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+
+
+# Created at 2020-12-06T23:34:03.712
+Unexpected IOException with stream: 2020-12-06 23:34:03.712  INFO 22216 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+
+
+# Created at 2020-12-06T23:34:03.936
+Unexpected IOException with stream: 2020-12-06 23:34:03.935  INFO 22216 --- [           main] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+
+
+# Created at 2020-12-06T23:34:04.181
+Unexpected IOException with stream: 2020-12-06 23:34:04.181  INFO 22216 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+
+
+# Created at 2020-12-06T23:34:04.189
+Unexpected IOException with stream: 2020-12-06 23:34:04.188  INFO 22216 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+
+
+# Created at 2020-12-06T23:34:04.455
+Unexpected IOException with stream: 2020-12-06 23:34:04.455  INFO 22216 --- [           main] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+
+
+# Created at 2020-12-06T23:34:04.461
+Unexpected IOException with stream: 2020-12-06 23:34:04.460  INFO 22216 --- [           main] c.s.CapstoneProjectApplicationTests      : Started CapstoneProjectApplicationTests in 2.997 seconds (JVM running for 3.618)
+
+
+# Created at 2020-12-06T23:34:04.474
+Unexpected IOException: 5,1,ca.sheridancollege.CapstoneProjectApplicationTests,contextLoads,null,null,null
+
+
+# Created at 2020-12-06T23:34:04.593
+Unexpected IOException: 6,1,ca.sheridancollege.CapstoneProjectApplicationTests,contextLoads,null,null,null
+
+
+# Created at 2020-12-06T23:34:04.595
+Unexpected IOException: 2,1,org.apache.maven.surefire.junitplatform.JUnitPlatformProvider,ca.sheridancollege.CapstoneProjectApplicationTests,null,null,null
+
+

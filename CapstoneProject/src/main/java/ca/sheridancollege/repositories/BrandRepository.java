@@ -11,4 +11,5 @@ public interface BrandRepository extends CrudRepository<Brand, Integer> {
 	Brand findById(int id);
 	Brand findByBrandName(String name);
 	public List<Brand> findAll();
+	public List<Brand> findByBrandNameContains(String name);
 }

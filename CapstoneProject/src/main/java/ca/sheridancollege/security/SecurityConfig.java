@@ -20,6 +20,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		http.headers().frameOptions().disable();
 		
+//		http
+//		.requiresChannel()
+//		.anyRequest()
+//		.requiresSecure();
+		
 		http.authorizeRequests()
 			.antMatchers("/user/viewOwnerAccount").hasRole("OWNER")
 			.antMatchers("/user/registerShop").hasRole("OWNER")

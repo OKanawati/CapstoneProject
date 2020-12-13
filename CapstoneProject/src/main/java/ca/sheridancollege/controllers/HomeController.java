@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -23,12 +22,10 @@ import javax.validation.Validator;
 
 import ca.sheridancollege.beans.Appointment;
 import ca.sheridancollege.beans.Brand;
-import ca.sheridancollege.beans.Customer;
 import ca.sheridancollege.beans.Owner;
 import ca.sheridancollege.beans.Review;
 import ca.sheridancollege.beans.Role;
 import ca.sheridancollege.beans.Shop;
-import ca.sheridancollege.beans.User;
 import ca.sheridancollege.email.EmailServiceImpl;
 import ca.sheridancollege.repositories.AppointmentRepository;
 import ca.sheridancollege.repositories.BrandRepository;
@@ -198,7 +195,7 @@ public class HomeController {
 	// allows users to view account information
 	@GetMapping("/viewAccount")
 	public String viewAccount(Authentication auth, Model model) {
-		
+				
 		// if the user hasn't logged in, they will be redirected to the login page
 		if (auth == null) {
 			return "redirect:/login";
@@ -272,10 +269,16 @@ public class HomeController {
 	public String search(@RequestParam String search, Model model) {
 		
 		// find the brand that matches the search
-		Brand brand = brandRepo.findByBrandName(search.toUpperCase());
-	
-		// retrieve shops with retrieved brand
-		List<Shop> results = brand.getShops();
+		List<Brand> brands = brandRepo.findByBrandNameContains(search.toUpperCase());
+
+		Set<Shop> results = new HashSet<Shop>();
+		
+		for (Brand brand : brands) {
+			
+			for (Shop shop: brand.getShops()) {
+				results.add(shop);
+			}
+		}
 		
 		// list of shop names
 		List<String> shopNames = new ArrayList<String>();
@@ -457,7 +460,7 @@ public class HomeController {
 	public void sendConfirmationEmail(Shop shop, Appointment appointment)  {
 		
 		// url and anchor tag for appointment link
-		String appUrl = "http://localhost:8080/viewAppointment/" + appointment.getAppointmentKey();
+		String appUrl = "https://capstone-oddball-localfix.herokuapp.com/viewAppointment/" + appointment.getAppointmentKey();
 		String link = "<a href='" + appUrl + "'>this link</a>";
 		
 		// email requires title, header, messageBody, footer, subject, and to
