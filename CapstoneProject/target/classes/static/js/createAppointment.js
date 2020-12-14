@@ -1,3 +1,4 @@
+// Josh Adeyemo
 import { PageTransition } from './pageTransition.js';
 
 // get all the pages, proceed buttons, and back buttons
