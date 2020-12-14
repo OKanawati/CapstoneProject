@@ -67,6 +67,15 @@ public class HomeController {
 	}
 	
 	// Josh Adeyemo
+	/**
+	 * Validates a given object that has validation constraints and puts any 
+	 * error messages inside a model object that will be passed back to the form.
+	 * 
+	 * @param <T> the type/class of the object that is being validated
+	 * @param object the object to validate
+	 * @param model the model to attach the error messages to
+	 * @return whether there were any error messages from the validation
+	 */
 	private <T> boolean getValidationMessages(T object, Model model) {
 		Validator validator = Validation
 				.buildDefaultValidatorFactory().getValidator();

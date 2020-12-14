@@ -1,3 +1,5 @@
+// Josh Adeyemo
+// Modified datepicker from https://www.w3schools.com/code/tryit.asp?filename=FED216E6BIIJ
 var currPage = 0; //month
 var year ;
 var day;

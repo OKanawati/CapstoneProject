@@ -1,3 +1,5 @@
+// Josh Adeyemo
+
 // PageTransition class handles the transitions from page to page
 // as well as the event handling for all the next and back buttons 
 // on every page
