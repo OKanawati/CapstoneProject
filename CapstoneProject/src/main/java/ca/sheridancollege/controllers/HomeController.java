@@ -435,6 +435,38 @@ public class HomeController {
 		return "index.html";
 	}
 	
+	// ------------------------------DISTANCE CHECKING(Unused)-----------------------------//
+	//Thomas Forber
+	/**
+	 * Takes the longitude and latitude of a store and the customer, and uses the "haversine" formula to calculate
+	 * the shortest straight line distance between the two points using a Great Circle line.
+	 * @param float array containing coordinates of the store to check
+	 * @param float array containing coordinates of the customer's location
+	 * @param distance parameter requested by customer to search within
+	 * @return true if store is within distance, false if outside
+	 */
+
+	private boolean isClose(float[] storeLoc, float[] custLoc, int dist) {
+		final double RADIUS = 6371008.8;
+		double storeLong = storeLoc[0] * Math.PI / 180;
+		double storeLat = storeLoc[1] * Math.PI / 180;
+
+		double custLong = custLoc[0] * Math.PI / 180;
+		double custLat = custLoc[1] * Math.PI / 180;
+
+		double deltaLong = storeLong - custLong;
+		double deltaLat = storeLat - custLat;
+
+		double step1 = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2)
+				+ Math.cos(storeLat) * Math.cos(custLat) * Math.sin(deltaLong / 2) * Math.sin(deltaLong / 2);
+		double step2 = 2 * Math.atan2(Math.sqrt(step1), Math.sqrt(1 - step1)) * RADIUS;
+		double distInKm = step2 / 1000;
+		if (distInKm <= dist)
+			return true;
+		else
+			return false;
+	}
+	
 	// -----------------------------APPOINTMENT BOOKING---------------------------//
 	
 	// Omar Kanawati and Josh Adeyemo

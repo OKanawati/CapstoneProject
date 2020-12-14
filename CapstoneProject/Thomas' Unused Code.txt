@@ -1,0 +1,39 @@
+/*
+  Thomas Forber's Unused Code
+ */
+
+//Change to part of Search function to allow for proximity limiting
+	public String search(@RequestParam String search, @RequestParam String dist, @RequestParam String custLoc Model model){
+
+		
+		// list of shop addresses
+		List<float[]> shopCoords = new ArrayList<float[]>();
+		
+		// Splits customer location into size 2 array for longitude and latitude
+		String[] loc = String.split(custLoc,',');
+		float[] locFloat = {Float.parseFloat(loc[0]),Float.parseFloat(loc[1])};
+		
+		// iterates through shop list
+		for (Shop shop : results) {
+			if(isClose(shop.getAddress().getCoords(), locFloat) || dist == "0"){
+							
+				// adds addresses to a separate list
+				shopCoords.add(shop.getAddress().getCoords());
+				
+			}
+			else
+				results.remove(shop);
+		}
+		
+		
+		// attaches a list of shop coords to model 
+		model.addAttribute("shopCoords", shopCoords);
+		
+		return "index.html";
+
+	}
+	
+
+
+
+
